@@ -2,26 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://92SooJong.github.io/posts/my-first-post/</loc>
-    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/posts/</loc>
-    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/</loc>
-    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+    <loc>https://92SooJong.github.io/archives/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="kr"
-                href="https://92SooJong.github.io/kr/"
+                href="https://92SooJong.github.io/kr/archives/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
-                href="https://92SooJong.github.io/"
+                href="https://92SooJong.github.io/archives/"
                 />
-  </url><url>
-    <loc>https://92SooJong.github.io/archives/</loc>
   </url><url>
     <loc>https://92SooJong.github.io/categories/</loc>
     <xhtml:link
@@ -36,6 +27,16 @@
                 />
   </url><url>
     <loc>https://92SooJong.github.io/search/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://92SooJong.github.io/kr/search/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://92SooJong.github.io/search/"
+                />
   </url><url>
     <loc>https://92SooJong.github.io/tags/</loc>
     <xhtml:link
@@ -47,6 +48,18 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://92SooJong.github.io/tags/"
+                />
+  </url><url>
+    <loc>https://92SooJong.github.io/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://92SooJong.github.io/kr/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://92SooJong.github.io/"
                 />
   </url>
 </urlset>

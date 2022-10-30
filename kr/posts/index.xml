@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Today I Learn</title>
-    <link>https://92SooJong.github.io/kr/</link>
-    <description>Recent content on Today I Learn</description>
+    <title>Posts on Today I Learn</title>
+    <link>https://92SooJong.github.io/kr/posts/</link>
+    <description>Recent content in Posts on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 30 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/kr/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 30 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/kr/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My First Post</title>
       <link>https://92SooJong.github.io/kr/posts/my-first-post/</link>
@@ -15,8 +15,6 @@
       <guid>https://92SooJong.github.io/kr/posts/my-first-post/</guid>
       <description>static CustomerRegistrationValidator isEmailValid () { return customer -&amp;gt; customer.getEmail().contains(&amp;#34;@&amp;#34;) ? ValidationResult.SUCCESS : ValidationResult.EMAIL_NOT_VALID; } </description>
     </item>
-    
-    
     
   </channel>
 </rss>

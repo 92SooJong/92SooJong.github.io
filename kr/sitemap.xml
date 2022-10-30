@@ -2,6 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://92SooJong.github.io/kr/posts/my-first-post/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/kr/posts/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/kr/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://92SooJong.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://92SooJong.github.io/kr/"
+                />
+  </url><url>
+    <loc>https://92SooJong.github.io/kr/archives/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://92SooJong.github.io/archives/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://92SooJong.github.io/kr/archives/"
+                />
+  </url><url>
     <loc>https://92SooJong.github.io/kr/categories/</loc>
     <xhtml:link
                 rel="alternate"
@@ -14,6 +45,18 @@
                 href="https://92SooJong.github.io/kr/categories/"
                 />
   </url><url>
+    <loc>https://92SooJong.github.io/kr/search/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://92SooJong.github.io/search/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://92SooJong.github.io/kr/search/"
+                />
+  </url><url>
     <loc>https://92SooJong.github.io/kr/tags/</loc>
     <xhtml:link
                 rel="alternate"
@@ -24,18 +67,6 @@
                 rel="alternate"
                 hreflang="kr"
                 href="https://92SooJong.github.io/kr/tags/"
-                />
-  </url><url>
-    <loc>https://92SooJong.github.io/kr/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://92SooJong.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://92SooJong.github.io/kr/"
                 />
   </url>
 </urlset>
