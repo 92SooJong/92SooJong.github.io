@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Java-Optimizing-book on Today I Learn</title>
+    <link>https://92SooJong.github.io/kr/tags/java-optimizing-book/</link>
+    <description>Recent content in Java-Optimizing-book on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 30 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/kr/tags/java-optimizing-book/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chapter2. Overview of the JVM</title>
+      <link>https://92SooJong.github.io/kr/posts/chapter2-overview-of-the-jvm/</link>
+      <pubDate>Sun, 30 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/kr/posts/chapter2-overview-of-the-jvm/</guid>
+      <description>Interpreting and Classloading JVM은 stack-based interpreted machine이다. 이 뜻은 CPU같은 물리적 하드웨어를 뜻하는게 아니라 execution stack을 의미한다. 그리고 이 스택에 존재하는 값들을 통해서 계산을 수행한다.
+예를들어 java HelloWorld 커맨드를 실행하면, 운영체제는 virtual machine process(the java binary)를 실행한다. 이 과정에서 자바 가상 환경 세팅과 초기화를 수행한다. 이 결과로 HelloWorld.class 파일을 생성한다.
+생성된 클래스 파일의 진입점은 main() 메소드가 될것이다. 클래스 파일을 제어하기 위해선 가상 머신을 실행하기 전에 클래스 파일이 로딩되어야한다.
+이 작업을 위해 Java Class Loading 메커니즘이 사용된다.</description>
+    </item>
+    
+  </channel>
+</rss>

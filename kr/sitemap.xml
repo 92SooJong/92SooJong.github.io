@@ -5,8 +5,27 @@
     <loc>https://92SooJong.github.io/kr/posts/chapter2-overview-of-the-jvm/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
   </url><url>
+    <loc>https://92SooJong.github.io/kr/tags/java/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/kr/tags/java-optimizing-book/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/kr/posts/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/kr/tags/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://92SooJong.github.io/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="kr"
+                href="https://92SooJong.github.io/kr/tags/"
+                />
   </url><url>
     <loc>https://92SooJong.github.io/kr/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
@@ -55,18 +74,6 @@
                 rel="alternate"
                 hreflang="kr"
                 href="https://92SooJong.github.io/kr/search/"
-                />
-  </url><url>
-    <loc>https://92SooJong.github.io/kr/tags/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://92SooJong.github.io/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="kr"
-                href="https://92SooJong.github.io/kr/tags/"
                 />
   </url>
 </urlset>
