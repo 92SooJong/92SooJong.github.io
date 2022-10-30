@@ -192,14 +192,17 @@ Also, You can find English-based cotents at <a href="https://92soojong.github.io
 
 <article class="post-entry"> 
   <header class="entry-header">
-    <h2>My First Post
+    <h2>Chapter2. Overview of the JVM
     </h2>
   </header>
   <div class="entry-content">
-    <p>static CustomerRegistrationValidator isEmailValid () { return customer -&gt; customer.getEmail().contains(&#34;@&#34;) ? ValidationResult.SUCCESS : ValidationResult.EMAIL_NOT_VALID; } </p>
+    <p>Interpreting and Classloading JVM은 stack-based interpreted machine이다. 이 뜻은 CPU같은 물리적 하드웨어를 뜻하는게 아니라 execution stack을 의미한다. 그리고 이 스택에 존재하는 값들을 통해서 계산을 수행한다.
+예를들어 java HelloWorld 커맨드를 실행하면, 운영체제는 virtual machine process(the java binary)를 실행한다. 이 과정에서 자바 가상 환경 세팅과 초기화를 수행한다. 이 결과로 HelloWorld.class 파일을 생성한다.
+생성된 클래스 파일의 진입점은 main() 메소드가 될것이다. 클래스 파일을 제어하기 위해선 가상 머신을 실행하기 전에 클래스 파일이 로딩되어야한다.
+이 작업을 위해 Java Class Loading 메커니즘이 사용된다....</p>
   </div>
-  <footer class="entry-footer"><span title='2022-10-30 22:55:00 +0900 KST'>October 30, 2022</span>&nbsp;·&nbsp;1 min</footer>
-  <a class="entry-link" aria-label="post link to My First Post" href="https://92SooJong.github.io/kr/posts/my-first-post/"></a>
+  <footer class="entry-footer"><span title='2022-10-30 22:55:00 +0900 KST'>October 30, 2022</span>&nbsp;·&nbsp;5 min</footer>
+  <a class="entry-link" aria-label="post link to Chapter2. Overview of the JVM" href="https://92SooJong.github.io/kr/posts/chapter2-overview-of-the-jvm/"></a>
 </article>
     </main>
     
