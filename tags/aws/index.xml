@@ -9,6 +9,15 @@
     <lastBuildDate>Tue, 18 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title> General Immersion Day(10/18) 정리</title>
+      <link>https://92SooJong.github.io/posts/aws/keypair/</link>
+      <pubDate>Tue, 18 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/aws/keypair/</guid>
+      <description>정의 퍼블릭 키와 프라이빗 키로 구성되어 있으며 Amazon EC2 인스턴스에 연결할 때 자격 증명 입증에 사용하는 보안 자격 증명 집합이다. 설명 퍼블릭 키는 EC2 인스턴스에 생성된다. 프라이빗 키는 사용자의 로컬에 생성된다. 사용자는 프라이빗 키를 통해 EC2 인스턴스와 SSH 연결을 수행할 수 있다. 따라서 사용자는 프라이빗 키를 보안이 유지되는 장소에 저장해둬야한다. EC2 인스턴스가 시작되면 ~/.ssh/authorized_keys에 퍼블릭 키가 생성된다. 로컬에 생성된 키페어를 잃어버리면 찾을 방법이 없다. 새로 키페어를 생성해야한다. 프라이빗 키의 확장자는 .</description>
+    </item>
+    
+    <item>
+      <title>General Immersion Day(10/18) 정리</title>
       <link>https://92SooJong.github.io/posts/aws/general-immersion-day/</link>
       <pubDate>Tue, 18 Oct 2022 22:55:00 +0900</pubDate>
       
@@ -17,6 +26,15 @@
 2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.
 AWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.
 콘텐츠 전송 네트워크(CDN) 최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다.</description>
+    </item>
+    
+    <item>
+      <title>General Immersion Day(10/18) 정리</title>
+      <link>https://92SooJong.github.io/posts/aws/%EA%B8%B0%EB%B3%B8%EA%B0%95%EC%9D%98%ED%95%84%EA%B8%B0/</link>
+      <pubDate>Tue, 18 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/aws/%EA%B8%B0%EB%B3%B8%EA%B0%95%EC%9D%98%ED%95%84%EA%B8%B0/</guid>
+      <description>개요 Amazon Web Service 클라우드 컴퓨팅 서버리스(Serverless) 기능 지원 클라우드가 서버를 작동하고 메모리 할당을 효율적으로 수행함. 계정 만들기 사용하는 만큼 비용 지불 (As You Pay Go) Free-tier는 일종의 데모버전 ( 무료 ) 루트(Root) 사용자. 전지전능한 사용자. 권한부여나 다른 사용자를 만듦. IAM이란? IAM은 Identity and Access Management의 약자이다. 유저를 관리하고 접근 레벨 및 권한에 대한 관리를 해준다. 다른 유저를 생성할 수 있는데 유저에 대한 접근키와 비밀키를 제공한다. 접근키는 user_id , 비밀키는 password라고 생각하면 된다.</description>
     </item>
     
   </channel>
