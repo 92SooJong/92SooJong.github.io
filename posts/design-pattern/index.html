@@ -128,23 +128,28 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://92SooJong.github.io/archives" title="Archive">
-                    <span>Archive</span>
+                <a href="https://92SooJong.github.io/posts/" title="카테고리">
+                    <span>카테고리</span>
                 </a>
             </li>
             <li>
-                <a href="https://92SooJong.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
+                <a href="https://92SooJong.github.io/archives/" title="아카이브">
+                    <span>아카이브</span>
                 </a>
             </li>
             <li>
-                <a href="https://92SooJong.github.io/tags/" title="Tags">
-                    <span>Tags</span>
+                <a href="https://92SooJong.github.io/search/" title="검색">
+                    <span>검색</span>
                 </a>
             </li>
             <li>
-                <a href="https://soojong.tistory.com/" title="Tistory">
-                    <span>Tistory</span>&nbsp;
+                <a href="https://92SooJong.github.io/tags/" title="태그">
+                    <span>태그</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://soojong.tistory.com/" title="티스토리">
+                    <span>티스토리</span>&nbsp;
                     <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
                         <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
@@ -168,10 +173,7 @@
     <h2>Joshua의 BuilderPattern
     </h2>
   </header>
-  <div class="entry-content">
-    <p>1//////////////////////// Phone.java 2public class Phone{ 3 4 private String name; 5 private String realeseDate; 6 private String companyName; 7 private boolean isAndroid; 8 private boolean isKoreaCompany; 9 10 public static class Builder{ 11 12 private String name; 13 private String realeseDate; 14 private String companyName; 15 private boolean isAndroid; 16 private boolean isKoreaCompany; 17 18 public Builder name(String name){ 19 this.name = name; 20 return this; 21 } 22 public Builder realeseDate(String realeseDate){ 23 this....</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-12-23 22:55:00 +0900 KST'>December 23, 2021</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Soo Jong</footer>
+  <footer class="entry-footer"><span title='2021-12-23 22:55:00 +0900 KST'>December 23, 2021</span>&nbsp;·&nbsp;Soo Jong</footer>
   <a class="entry-link" aria-label="post link to Joshua의 BuilderPattern" href="https://92SooJong.github.io/posts/design-pattern/joshua-builderpattern/"></a>
 </article>
 
@@ -180,10 +182,7 @@
     <h2>GoF의 BuilderPattern
     </h2>
   </header>
-  <div class="entry-content">
-    <p>1//////////////////////////////////// PhoneBuilder.java 2public interface PhoneBuilder { 3 4 5 void buildName(); 6 void buildRealeseDate(); 7 void buildCompanyName(); 8 void buildIsAndroid(); 9 void buildIsKoreaCompany(); 10 Phone getPhone(); 11 12} 13 14//////////////////////////////////// Iphone13Builder.java 15public class Iphone13Builder implements PhoneBuilder{ 16 17 private Phone phone; 18 19 public Iphone13Builder() { 20 this.phone = new Phone(); 21 } 22 23 @Override 24 public void buildName() { 25 phone.setName(&#34;Iphone13&#34;); 26 } 27 28 @Override 29 public void buildRealeseDate() { 30 phone....</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-12-22 22:55:00 +0900 KST'>December 22, 2021</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Soo Jong</footer>
+  <footer class="entry-footer"><span title='2021-12-22 22:55:00 +0900 KST'>December 22, 2021</span>&nbsp;·&nbsp;Soo Jong</footer>
   <a class="entry-link" aria-label="post link to GoF의 BuilderPattern" href="https://92SooJong.github.io/posts/design-pattern/gof-builderpattern/"></a>
 </article>
     </main>

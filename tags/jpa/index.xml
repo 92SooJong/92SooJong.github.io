@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>JPA on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/jpa/</link>
+    <description>Recent content in JPA on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Aug 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/jpa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>7.3 복합 키와 식별 관계 매핑</title>
+      <link>https://92SooJong.github.io/posts/jpa/book-1/7-3-%EB%B3%B5%ED%95%A9-%ED%82%A4%EC%99%80-%EC%8B%9D%EB%B3%84-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</link>
+      <pubDate>Tue, 02 Aug 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/book-1/7-3-%EB%B3%B5%ED%95%A9-%ED%82%A4%EC%99%80-%EC%8B%9D%EB%B3%84-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</guid>
+      <description>7.3 복합 키와 식별 관계 매핑 7.3.1 식별 관계 vs 비식별 관계 식별관계 부모 테이블의 기본 키를 내려받아서 자식 테이블의 기본 키 + 외래 키로 사용한다. 비식별 관계 부모 테이블의 기본 키를 받아서 자식 테이블의 외래 키로만 사용하는 관계다. 필수적 비식별 관계(Mandatory) 외래 키에 NULL을 허용하지 않는다. 반드시 연관관계를 맺어야 한다. 선택적 비식별 관계(Optional) 외래 키에 NULL을 허용한다. 연관관계를 맺을지 말지 선택할 수 있다. 최근 트렌드는 비식별 관계를 주로 사용하고 꼭 필요한 곳에만 식별 관계를 사용하는 추세다.</description>
+    </item>
+    
+    <item>
+      <title>7.2 @MappedSuperClass</title>
+      <link>https://92SooJong.github.io/posts/jpa/book-1/7-2-mappedsuperclass/</link>
+      <pubDate>Mon, 01 Aug 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/book-1/7-2-mappedsuperclass/</guid>
+      <description>7.2 @MappedSuperClass 7.1에서 본 전략은 부모 클래스가 실제 물리 테이블과 매핑되어 있어야 한다. @MappedSuperClass 를 사용하면 부모 클래스는 물리 테이블과 매핑하지 않고 부모 클래스를 상속받은 자식만 물리 테이블로 생성할 수 있다. 2개의 자식 클래스가 BaseEntity를 상속받는다. 물리테이블은 아래와 같이 2개만 생성된다. </description>
+    </item>
+    
+    <item>
+      <title>7.1 상속 관계 매핑</title>
+      <link>https://92SooJong.github.io/posts/jpa/book-1/7-1-%EC%83%81%EC%86%8D-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</link>
+      <pubDate>Sun, 31 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/book-1/7-1-%EC%83%81%EC%86%8D-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</guid>
+      <description>7.1 상속 관계 매핑 조인 전략 슈퍼타입 역할을 할 엔티티를 만든다. @Inheritance 어노테이션을 통해서 매핑전략을 지정할 수 있다. 현재 예시에선 조인 전략을 사용하므로 InheritanceType.JOINED 로 전략을 지정한다. @DiscriminatorColumn 어노테이션을 통해서 자식 엔티티를 구분하기 위한 컬럼을 생성한다. 자식 엔티티는 부모 엔티티인 Item을 상속한다. @DiscriminatorValue 어노테이션을 통해 엔터티 구분을 위한 코드를 지정한다. @PrimaryKeyJoinColumn 어노테이션을 통해 부모 엔터티에서 제공하는 PK명을 수정할 수 있다. 물리테이블과 컬럼은 아래와 같이 생성된다. 장점 테이블 정규화 외래 키 참조 무결성 제약조건 활용 가능 저장공간의 효율성 단점 조회시 Join을 사용하므로 성능 저하 발생가능성이 높아짐 조회 쿼리가 복잡하다.</description>
+    </item>
+    
+    <item>
+      <title>16.1 트랜잭션과 락</title>
+      <link>https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/</link>
+      <pubDate>Tue, 26 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/</guid>
+      <description>16.1 트랜잭션과 락 16.1.1 트랜잭션과 격리 수준 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.
+격리수준(Isolation Level) 동시성 처리를 위해서 대부분의 Database는 READ COMMITED를 기본으로한다
+READ UNCOMMITTED 커밋하지 않은 데이터를 읽을 수 있다. 트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다. READ COMMITED 커밋한 데이터만 읽을 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>기본키 매핑 방식</title>
+      <link>https://92SooJong.github.io/posts/jpa/%EA%B8%B0%EB%B3%B8%ED%82%A4-%EB%A7%A4%ED%95%91/</link>
+      <pubDate>Fri, 06 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/%EA%B8%B0%EB%B3%B8%ED%82%A4-%EB%A7%A4%ED%95%91/</guid>
+      <description>기본키 매핑 방식 직접 할당 기본 키를 애플리케이션에서 직접 할당한다 자동 생성 IDENTITY 기본키 생성을 데이터베이스에 위임한다. MySQL의 경우 AUTO_INCREMENT를 ID 컬럼에 옵션으로 붙여서 테이블을 생성한다. IDENTITY 방식은 실제 Table에 Insert를 수행할때 ID가 할당된다. ID를 얻으려면 Table을 조회해야하는 비효율이 발생하는데 Insert와 동시에 JPA로 ID를 가져오기 위해 Statement.getGeneratedKeys()를 사용하면 된다. 엔터티가 영속 상태가 되려면 식별자가 반드시 필요하기때문에 em.persist()를 호출하는 즉시 Insert 쿼리문에 데이터베이스에 전달된다. 따라서 IDENTITY 방식은 쓰기 지연이 동작하지 않는다. SEQUENCE 데이터베이스 시퀀스를 사용해서 기본 키를 할당한다.</description>
+    </item>
+    
+  </channel>
+</rss>

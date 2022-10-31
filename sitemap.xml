@@ -2,20 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://92SooJong.github.io/tags/book/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/posts/java/java-optimizing/chapter2-overview-of-the-jvm/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/java/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/java/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
   </url><url>
+    <loc>https://92SooJong.github.io/tags/korean/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/posts/java/java-optimizing/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/optimizing-java/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
   </url><url>
+    <loc>https://92SooJong.github.io/tags/</loc>
+    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/seminar/</loc>
+    <lastmod>2022-10-20T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/seminar/</loc>
     <lastmod>2022-10-20T22:55:00+09:00</lastmod>
@@ -24,6 +42,9 @@
     <lastmod>2022-10-20T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/aws/general-immersion-day/</loc>
+    <lastmod>2022-10-18T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/aws/</loc>
     <lastmod>2022-10-18T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/aws/</loc>
@@ -44,6 +65,9 @@
     <loc>https://92SooJong.github.io/posts/jpa/book-1/7-3-%EB%B3%B5%ED%95%A9-%ED%82%A4%EC%99%80-%EC%8B%9D%EB%B3%84-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</loc>
     <lastmod>2022-08-02T22:55:00+09:00</lastmod>
   </url><url>
+    <loc>https://92SooJong.github.io/tags/jpa/</loc>
+    <lastmod>2022-08-02T22:55:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/posts/jpa/</loc>
     <lastmod>2022-08-02T22:55:00+09:00</lastmod>
   </url><url>
@@ -57,6 +81,9 @@
     <lastmod>2022-07-29T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/docker/book/</loc>
+    <lastmod>2022-07-29T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/docker/</loc>
     <lastmod>2022-07-29T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/docker/</loc>
@@ -89,6 +116,9 @@
     <loc>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/</loc>
     <lastmod>2022-07-22T22:55:00+09:00</lastmod>
   </url><url>
+    <loc>https://92SooJong.github.io/tags/database/</loc>
+    <lastmod>2022-06-20T22:55:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/posts/database/</loc>
     <lastmod>2022-06-20T22:55:00+09:00</lastmod>
   </url><url>
@@ -103,6 +133,9 @@
   </url><url>
     <loc>https://92SooJong.github.io/posts/jpa/%EA%B8%B0%EB%B3%B8%ED%82%A4-%EB%A7%A4%ED%95%91/</loc>
     <lastmod>2022-05-06T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/git/</loc>
+    <lastmod>2022-05-02T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/git/</loc>
     <lastmod>2022-05-02T22:55:00+09:00</lastmod>
@@ -133,6 +166,9 @@
   </url><url>
     <loc>https://92SooJong.github.io/posts/java/static/</loc>
     <lastmod>2021-12-27T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/design-pattern/</loc>
+    <lastmod>2021-12-23T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/design-pattern/</loc>
     <lastmod>2021-12-23T22:55:00+09:00</lastmod>
@@ -168,6 +204,8 @@
     <lastmod>2021-07-22T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/archives/</loc>
+  </url><url>
+    <loc>https://92SooJong.github.io/categories/</loc>
   </url><url>
     <loc>https://92SooJong.github.io/search/</loc>
   </url>

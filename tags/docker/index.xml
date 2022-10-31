@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/docker/</link>
+    <description>Recent content in Docker on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 29 Jul 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>4.3 도커 컴포즈 사용</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/4-3-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88-%EC%82%AC%EC%9A%A9/</link>
+      <pubDate>Fri, 29 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/4-3-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88-%EC%82%AC%EC%9A%A9/</guid>
+      <description>4.3.1 도커 컴포즈 기본 사용법 도커 컴포즈는 컨테이너의 설정이 정의된 YAML 파일을 읽어서 컨테이너를 생성한다. 아래와 같이 docker-compose.yml 파일을 작성한다. version 은 YAML파일의 포맷버전을 의미한다. services 생성될 컨테이너를 묶는 단위를 의미한다. web mysql 생성될 서비스의 이름이다. 해당 항목 아래에 컨테이너가 생성될 때 필요한 옵션을 지정할 수 있다. 1version: &amp;#39;3.0&amp;#39; 2services: 3 web: 4 image: alicek106/composetest:web 5 ports: 6 - &amp;#34;80:80&amp;#34; 7 links: 8 - mysql:db 9 command: sh -c &amp;#39;echo &amp;#34;ServerName localhost&amp;#34; &amp;gt;&amp;gt; /etc/apache2/apache2.</description>
+    </item>
+    
+    <item>
+      <title>4.2 도커 컴포즈 설치</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/4-2-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88-%EC%84%A4%EC%B9%98/</link>
+      <pubDate>Thu, 28 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/4-2-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88-%EC%84%A4%EC%B9%98/</guid>
+      <description>0.도커 컴포즈를 사용하는 이유 여러 개의 컨테이너가 하나의 애플리케이션으로 동작할때 컨테이너를 한번에 생성해야한다. 여러 개의 컨테이너를 하나의 서비스로 정의해 컨테이너 묶음으로 관리할 수있도록 한다. 1. 설치 현재 ubuntu 계정이 sudo 없이 docker에 접근할 수 있도록 설정한다. 1sudo usermod -aG docker ${USER} 2sudo su - 3su - ubuntu 4groups ubuntu 아래 명령어를 통해 도커 컴포즈 1.1 버전을 다운로드 받는다. 1sudo curl -L https://github.com/docker/compose/releases/download/1.11.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose docker-compose -v 명령어를 통해서 정상적으로 설치되었는지 확인한다.</description>
+    </item>
+    
+    <item>
+      <title>3.3 스웜모드</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-3-%EC%8A%A4%EC%9B%9C%EB%AA%A8%EB%93%9C/</link>
+      <pubDate>Wed, 27 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-3-%EC%8A%A4%EC%9B%9C%EB%AA%A8%EB%93%9C/</guid>
+      <description>docker info 명령어를 통해 도커 엔진의 스웜 모드 클러스터 정보를 확인한다. 1sudo docker info | grep Swarm 현재는 스웜 모드를 사용하지 않기 때문에 비활성화 상태이다. 3.3.2 도커 스웜 모드 클러스터 구축 아래와 같이 3개의 ubuntu 인스턴스를 만든다. docker swarm init 명령어를 통해 클러스터의 매니저를 지정한다. 1sudo docker swarm init --advertise-addr [매니저노드 IP] 워커 노드들은 매니저를 지정할때 출력되는 명령어를 통해 클러스터에 등록할 수 있다. 매니저 노드를 지정할때 제공되는 docker swarm join 명령어를 통해서 워커노드가 특정 클러스터에 합류할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>3.2 스웜 클래식과 도커 스웜 모드</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-2-%EC%8A%A4%EC%9B%9C-%ED%81%B4%EB%9E%98%EC%8B%9D%EA%B3%BC-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C-%EB%AA%A8%EB%93%9C/</link>
+      <pubDate>Tue, 26 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-2-%EC%8A%A4%EC%9B%9C-%ED%81%B4%EB%9E%98%EC%8B%9D%EA%B3%BC-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C-%EB%AA%A8%EB%93%9C/</guid>
+      <description>스웜 클래식과 스웜 모드는 여러 대의 도커 서버를 하나의 클러스터로 만들어 컨테이너를 생성하는 여러 기능을 제공한다. 개발자는 다양한 전략을 세워 컨테이너를 특정 도커 서버에 할당 할수 있도록 할 수 있다. 스웜 클러스터에 등록된 서버를 손쉽게 관리할 수 있다. 도커 스웜 모드가 실제 운영 환경에서 많이 쓰이진 않는다. 도커 스웜의 종류 컨테이너로서의 스웜 도커 1.6 버전부터 사용 가능 스웜 클래식이라고도 부름 스웜 클래식은 여러 대의 도커 서버를 하나의 지점에서 사용하도록 단일 접근점을 제공하는 방식이다.</description>
+    </item>
+    
+    <item>
+      <title>3.1 도커 스웜을 사용하는 이유</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-1-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/</link>
+      <pubDate>Mon, 25 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-1-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/</guid>
+      <description> 도커를 적용하기 위한 여러 대의 서버를 하나의 자원 풀로 만들기 위해 등장했다. 새로운 서버나 컨테이너가 추가됐을때 이를 발견(Service Discovery)하는 작업을 수행한다. 어떤 서버에 컨테이너를 할당 할것인가 하는 스케줄러 및 로드밸런서 역할을 수행한다. 클러스터 내의 서버가 다운됐을 때 고가용성(High Availability)을 보장해준다. docker swam과 swam mode는 도커에서 공식적으로 제공한다. </description>
+    </item>
+    
+    <item>
+      <title>2.4 Dockerfile</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-4-dockerfile/</link>
+      <pubDate>Sun, 24 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-4-dockerfile/</guid>
+      <description>2.4 Dockerfile 새로운 이미지를 생성하기 위해 사용하는 일련의 명령어를 실행할 수 있도록 해주는 파일 컨테이너에서 수행해야 할 작업을 명시하고 이미지를 생성한다. 2.4.2 Dockerfile 작성 샘플 파일을 생성한다. Dockerfile을 작성한다. FROM 은 생성할 이미지의 베이스가 될 이미지를 뜻한다. Dockerfile에 반드시 한 번 이상 입력해야한다. MAINTAINER 은 이미지를 생성한 개발자의 정보를 나타낸다. LABEL 은 이미지의 메타데이터를 뜻한다. RUN 이미지를 만들기 위해 컨테이너 내부에서 명령어를 실행한다. RUN [&amp;quot;실행가능한 파일&amp;quot;,&amp;quot;명령줄 인자1&amp;quot;,&amp;quot;명령줄 인자 2, ... ] 형태로 작성가능하다.</description>
+    </item>
+    
+    <item>
+      <title>2.3 도커 이미지</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-3-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80/</link>
+      <pubDate>Sat, 23 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-3-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80/</guid>
+      <description>2.3 도커 이미지 이미지 검색 도커는 Docker Hub라는 중앙 이미지 저장소에서 이미지를 내려받는다. search 명령어를 통해 도커 이미지를 검색할 수 있습니다. 이미지 생성 샘플 컨테이너를 생성하고 커스터마이징 해본다. 1sudo docker run -i -t --name commit_test ubuntu:14.04 commit 명령어를 통해서 컨테이너를 이미지로 만들수 있다. -a 옵션은 author를 뜻한다. -m 은 커밋 메시지를 뜻한다. commit_test 컨테이너를 이름은 commit_test이고 태그가 first인 이미지로 생성한다. 1sudo docker commit \ 2-a &amp;#34;soojong&amp;#34; -m &amp;#34;my first commit&amp;#34; \ 3commit_test \ 4commit_test:first 한단계 더 나아가서 commit_test 이미지로 또다른 이미지를 만들어 보자.</description>
+    </item>
+    
+    <item>
+      <title>2.2 도커 컨테이너 다루기</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/</link>
+      <pubDate>Fri, 22 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/</guid>
+      <description>2.2 도커 컨테이너 다루기 컨테이너 실행해보기 run 명령어를 사용해서 우분투 14.04 컨테이너 실행하기
+1docker run -i -t ubuntu:14.04 로컬에 설치된 이미지가 없기 때문에 내려받아서 컨테이너를 실행 시켜줌.
+사용자 이름을 보면 알 수 있듯이 컨테이너 내부에 들어온것을 볼수 있다.
+-i 옵션으로 상호 입출력을 가능하게 한다.
+-t 옵션으로 tty를 활성화 해서 bash shell을 사용할 수 있도록 한다.
+두 옵션이 없으면 shell을 정상적으로 사용할 수 없게 된다.
+create 명령어를 사용해서 centos 컨테이너를 생성한다. --name 옵션을 통해서 컨테이너의 이름을 설정한다.</description>
+    </item>
+    
+    <item>
+      <title>Docker 용어</title>
+      <link>https://92SooJong.github.io/posts/docker/basic/</link>
+      <pubDate>Mon, 29 Nov 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/basic/</guid>
+      <description>도커란? 컨테이너를 사용하여 응용프로그램을 더 쉽게 만들고 배포하고 실행할 수 있도록 설계된 도구이다. 컨테이너 기반의 오픈소스 가상화 플랫폼이자, 생태계이다. 컨테이너란? 컨테이너 안에는 다양한 프로그램 및 실행환경을 담고있는 상자다. 컨테이너에는 Sysql, Spring 등 각종 환경을 담고 있다. 따라서 AWS, Azure, Google cloud등 어디서든 쉽게 실행이 가능하게 해준다. 컨테이너(도커) 이미지란? 코드, 런타임, 시스템 도구, 시스템 라이브러리 및 설정과 같은 응용 프로그램을 실행하는데 필요한 모든 것을 포함하는 가볍고 독립적이며 실행 가능한 소프트웨어 패키지이다. 프로그램을 실행하는데 필요한 설정이나 종속성들을 갖고있다.</description>
+    </item>
+    
+  </channel>
+</rss>

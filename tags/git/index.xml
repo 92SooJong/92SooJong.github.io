@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Git on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/git/</link>
+    <description>Recent content in Git on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 May 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자주 쓰는 명령어</title>
+      <link>https://92SooJong.github.io/posts/git/commit-message-convention/</link>
+      <pubDate>Mon, 02 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/git/commit-message-convention/</guid>
+      <description>FEAT : 새로운 기능의 추가 FIX: 버그 수정 DOCS: 문서 수정 STYLE: 스타일 관련 기능(코드 포맷팅, 세미콜론 누락, 코드 자체의 변경이 없는 경우) REFACTOR: 코드 리펙토링 TEST: 테스트 코트, 리펙토링 테스트 코드 추가 CHORE: 빌드 업무 수정, 패키지 매니저 수정(ex .gitignore 수정 같은 경우) 출처 https://jason-api.tistory.com/89</description>
+    </item>
+    
+    <item>
+      <title>자주 쓰는 명령어</title>
+      <link>https://92SooJong.github.io/posts/git/%EC%9E%90%EC%A3%BC%EC%93%B0%EB%8A%94%EB%AA%85%EB%A0%B9%EC%96%B4/</link>
+      <pubDate>Mon, 02 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/git/%EC%9E%90%EC%A3%BC%EC%93%B0%EB%8A%94%EB%AA%85%EB%A0%B9%EC%96%B4/</guid>
+      <description>사실 쓰려고 하면 기억 안나서 구글링 하는 명령어 모음 원격의 삭제된 브랜치를 로컬 커밋 히스토리에 반영할때 git remote prune origin
+Undo Commit git reset --soft HEAD^ Or git reset --mixed HEAD^
+following command work same as git reset --soft HEAD^
+git reset HEAD^
+원격 브랜치의 히스토리를 로컬 브랜치의 히스토리로 강제로 덮어쓴다. git push -f -u origin [branch명]
+원격 브랜치의 주소를 재설정하는 경우 git remote set-url &amp;lt;remote_name&amp;gt; &amp;lt;remote_url&amp;gt;
+token 변경 git remote set-url &amp;lt;remote_name&amp;gt; https://&amp;lt;token&amp;gt;@&amp;lt;git repo url&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>명령어</title>
+      <link>https://92SooJong.github.io/posts/git/%EB%AA%85%EB%A0%B9%EC%96%B4/</link>
+      <pubDate>Mon, 28 Mar 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/git/%EB%AA%85%EB%A0%B9%EC%96%B4/</guid>
+      <description>최초셋팅 테스트를 위한 README 파일 생성 echo &amp;quot;# git_tutorial&amp;quot; &amp;gt;&amp;gt; README.md 현재 위치를 로컬 저장소로 설정함. 즉, repository를 받아올수 있는 상태 git init 변경된 사항을 준비영역에 추가함 git add README.md 준비영역의 파일들을 로컬 저장소로 옮긴다 git commit -m &amp;quot;first commit&amp;quot; 로컬 저장소와 원격저장소를 연결한다. git remote add origin https://github.com/92SooJong/git_tutorial.git 로컬의 커밋이력을 원격 master브랜치에 반영한다. git push -u origin master 설정 commit 시에 사용할 username과 email 설정 git config --global user.name &amp;quot;your_name&amp;quot; git config --global user.</description>
+    </item>
+    
+  </channel>
+</rss>

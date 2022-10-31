@@ -128,23 +128,28 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://92SooJong.github.io/archives" title="Archive">
-                    <span>Archive</span>
+                <a href="https://92SooJong.github.io/posts/" title="카테고리">
+                    <span>카테고리</span>
                 </a>
             </li>
             <li>
-                <a href="https://92SooJong.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
+                <a href="https://92SooJong.github.io/archives/" title="아카이브">
+                    <span>아카이브</span>
                 </a>
             </li>
             <li>
-                <a href="https://92SooJong.github.io/tags/" title="Tags">
-                    <span>Tags</span>
+                <a href="https://92SooJong.github.io/search/" title="검색">
+                    <span>검색</span>
                 </a>
             </li>
             <li>
-                <a href="https://soojong.tistory.com/" title="Tistory">
-                    <span>Tistory</span>&nbsp;
+                <a href="https://92SooJong.github.io/tags/" title="태그">
+                    <span>태그</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://soojong.tistory.com/" title="티스토리">
+                    <span>티스토리</span>&nbsp;
                     <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
                         <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
@@ -168,10 +173,7 @@
     <h2>Database Engine
     </h2>
   </header>
-  <div class="entry-content">
-    <p>정의 데이터베이스 엔진(또는 스토리지 엔진)은 데이터베이스 관리 시스템(DBMS)에서 작동하는 소프트웨어 중 하나다. DBMS는 데이터베이스 엔진을 사용해서 데이터베이스로부터 데이터를 생성,조회,삭제,수정(CRUD)를 하게된다. 대부분의 DBMS는 데이터베이스 엔진과 상호작용을 위한 자신만의 API를 가지고 있다. 즉, 사용자가 직접 데이터베이스 엔진을 조직할 일은 없다. “데이터베이스 인스턴스&#34;는 실행 중인 데이터베이스 엔진의 프로세스 및 메모리 구조를 말한다. 많은 DBMS들이 복수개의 데이터베이스 엔진을 지원한다. ( ex. MySQL은 InnoDB와 MyISAM 엔진을 지원한다. ) </p>
-  </div>
-  <footer class="entry-footer"><span title='2022-06-20 22:55:00 +0900 KST'>June 20, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Soo Jong</footer>
+  <footer class="entry-footer"><span title='2022-06-20 22:55:00 +0900 KST'>June 20, 2022</span>&nbsp;·&nbsp;Soo Jong</footer>
   <a class="entry-link" aria-label="post link to Database Engine" href="https://92SooJong.github.io/posts/database/database-engine/"></a>
 </article>
 
@@ -180,10 +182,7 @@
     <h2>Index
     </h2>
   </header>
-  <div class="entry-content">
-    <p>인덱스는 큰 테이블에서 소량 데이터를 검색할 때 사용한다. 인덱스의 핵심 요소는 2가지로 나눌수 있다. 인덱스 스캔 과정에서 발생하는 비효율을 줄이는 것이다.(인덱스 스캔 효율화 튜닝) 테이블 액세스 횟수를 줄이는 것이다. 인덱스를 사용하면 테이블을 전체읽지 않고 일부만 읽고 멈출 수 있다. 즉, 범위 스캔(Range Scan)이 가능하다. 범위스캔이 가능한 이유는 인덱스가 정렬되어 있기 때문이다. DBMS에선 일반적으로 B(Balanced)-Tree 인덱스를 많이 사용한다. 과거에 작성한 내용 어떤 데이터를 찾기위한 색인 Index도 하나의 데이터베이스 객체이기 때문에 저장 공간이 필요하다....</p>
-  </div>
-  <footer class="entry-footer"><span title='2022-06-06 22:55:00 +0900 KST'>June 6, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Soo Jong</footer>
+  <footer class="entry-footer"><span title='2022-06-06 22:55:00 +0900 KST'>June 6, 2022</span>&nbsp;·&nbsp;Soo Jong</footer>
   <a class="entry-link" aria-label="post link to Index" href="https://92SooJong.github.io/posts/database/index/"></a>
 </article>
 
@@ -192,12 +191,7 @@
     <h2>Isolation Level
     </h2>
   </header>
-  <div class="entry-content">
-    <p>트랜잭션 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다. Isolation Level 정의 트랜잭션들 끼리 일관된 데이터를 얼마나 허용할 것인지를 정하는 수준이다.
-종류 총 4가지의 단계가 존재한다. 고립 수준(레벨)이 높아질수록 동시성은 낮아지며, 일관성은 높아진다. 즉, 고립이 심해질수록 동시 접근성은 떨어지지만, 데이터가 일관되게 관리됨을 의미한다.
-Level 0 Read Uncommitted Transaction A가 수행되는 와중에 Transaction B가 데이터를 변경할 수 있다....</p>
-  </div>
-  <footer class="entry-footer"><span title='2022-05-23 22:55:00 +0900 KST'>May 23, 2022</span>&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Soo Jong</footer>
+  <footer class="entry-footer"><span title='2022-05-23 22:55:00 +0900 KST'>May 23, 2022</span>&nbsp;·&nbsp;Soo Jong</footer>
   <a class="entry-link" aria-label="post link to Isolation Level" href="https://92SooJong.github.io/posts/database/isolation-level/"></a>
 </article>
 
@@ -206,11 +200,7 @@ Level 0 Read Uncommitted Transaction A가 수행되는 와중에 Transaction B�
     <h2>PLSQL과 NoSQL
     </h2>
   </header>
-  <div class="entry-content">
-    <p>SQL의 정의 SQL은 ‘구조화 된 쿼리 언어 (Structured Query Language)‘를 말합니다. SQL은 관계형 DB에 저장된 데이터에 access하기 위해 사용하는 표준 언어. ( SELECT, UPDATE, INSERT 등 ) 일반적으로 우리가 배워왔던 Mysql, Oracle, Mssql 같은 고전적인 데이터베이스를 관계형 데이터베이스라고하며 이들은 모두 SQL을 기반으로 만들어졌다. PL/SQL PL/SQL은 SQL문을 사용하여 프로그램을 작성할 수 있도록 확장해놓은 오라클의 절차적언어 ( DECLARE, EXCEPTION, LOOP등 절차적 프로그래밍 가능 )
-NoSQL 비관계형 Database를 NoSQL이라고 부르며, Not Only SQL(SQL 뿐만이 아닌....</p>
-  </div>
-  <footer class="entry-footer"><span title='2021-11-20 22:55:00 +0900 KST'>November 20, 2021</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Soo Jong</footer>
+  <footer class="entry-footer"><span title='2021-11-20 22:55:00 +0900 KST'>November 20, 2021</span>&nbsp;·&nbsp;Soo Jong</footer>
   <a class="entry-link" aria-label="post link to PLSQL과 NoSQL" href="https://92SooJong.github.io/posts/database/plsql-and-nosql/"></a>
 </article>
     </main>

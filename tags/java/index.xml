@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Java on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/java/</link>
+    <description>Recent content in Java on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 30 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chapter2. Overview of the JVM</title>
+      <link>https://92SooJong.github.io/posts/java/java-optimizing/chapter2-overview-of-the-jvm/</link>
+      <pubDate>Sun, 30 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/java-optimizing/chapter2-overview-of-the-jvm/</guid>
+      <description>Interpreting and Classloading JVM은 stack-based interpreted machine이다. 이 뜻은 CPU같은 물리적 하드웨어를 뜻하는게 아니라 execution stack을 의미한다. 그리고 이 스택에 존재하는 값들을 통해서 계산을 수행한다.
+예를들어 java HelloWorld 커맨드를 실행하면, 운영체제는 virtual machine process(the java binary)를 실행한다. 이 과정에서 자바 가상 환경 세팅과 초기화를 수행한다. 이 결과로 HelloWorld.class 파일을 생성한다.
+생성된 클래스 파일의 진입점은 main() 메소드가 될것이다. 클래스 파일을 제어하기 위해선 가상 머신을 실행하기 전에 클래스 파일이 로딩되어야한다.
+이 작업을 위해 Java Class Loading 메커니즘이 사용된다.</description>
+    </item>
+    
+    <item>
+      <title>Generic</title>
+      <link>https://92SooJong.github.io/posts/java/java-standard/generic/</link>
+      <pubDate>Thu, 29 Sep 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/java-standard/generic/</guid>
+      <description>제네릭의 기본인 1.1~1.3은 생략함
+1.4 제한된 지네릭 클래스 다음과 같이 작성하면 Fruit의 자손타입만 T에 대입할 수 있다. (= Fruit를 implements 또는 extends한 클래스만 T에 대입할 수 있다.) 좀 더 엄격하게 FruitBox에 들어올 수 있는 타입을 관리할 수 있다.
+1class FruitBox&amp;lt;T extends Fruit&amp;gt;{ 2	ArrayList&amp;lt;T&amp;gt; list = new ArrayList&amp;lt;T&amp;gt;(); 3	... 4} Fruit의 자손 인스턴스는 얼마든지 담을 수 있다. 다형성을 이용해 여러 과일을 담을 수 있게 되었다.
+1FruitBox&amp;lt;Fruit&amp;gt; fruitBox = new FruitBox&amp;lt;Fruit&amp;gt;(); 2fruitBox.</description>
+    </item>
+    
+    <item>
+      <title>LocalDateTime</title>
+      <link>https://92SooJong.github.io/posts/java/localdatetime/</link>
+      <pubDate>Thu, 29 Sep 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/localdatetime/</guid>
+      <description>LocalDateTime java.base 모듈에 있는 java.time 패키지를 확인하면 시간과 관련된 클래스를 확인할 수 있다.
+정의 LocalDateTime은 Time-zone개념이 없는 ISO-8601 달력 시스템을 따라 만들어졌다. Time-zone은 특정 지역을 대표하는 시간을 의미한다. 2007-12-03T10:15:30 과 같이 표기할 수 있다. 시간은 나노세컨드까지 표기가 가능하다. 2nd October 2007 at 13:45.30.123456789 불변객체다. 즉, 한번 인스턴스화 되면 값을 변경할 수 없다. year-month-day-hour-minute-second 형태로 주로 표현한다. 이 클래스는 time-zone을 저장하거나 나타내지 않는다. 로컬 타임 기준으로 생일과 같은 특정 날짜를 표기하기 위해 사용한다.</description>
+    </item>
+    
+    <item>
+      <title>제네릭</title>
+      <link>https://92SooJong.github.io/posts/java/%EC%A0%9C%EB%84%A4%EB%A6%AD/</link>
+      <pubDate>Sun, 01 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/%EC%A0%9C%EB%84%A4%EB%A6%AD/</guid>
+      <description>자바 5에 처음 도입되었다.
+예제 Box&amp;lt;T&amp;gt;에서 T는 타입 변수(type variable)이라한다. 타입변수는 꼭 T가 아니어도 된다. 예. Map&amp;lt;K,V&amp;gt; 기호의 종류만 다를 뿐 임의의 참조형 타입을 의미. Object 타입을 사용하다보면 형변환을 필수적으로 해줘야하는데 제네릭은 형변환에서 자유롭다. 1class Box&amp;lt;T&amp;gt;{ 2 T item; 3 4 void setItem(T item){ 5 this.item = item; 6 } 7 T getItem(){ 8 return this.item; 9 } 10 11 } 1Box&amp;lt;String&amp;gt; b = new Box&amp;lt;String&amp;gt;(); 2b.setItem(new Object()); // 에러남. String 타입으로 넘겨야함 3b.</description>
+    </item>
+    
+    <item>
+      <title>Javascript 기초</title>
+      <link>https://92SooJong.github.io/posts/javascript/javascript-%EA%B8%B0%EC%B4%88/</link>
+      <pubDate>Tue, 26 Apr 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/javascript/javascript-%EA%B8%B0%EC%B4%88/</guid>
+      <description>Javascript 개요 역사 Brendan Eich에 의해 1995년에 만들어졌으며 1997년에 ECMA 표준이되었다. 모카 -&amp;gt; 라이브스크립트 -&amp;gt; 자바스크립트 -&amp;gt; ECMA스크립트 현재는 ECMAScript6가 작업중 script 태그 script 태그를 만나면 브라우저는 이를 스크립트 코드로 인식함. HTML5부터 태그에 type이나 language 속성을 지정할 필요가 없음 언어적 특징 컴파일이 아닌 인터프리터 방식 프로그램 작성 측면에서 보다 쉽고 빠르나, 컴파일 언어보다 제한된 능력과 실행 속도를 가짐 타입 체크가 느슨함. 너무 유연하기 때문에 예상치 못한 부작용 발생 가능성 높음 객체 지향보다는 객체 기반 node.</description>
+    </item>
+    
+    <item>
+      <title>Call-by-value와 Call-by-reference.md</title>
+      <link>https://92SooJong.github.io/posts/java/call-by-value%EC%99%80-call-by-reference/</link>
+      <pubDate>Thu, 31 Mar 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/call-by-value%EC%99%80-call-by-reference/</guid>
+      <description>정의 Call by value(값에 의한 호출)는 인자로 받은 값을 복사하여 처리를 한다. 안전한 방법이며, 메모리 사용량은 Call by reference보다 많다. Call by reference(참조에 의한 호출)는 인자로 받은 값의 주소를 참조하여 직접 값에 영향을 준다. 직접 참조하기때문에 속도, 메모리면에서 Call by value에 비해 이점이 있으나, 값 변경의 위험이 있다. 간단히 말해 값을 복사를 하여 처리를 하느냐, 아니면 직접 참조를 하느냐 차이인 것이다. 예제코드 1package com.company; 2 3public class Main { 4 5 private static class User{ 6 String name; 7 public User(String name){this.</description>
+    </item>
+    
+    <item>
+      <title>Just In Time</title>
+      <link>https://92SooJong.github.io/posts/java/just-in-time/</link>
+      <pubDate>Mon, 27 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/just-in-time/</guid>
+      <description>정의 JIT(Just-In-Time) 컴파일러는 두 가지의 방식을 혼합한 방식으로 생각할 수 있는데, 실행 시점에서 인터프리트 방식으로 기계어 코드를 생성하면서 그 코드를 캐싱하여, 같은 함수가 여러 번 불릴 때 매번 기계어 코드를 생성하는 것을 방지한다.
+JVM에서 자바 프로그램코드를 기계어로 변환하는 과정 자바 프로그램코드 -&amp;gt; 바이트코드 -&amp;gt; 바이트코드 실행시에 JIT 컴파일 수행 -&amp;gt; 기계어
+설명 바이트 코드는 기계어는 아니지만 가상 머신에 의해 기계어로 손쉽게 변환할 수 있는 코드다. JIT 컴파일러는 바이트 코드를 읽어 빠른속도로 기계어를 생성한다.</description>
+    </item>
+    
+    <item>
+      <title>Static</title>
+      <link>https://92SooJong.github.io/posts/java/static/</link>
+      <pubDate>Mon, 27 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/static/</guid>
+      <description>클래스 클래스내부에 있는 클래스에는 두가지 유형이 있는데 하나는 Static 키워드가 붙어있는 클래스이고, 다른 하나는 Static 키워드가 없는 클래스이다.
+두가지 유형을 일반적으로 아래처럼 명명해서 사용중이다. None Static Class는 inner class Static Class는 static nested class static nested class static nested class는 자신을 감싸고 있는 클래스를 통해서 접근이 가능하다. Top-Class의 인스턴스를 사용하지 않고도 nested class를 사용할 수 있다. 외부의 필드에 static 키워드가 없다면 접근이 불가능하다. 외부 클래스의 인스턴스를 통해서 접근해야한다. 클래스의 역할은 인스턴스를 만드는 &amp;lsquo;설계도&amp;rsquo;의 역할을 할 뿐이고, static 클래스라고해서 인스턴스가 만들어져 있는게 아니다.</description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://92SooJong.github.io/posts/java/lambda/</link>
+      <pubDate>Fri, 17 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/lambda/</guid>
+      <description>정의 lambda는 Java 8에서 처음으로 등장했다. lambda는 이름이 없는 함수, 익명함수 정도로 이해하면 되겠다. lambda는 변수형태로 저장이 가능하며 따라서 메서드의 인수로 전달이 가능하다. 1import java.util.ArrayList; 2 3public class Main { 4 public static void main(String[] args) { 5 ArrayList&amp;lt;Integer&amp;gt; numbers = new ArrayList&amp;lt;Integer&amp;gt;(); 6 numbers.add(5); 7 numbers.add(9); 8 numbers.add(8); 9 numbers.add(1); 10 // (parameter) -&amp;gt; {code block} 형태로 작성한 예제이다. 11 numbers.forEach( (n) -&amp;gt; { System.out.println(n); } ); 12 13 } 14} Java의 Consumer 인터페이스를 통해서 lambda를 변수에 할당할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Garbage Collector</title>
+      <link>https://92SooJong.github.io/posts/java/garbage-collector/</link>
+      <pubDate>Wed, 15 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/garbage-collector/</guid>
+      <description>역할 자바에서는 메모리를 GC라는 알고리즘을 통하여 관리한다. 자바에서 쓰레기는 객체이다. 객체는 메모리를 점유하고 있으며, 필요가 없어진다면 메모리에서 제거되어야 한다. 객체를 사용하는 메소드를 호출해서 특정 작업을 수행한다고 해보자. 메소드가 종료될때 사용했던 객체들은 GC에 의해 메모리에서 제거된다. GC는 객체를 메모리에 할당하는 작업을 수행하며, 메모리중 사용중인 공간과 사용하지 않고 있는 공간을 찾을 수 있다. GC가 더이상 사용하지 않는 공간을 찾을 수 없을때 객체를 메모리에 할당하려고 한다면 OutOfMemoryError이 발생한다. JVM 메모리 구조 JVM의 메모리 구조는 크게 아래 4가지로 나뉜다.</description>
+    </item>
+    
+    <item>
+      <title>StringBuilder</title>
+      <link>https://92SooJong.github.io/posts/java/stringbuilder/</link>
+      <pubDate>Wed, 06 Oct 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/stringbuilder/</guid>
+      <description>StringBuilder String 간의 Concat연산을 메모리를 최대한 효율적으로 활용해서 수행하기 위한 객체다. &amp;ldquo;aaa&amp;rdquo; + &amp;ldquo;bbb&amp;quot;를 수행하면 Java는 내부적으로 &amp;ldquo;aaabbbb&amp;quot;를 담기 위해 새로운 메모리공간을 사용한다. StringBuilder는 &amp;ldquo;aaa&amp;rdquo;,&amp;ldquo;bbb&amp;quot;연산을 하면 새로운 메모리 공간을 사용하지 않고 &amp;ldquo;aaa&amp;quot;와 &amp;ldquo;bbb&amp;quot;를 합치게 해준다. 1 2StringBuilder sb = new StringBuilder(); 3 4sb.append(&amp;#34;aaa&amp;#34;); 5sb.append(&amp;#34;bbb&amp;#34;); 6 7System.out.println(sb.toString()); 동기화를 보장하진 않는다. StringBuilder는 MultiThread 환경에서는 사용하지 않는게 좋다. ( Thread가 String Buffer에 동시접근이 가능하다. ) 동기화가 요구된다면 StringBuffer를 사용할 것을 권장한다. StringBuffer StringBuffer는 Multi Thread로부터 안전하다.</description>
+    </item>
+    
+    <item>
+      <title>Thread</title>
+      <link>https://92SooJong.github.io/posts/java/thread/</link>
+      <pubDate>Sun, 29 Aug 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/thread/</guid>
+      <description>자바의 Thread의 실행순서는 JVM이 결정하는것이 아니라 OS의 Thread 스케쥴러에 의해 결정된다. OS에 의존적인 JVM의 몇가지 사항중 하나다. 쓰레드는 자신만의 Call Stack을 가짐으로써 쓰레드간 독립적인 작업을 수행할 수 있게 된다. start() 함수가 새로운 Call Stack을 생성하는 명령어다. run() 메소드를 직접 호출해선 안된다. Thread에는 사용자 쓰레드와 데몬 쓰레드가 있다. 데몬 쓰레드는 사용자 쓰레드가 수행할 작업을 보조하는 역할을 한다. 프로그램은 사용자 쓰레드가 하나도 없을때 종료된다. sleep 함수는 쓰레드를 sleep 시킬 수 있으며, static 메소드기 때문에 자신에게만 적용된다.</description>
+    </item>
+    
+    <item>
+      <title>Annotation</title>
+      <link>https://92SooJong.github.io/posts/java/annotation/</link>
+      <pubDate>Sun, 22 Aug 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/annotation/</guid>
+      <description>자바 어노테이션에대해 설명한 내용을 번역합니다. 출처 : https://dzone.com/articles/how-annotations-work-java
+어노테이션은 자바에서 중요한 부분입니다. 자바 어노테이션은 J2SE 5.0에서 처음 등장했습니다. 우리가 흔히 마주하는 어노테이션으론 @Override나 @Deprecated같은 것들이 있습니다.
+어노테이션이란 무엇인가? 어노테이션은 메타데이터다. 메타데이터는 데이터에 대한 데이터다.( 특정 데이터 집합을 설명하는 데이터라고 이해하면 쉽다. ) 자바의 어노테이션은 코드를 위한 메타데이터다. 아래의 코드를 보자.
+1@Override 2public String toString() { 3 return &amp;#34;This is String Representation of current object.&amp;#34;; 4} 나는 toString() 메소드를 오버라이드 받았다. 그리고 @Override 어노테이션이 해당 코드의 윗부분에 위치하고 있다.</description>
+    </item>
+    
+    <item>
+      <title>Java Beans</title>
+      <link>https://92SooJong.github.io/posts/java/javabeans/</link>
+      <pubDate>Thu, 22 Jul 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/javabeans/</guid>
+      <description>JavaBean은 단지 클래스 작성 규약일뿐이다.
+All properties are private (use getters/setters)
+A public no-argument constructor
+Implements Serializable.
+https://stackoverflow.com/questions/3295496/what-is-a-javabean-exactly
+java.bean 패키지 설명 링크
+https://www.geeksforgeeks.org/pojo-vs-java-beans/</description>
+    </item>
+    
+  </channel>
+</rss>

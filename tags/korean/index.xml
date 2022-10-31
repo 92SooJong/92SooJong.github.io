@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Korean on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/korean/</link>
+    <description>Recent content in Korean on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 30 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/korean/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chapter2. Overview of the JVM</title>
+      <link>https://92SooJong.github.io/posts/java/java-optimizing/chapter2-overview-of-the-jvm/</link>
+      <pubDate>Sun, 30 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/java-optimizing/chapter2-overview-of-the-jvm/</guid>
+      <description>Interpreting and Classloading JVM은 stack-based interpreted machine이다. 이 뜻은 CPU같은 물리적 하드웨어를 뜻하는게 아니라 execution stack을 의미한다. 그리고 이 스택에 존재하는 값들을 통해서 계산을 수행한다.
+예를들어 java HelloWorld 커맨드를 실행하면, 운영체제는 virtual machine process(the java binary)를 실행한다. 이 과정에서 자바 가상 환경 세팅과 초기화를 수행한다. 이 결과로 HelloWorld.class 파일을 생성한다.
+생성된 클래스 파일의 진입점은 main() 메소드가 될것이다. 클래스 파일을 제어하기 위해선 가상 머신을 실행하기 전에 클래스 파일이 로딩되어야한다.
+이 작업을 위해 Java Class Loading 메커니즘이 사용된다.</description>
+    </item>
+    
+    <item>
+      <title>한기용님-무신사-20221020-강연정리</title>
+      <link>https://92SooJong.github.io/posts/seminar/%ED%95%9C%EA%B8%B0%EC%9A%A9%EB%8B%98-%EB%AC%B4%EC%8B%A0%EC%82%AC-20221020/</link>
+      <pubDate>Thu, 20 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/seminar/%ED%95%9C%EA%B8%B0%EC%9A%A9%EB%8B%98-%EB%AC%B4%EC%8B%A0%EC%82%AC-20221020/</guid>
+      <description>들으면서 퀵하게 적은 내용을 다시 쓴 거라 정리하는 과정에서 나의 해석이 들어갔을 가능성 있음.
+돌아보니 개발 스킬보다는 행동양식이 더 중요하다. 태도가 준비가 되어있지 않으면 스킬이 좋아도 의미가 없다. 스타트업의 초기 멤버는 사실상 주니어급들이다. 그러다 보니 면접으로 기술자를 뽑을때 주니어가 주니어를 뽑는 일이 발생한다. 이 경우 사람은 늘어 나는데 생산성이 나오지 않는 현상이 발생한다. 자신보다 능력이 좋은 사람을 뽑을 수 있는 용기가 있어야한다. 완벽주의자는 위로 갈수록 힘들어진다. 모든 일을 자신이 다 하려고 하면 안된다.</description>
+    </item>
+    
+    <item>
+      <title> General Immersion Day(10/18) 정리</title>
+      <link>https://92SooJong.github.io/posts/aws/general-immersion-day/</link>
+      <pubDate>Tue, 18 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/aws/general-immersion-day/</guid>
+      <description>Infra Overview 리전(Region)과 가용영역(Availability Zone) 데이터센터의 모음 또는 그룹을 의미하며, AWS가 전 세계에서 데이터 센터를 클러스터링하는 물리적 위치를 뜻합니다.
+2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.
+AWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.
+콘텐츠 전송 네트워크(CDN) 최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다.</description>
+    </item>
+    
+    <item>
+      <title>Generic</title>
+      <link>https://92SooJong.github.io/posts/java/java-standard/generic/</link>
+      <pubDate>Thu, 29 Sep 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/java-standard/generic/</guid>
+      <description>제네릭의 기본인 1.1~1.3은 생략함
+1.4 제한된 지네릭 클래스 다음과 같이 작성하면 Fruit의 자손타입만 T에 대입할 수 있다. (= Fruit를 implements 또는 extends한 클래스만 T에 대입할 수 있다.) 좀 더 엄격하게 FruitBox에 들어올 수 있는 타입을 관리할 수 있다.
+1class FruitBox&amp;lt;T extends Fruit&amp;gt;{ 2	ArrayList&amp;lt;T&amp;gt; list = new ArrayList&amp;lt;T&amp;gt;(); 3	... 4} Fruit의 자손 인스턴스는 얼마든지 담을 수 있다. 다형성을 이용해 여러 과일을 담을 수 있게 되었다.
+1FruitBox&amp;lt;Fruit&amp;gt; fruitBox = new FruitBox&amp;lt;Fruit&amp;gt;(); 2fruitBox.</description>
+    </item>
+    
+    <item>
+      <title>LocalDateTime</title>
+      <link>https://92SooJong.github.io/posts/java/localdatetime/</link>
+      <pubDate>Thu, 29 Sep 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/localdatetime/</guid>
+      <description>LocalDateTime java.base 모듈에 있는 java.time 패키지를 확인하면 시간과 관련된 클래스를 확인할 수 있다.
+정의 LocalDateTime은 Time-zone개념이 없는 ISO-8601 달력 시스템을 따라 만들어졌다. Time-zone은 특정 지역을 대표하는 시간을 의미한다. 2007-12-03T10:15:30 과 같이 표기할 수 있다. 시간은 나노세컨드까지 표기가 가능하다. 2nd October 2007 at 13:45.30.123456789 불변객체다. 즉, 한번 인스턴스화 되면 값을 변경할 수 없다. year-month-day-hour-minute-second 형태로 주로 표현한다. 이 클래스는 time-zone을 저장하거나 나타내지 않는다. 로컬 타임 기준으로 생일과 같은 특정 날짜를 표기하기 위해 사용한다.</description>
+    </item>
+    
+    <item>
+      <title>7.3 복합 키와 식별 관계 매핑</title>
+      <link>https://92SooJong.github.io/posts/jpa/book-1/7-3-%EB%B3%B5%ED%95%A9-%ED%82%A4%EC%99%80-%EC%8B%9D%EB%B3%84-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</link>
+      <pubDate>Tue, 02 Aug 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/book-1/7-3-%EB%B3%B5%ED%95%A9-%ED%82%A4%EC%99%80-%EC%8B%9D%EB%B3%84-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</guid>
+      <description>7.3 복합 키와 식별 관계 매핑 7.3.1 식별 관계 vs 비식별 관계 식별관계 부모 테이블의 기본 키를 내려받아서 자식 테이블의 기본 키 + 외래 키로 사용한다. 비식별 관계 부모 테이블의 기본 키를 받아서 자식 테이블의 외래 키로만 사용하는 관계다. 필수적 비식별 관계(Mandatory) 외래 키에 NULL을 허용하지 않는다. 반드시 연관관계를 맺어야 한다. 선택적 비식별 관계(Optional) 외래 키에 NULL을 허용한다. 연관관계를 맺을지 말지 선택할 수 있다. 최근 트렌드는 비식별 관계를 주로 사용하고 꼭 필요한 곳에만 식별 관계를 사용하는 추세다.</description>
+    </item>
+    
+    <item>
+      <title>7.2 @MappedSuperClass</title>
+      <link>https://92SooJong.github.io/posts/jpa/book-1/7-2-mappedsuperclass/</link>
+      <pubDate>Mon, 01 Aug 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/book-1/7-2-mappedsuperclass/</guid>
+      <description>7.2 @MappedSuperClass 7.1에서 본 전략은 부모 클래스가 실제 물리 테이블과 매핑되어 있어야 한다. @MappedSuperClass 를 사용하면 부모 클래스는 물리 테이블과 매핑하지 않고 부모 클래스를 상속받은 자식만 물리 테이블로 생성할 수 있다. 2개의 자식 클래스가 BaseEntity를 상속받는다. 물리테이블은 아래와 같이 2개만 생성된다. </description>
+    </item>
+    
+    <item>
+      <title>7.1 상속 관계 매핑</title>
+      <link>https://92SooJong.github.io/posts/jpa/book-1/7-1-%EC%83%81%EC%86%8D-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</link>
+      <pubDate>Sun, 31 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/book-1/7-1-%EC%83%81%EC%86%8D-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/</guid>
+      <description>7.1 상속 관계 매핑 조인 전략 슈퍼타입 역할을 할 엔티티를 만든다. @Inheritance 어노테이션을 통해서 매핑전략을 지정할 수 있다. 현재 예시에선 조인 전략을 사용하므로 InheritanceType.JOINED 로 전략을 지정한다. @DiscriminatorColumn 어노테이션을 통해서 자식 엔티티를 구분하기 위한 컬럼을 생성한다. 자식 엔티티는 부모 엔티티인 Item을 상속한다. @DiscriminatorValue 어노테이션을 통해 엔터티 구분을 위한 코드를 지정한다. @PrimaryKeyJoinColumn 어노테이션을 통해 부모 엔터티에서 제공하는 PK명을 수정할 수 있다. 물리테이블과 컬럼은 아래와 같이 생성된다. 장점 테이블 정규화 외래 키 참조 무결성 제약조건 활용 가능 저장공간의 효율성 단점 조회시 Join을 사용하므로 성능 저하 발생가능성이 높아짐 조회 쿼리가 복잡하다.</description>
+    </item>
+    
+    <item>
+      <title>4.3 도커 컴포즈 사용</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/4-3-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88-%EC%82%AC%EC%9A%A9/</link>
+      <pubDate>Fri, 29 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/4-3-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88-%EC%82%AC%EC%9A%A9/</guid>
+      <description>4.3.1 도커 컴포즈 기본 사용법 도커 컴포즈는 컨테이너의 설정이 정의된 YAML 파일을 읽어서 컨테이너를 생성한다. 아래와 같이 docker-compose.yml 파일을 작성한다. version 은 YAML파일의 포맷버전을 의미한다. services 생성될 컨테이너를 묶는 단위를 의미한다. web mysql 생성될 서비스의 이름이다. 해당 항목 아래에 컨테이너가 생성될 때 필요한 옵션을 지정할 수 있다. 1version: &amp;#39;3.0&amp;#39; 2services: 3 web: 4 image: alicek106/composetest:web 5 ports: 6 - &amp;#34;80:80&amp;#34; 7 links: 8 - mysql:db 9 command: sh -c &amp;#39;echo &amp;#34;ServerName localhost&amp;#34; &amp;gt;&amp;gt; /etc/apache2/apache2.</description>
+    </item>
+    
+    <item>
+      <title>4.2 도커 컴포즈 설치</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/4-2-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88-%EC%84%A4%EC%B9%98/</link>
+      <pubDate>Thu, 28 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/4-2-%EB%8F%84%EC%BB%A4-%EC%BB%B4%ED%8F%AC%EC%A6%88-%EC%84%A4%EC%B9%98/</guid>
+      <description>0.도커 컴포즈를 사용하는 이유 여러 개의 컨테이너가 하나의 애플리케이션으로 동작할때 컨테이너를 한번에 생성해야한다. 여러 개의 컨테이너를 하나의 서비스로 정의해 컨테이너 묶음으로 관리할 수있도록 한다. 1. 설치 현재 ubuntu 계정이 sudo 없이 docker에 접근할 수 있도록 설정한다. 1sudo usermod -aG docker ${USER} 2sudo su - 3su - ubuntu 4groups ubuntu 아래 명령어를 통해 도커 컴포즈 1.1 버전을 다운로드 받는다. 1sudo curl -L https://github.com/docker/compose/releases/download/1.11.0/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose docker-compose -v 명령어를 통해서 정상적으로 설치되었는지 확인한다.</description>
+    </item>
+    
+    <item>
+      <title>3.3 스웜모드</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-3-%EC%8A%A4%EC%9B%9C%EB%AA%A8%EB%93%9C/</link>
+      <pubDate>Wed, 27 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-3-%EC%8A%A4%EC%9B%9C%EB%AA%A8%EB%93%9C/</guid>
+      <description>docker info 명령어를 통해 도커 엔진의 스웜 모드 클러스터 정보를 확인한다. 1sudo docker info | grep Swarm 현재는 스웜 모드를 사용하지 않기 때문에 비활성화 상태이다. 3.3.2 도커 스웜 모드 클러스터 구축 아래와 같이 3개의 ubuntu 인스턴스를 만든다. docker swarm init 명령어를 통해 클러스터의 매니저를 지정한다. 1sudo docker swarm init --advertise-addr [매니저노드 IP] 워커 노드들은 매니저를 지정할때 출력되는 명령어를 통해 클러스터에 등록할 수 있다. 매니저 노드를 지정할때 제공되는 docker swarm join 명령어를 통해서 워커노드가 특정 클러스터에 합류할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>16.1 트랜잭션과 락</title>
+      <link>https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/</link>
+      <pubDate>Tue, 26 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/</guid>
+      <description>16.1 트랜잭션과 락 16.1.1 트랜잭션과 격리 수준 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.
+격리수준(Isolation Level) 동시성 처리를 위해서 대부분의 Database는 READ COMMITED를 기본으로한다
+READ UNCOMMITTED 커밋하지 않은 데이터를 읽을 수 있다. 트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다. READ COMMITED 커밋한 데이터만 읽을 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>3.2 스웜 클래식과 도커 스웜 모드</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-2-%EC%8A%A4%EC%9B%9C-%ED%81%B4%EB%9E%98%EC%8B%9D%EA%B3%BC-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C-%EB%AA%A8%EB%93%9C/</link>
+      <pubDate>Tue, 26 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-2-%EC%8A%A4%EC%9B%9C-%ED%81%B4%EB%9E%98%EC%8B%9D%EA%B3%BC-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C-%EB%AA%A8%EB%93%9C/</guid>
+      <description>스웜 클래식과 스웜 모드는 여러 대의 도커 서버를 하나의 클러스터로 만들어 컨테이너를 생성하는 여러 기능을 제공한다. 개발자는 다양한 전략을 세워 컨테이너를 특정 도커 서버에 할당 할수 있도록 할 수 있다. 스웜 클러스터에 등록된 서버를 손쉽게 관리할 수 있다. 도커 스웜 모드가 실제 운영 환경에서 많이 쓰이진 않는다. 도커 스웜의 종류 컨테이너로서의 스웜 도커 1.6 버전부터 사용 가능 스웜 클래식이라고도 부름 스웜 클래식은 여러 대의 도커 서버를 하나의 지점에서 사용하도록 단일 접근점을 제공하는 방식이다.</description>
+    </item>
+    
+    <item>
+      <title>3.1 도커 스웜을 사용하는 이유</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-1-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/</link>
+      <pubDate>Mon, 25 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-1-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C%EC%9D%84-%EC%82%AC%EC%9A%A9%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0/</guid>
+      <description> 도커를 적용하기 위한 여러 대의 서버를 하나의 자원 풀로 만들기 위해 등장했다. 새로운 서버나 컨테이너가 추가됐을때 이를 발견(Service Discovery)하는 작업을 수행한다. 어떤 서버에 컨테이너를 할당 할것인가 하는 스케줄러 및 로드밸런서 역할을 수행한다. 클러스터 내의 서버가 다운됐을 때 고가용성(High Availability)을 보장해준다. docker swam과 swam mode는 도커에서 공식적으로 제공한다. </description>
+    </item>
+    
+    <item>
+      <title>2.4 Dockerfile</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-4-dockerfile/</link>
+      <pubDate>Sun, 24 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-4-dockerfile/</guid>
+      <description>2.4 Dockerfile 새로운 이미지를 생성하기 위해 사용하는 일련의 명령어를 실행할 수 있도록 해주는 파일 컨테이너에서 수행해야 할 작업을 명시하고 이미지를 생성한다. 2.4.2 Dockerfile 작성 샘플 파일을 생성한다. Dockerfile을 작성한다. FROM 은 생성할 이미지의 베이스가 될 이미지를 뜻한다. Dockerfile에 반드시 한 번 이상 입력해야한다. MAINTAINER 은 이미지를 생성한 개발자의 정보를 나타낸다. LABEL 은 이미지의 메타데이터를 뜻한다. RUN 이미지를 만들기 위해 컨테이너 내부에서 명령어를 실행한다. RUN [&amp;quot;실행가능한 파일&amp;quot;,&amp;quot;명령줄 인자1&amp;quot;,&amp;quot;명령줄 인자 2, ... ] 형태로 작성가능하다.</description>
+    </item>
+    
+    <item>
+      <title>2.3 도커 이미지</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-3-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80/</link>
+      <pubDate>Sat, 23 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-3-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80/</guid>
+      <description>2.3 도커 이미지 이미지 검색 도커는 Docker Hub라는 중앙 이미지 저장소에서 이미지를 내려받는다. search 명령어를 통해 도커 이미지를 검색할 수 있습니다. 이미지 생성 샘플 컨테이너를 생성하고 커스터마이징 해본다. 1sudo docker run -i -t --name commit_test ubuntu:14.04 commit 명령어를 통해서 컨테이너를 이미지로 만들수 있다. -a 옵션은 author를 뜻한다. -m 은 커밋 메시지를 뜻한다. commit_test 컨테이너를 이름은 commit_test이고 태그가 first인 이미지로 생성한다. 1sudo docker commit \ 2-a &amp;#34;soojong&amp;#34; -m &amp;#34;my first commit&amp;#34; \ 3commit_test \ 4commit_test:first 한단계 더 나아가서 commit_test 이미지로 또다른 이미지를 만들어 보자.</description>
+    </item>
+    
+    <item>
+      <title>2.2 도커 컨테이너 다루기</title>
+      <link>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/</link>
+      <pubDate>Fri, 22 Jul 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/</guid>
+      <description>2.2 도커 컨테이너 다루기 컨테이너 실행해보기 run 명령어를 사용해서 우분투 14.04 컨테이너 실행하기
+1docker run -i -t ubuntu:14.04 로컬에 설치된 이미지가 없기 때문에 내려받아서 컨테이너를 실행 시켜줌.
+사용자 이름을 보면 알 수 있듯이 컨테이너 내부에 들어온것을 볼수 있다.
+-i 옵션으로 상호 입출력을 가능하게 한다.
+-t 옵션으로 tty를 활성화 해서 bash shell을 사용할 수 있도록 한다.
+두 옵션이 없으면 shell을 정상적으로 사용할 수 없게 된다.
+create 명령어를 사용해서 centos 컨테이너를 생성한다. --name 옵션을 통해서 컨테이너의 이름을 설정한다.</description>
+    </item>
+    
+    <item>
+      <title>Database Engine</title>
+      <link>https://92SooJong.github.io/posts/database/database-engine/</link>
+      <pubDate>Mon, 20 Jun 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/database/database-engine/</guid>
+      <description>정의 데이터베이스 엔진(또는 스토리지 엔진)은 데이터베이스 관리 시스템(DBMS)에서 작동하는 소프트웨어 중 하나다. DBMS는 데이터베이스 엔진을 사용해서 데이터베이스로부터 데이터를 생성,조회,삭제,수정(CRUD)를 하게된다. 대부분의 DBMS는 데이터베이스 엔진과 상호작용을 위한 자신만의 API를 가지고 있다. 즉, 사용자가 직접 데이터베이스 엔진을 조직할 일은 없다. &amp;ldquo;데이터베이스 인스턴스&amp;quot;는 실행 중인 데이터베이스 엔진의 프로세스 및 메모리 구조를 말한다. 많은 DBMS들이 복수개의 데이터베이스 엔진을 지원한다. ( ex. MySQL은 InnoDB와 MyISAM 엔진을 지원한다. ) </description>
+    </item>
+    
+    <item>
+      <title>Index</title>
+      <link>https://92SooJong.github.io/posts/database/index/</link>
+      <pubDate>Mon, 06 Jun 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/database/index/</guid>
+      <description>인덱스는 큰 테이블에서 소량 데이터를 검색할 때 사용한다. 인덱스의 핵심 요소는 2가지로 나눌수 있다. 인덱스 스캔 과정에서 발생하는 비효율을 줄이는 것이다.(인덱스 스캔 효율화 튜닝) 테이블 액세스 횟수를 줄이는 것이다. 인덱스를 사용하면 테이블을 전체읽지 않고 일부만 읽고 멈출 수 있다. 즉, 범위 스캔(Range Scan)이 가능하다. 범위스캔이 가능한 이유는 인덱스가 정렬되어 있기 때문이다. DBMS에선 일반적으로 B(Balanced)-Tree 인덱스를 많이 사용한다. 과거에 작성한 내용 어떤 데이터를 찾기위한 색인 Index도 하나의 데이터베이스 객체이기 때문에 저장 공간이 필요하다.</description>
+    </item>
+    
+    <item>
+      <title>Isolation Level</title>
+      <link>https://92SooJong.github.io/posts/database/isolation-level/</link>
+      <pubDate>Mon, 23 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/database/isolation-level/</guid>
+      <description>트랜잭션 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다. Isolation Level 정의 트랜잭션들 끼리 일관된 데이터를 얼마나 허용할 것인지를 정하는 수준이다.
+종류 총 4가지의 단계가 존재한다. 고립 수준(레벨)이 높아질수록 동시성은 낮아지며, 일관성은 높아진다. 즉, 고립이 심해질수록 동시 접근성은 떨어지지만, 데이터가 일관되게 관리됨을 의미한다.
+Level 0 Read Uncommitted Transaction A가 수행되는 와중에 Transaction B가 데이터를 변경할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>기본키 매핑 방식</title>
+      <link>https://92SooJong.github.io/posts/jpa/%EA%B8%B0%EB%B3%B8%ED%82%A4-%EB%A7%A4%ED%95%91/</link>
+      <pubDate>Fri, 06 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/%EA%B8%B0%EB%B3%B8%ED%82%A4-%EB%A7%A4%ED%95%91/</guid>
+      <description>기본키 매핑 방식 직접 할당 기본 키를 애플리케이션에서 직접 할당한다 자동 생성 IDENTITY 기본키 생성을 데이터베이스에 위임한다. MySQL의 경우 AUTO_INCREMENT를 ID 컬럼에 옵션으로 붙여서 테이블을 생성한다. IDENTITY 방식은 실제 Table에 Insert를 수행할때 ID가 할당된다. ID를 얻으려면 Table을 조회해야하는 비효율이 발생하는데 Insert와 동시에 JPA로 ID를 가져오기 위해 Statement.getGeneratedKeys()를 사용하면 된다. 엔터티가 영속 상태가 되려면 식별자가 반드시 필요하기때문에 em.persist()를 호출하는 즉시 Insert 쿼리문에 데이터베이스에 전달된다. 따라서 IDENTITY 방식은 쓰기 지연이 동작하지 않는다. SEQUENCE 데이터베이스 시퀀스를 사용해서 기본 키를 할당한다.</description>
+    </item>
+    
+    <item>
+      <title>자주 쓰는 명령어</title>
+      <link>https://92SooJong.github.io/posts/git/commit-message-convention/</link>
+      <pubDate>Mon, 02 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/git/commit-message-convention/</guid>
+      <description>FEAT : 새로운 기능의 추가 FIX: 버그 수정 DOCS: 문서 수정 STYLE: 스타일 관련 기능(코드 포맷팅, 세미콜론 누락, 코드 자체의 변경이 없는 경우) REFACTOR: 코드 리펙토링 TEST: 테스트 코트, 리펙토링 테스트 코드 추가 CHORE: 빌드 업무 수정, 패키지 매니저 수정(ex .gitignore 수정 같은 경우) 출처 https://jason-api.tistory.com/89</description>
+    </item>
+    
+    <item>
+      <title>자주 쓰는 명령어</title>
+      <link>https://92SooJong.github.io/posts/git/%EC%9E%90%EC%A3%BC%EC%93%B0%EB%8A%94%EB%AA%85%EB%A0%B9%EC%96%B4/</link>
+      <pubDate>Mon, 02 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/git/%EC%9E%90%EC%A3%BC%EC%93%B0%EB%8A%94%EB%AA%85%EB%A0%B9%EC%96%B4/</guid>
+      <description>사실 쓰려고 하면 기억 안나서 구글링 하는 명령어 모음 원격의 삭제된 브랜치를 로컬 커밋 히스토리에 반영할때 git remote prune origin
+Undo Commit git reset --soft HEAD^ Or git reset --mixed HEAD^
+following command work same as git reset --soft HEAD^
+git reset HEAD^
+원격 브랜치의 히스토리를 로컬 브랜치의 히스토리로 강제로 덮어쓴다. git push -f -u origin [branch명]
+원격 브랜치의 주소를 재설정하는 경우 git remote set-url &amp;lt;remote_name&amp;gt; &amp;lt;remote_url&amp;gt;
+token 변경 git remote set-url &amp;lt;remote_name&amp;gt; https://&amp;lt;token&amp;gt;@&amp;lt;git repo url&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title>제네릭</title>
+      <link>https://92SooJong.github.io/posts/java/%EC%A0%9C%EB%84%A4%EB%A6%AD/</link>
+      <pubDate>Sun, 01 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/%EC%A0%9C%EB%84%A4%EB%A6%AD/</guid>
+      <description>자바 5에 처음 도입되었다.
+예제 Box&amp;lt;T&amp;gt;에서 T는 타입 변수(type variable)이라한다. 타입변수는 꼭 T가 아니어도 된다. 예. Map&amp;lt;K,V&amp;gt; 기호의 종류만 다를 뿐 임의의 참조형 타입을 의미. Object 타입을 사용하다보면 형변환을 필수적으로 해줘야하는데 제네릭은 형변환에서 자유롭다. 1class Box&amp;lt;T&amp;gt;{ 2 T item; 3 4 void setItem(T item){ 5 this.item = item; 6 } 7 T getItem(){ 8 return this.item; 9 } 10 11 } 1Box&amp;lt;String&amp;gt; b = new Box&amp;lt;String&amp;gt;(); 2b.setItem(new Object()); // 에러남. String 타입으로 넘겨야함 3b.</description>
+    </item>
+    
+    <item>
+      <title>Javascript 기초</title>
+      <link>https://92SooJong.github.io/posts/javascript/javascript-%EA%B8%B0%EC%B4%88/</link>
+      <pubDate>Tue, 26 Apr 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/javascript/javascript-%EA%B8%B0%EC%B4%88/</guid>
+      <description>Javascript 개요 역사 Brendan Eich에 의해 1995년에 만들어졌으며 1997년에 ECMA 표준이되었다. 모카 -&amp;gt; 라이브스크립트 -&amp;gt; 자바스크립트 -&amp;gt; ECMA스크립트 현재는 ECMAScript6가 작업중 script 태그 script 태그를 만나면 브라우저는 이를 스크립트 코드로 인식함. HTML5부터 태그에 type이나 language 속성을 지정할 필요가 없음 언어적 특징 컴파일이 아닌 인터프리터 방식 프로그램 작성 측면에서 보다 쉽고 빠르나, 컴파일 언어보다 제한된 능력과 실행 속도를 가짐 타입 체크가 느슨함. 너무 유연하기 때문에 예상치 못한 부작용 발생 가능성 높음 객체 지향보다는 객체 기반 node.</description>
+    </item>
+    
+    <item>
+      <title>Call-by-value와 Call-by-reference.md</title>
+      <link>https://92SooJong.github.io/posts/java/call-by-value%EC%99%80-call-by-reference/</link>
+      <pubDate>Thu, 31 Mar 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/call-by-value%EC%99%80-call-by-reference/</guid>
+      <description>정의 Call by value(값에 의한 호출)는 인자로 받은 값을 복사하여 처리를 한다. 안전한 방법이며, 메모리 사용량은 Call by reference보다 많다. Call by reference(참조에 의한 호출)는 인자로 받은 값의 주소를 참조하여 직접 값에 영향을 준다. 직접 참조하기때문에 속도, 메모리면에서 Call by value에 비해 이점이 있으나, 값 변경의 위험이 있다. 간단히 말해 값을 복사를 하여 처리를 하느냐, 아니면 직접 참조를 하느냐 차이인 것이다. 예제코드 1package com.company; 2 3public class Main { 4 5 private static class User{ 6 String name; 7 public User(String name){this.</description>
+    </item>
+    
+    <item>
+      <title>명령어</title>
+      <link>https://92SooJong.github.io/posts/git/%EB%AA%85%EB%A0%B9%EC%96%B4/</link>
+      <pubDate>Mon, 28 Mar 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/git/%EB%AA%85%EB%A0%B9%EC%96%B4/</guid>
+      <description>최초셋팅 테스트를 위한 README 파일 생성 echo &amp;quot;# git_tutorial&amp;quot; &amp;gt;&amp;gt; README.md 현재 위치를 로컬 저장소로 설정함. 즉, repository를 받아올수 있는 상태 git init 변경된 사항을 준비영역에 추가함 git add README.md 준비영역의 파일들을 로컬 저장소로 옮긴다 git commit -m &amp;quot;first commit&amp;quot; 로컬 저장소와 원격저장소를 연결한다. git remote add origin https://github.com/92SooJong/git_tutorial.git 로컬의 커밋이력을 원격 master브랜치에 반영한다. git push -u origin master 설정 commit 시에 사용할 username과 email 설정 git config --global user.name &amp;quot;your_name&amp;quot; git config --global user.</description>
+    </item>
+    
+    <item>
+      <title>Just In Time</title>
+      <link>https://92SooJong.github.io/posts/java/just-in-time/</link>
+      <pubDate>Mon, 27 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/just-in-time/</guid>
+      <description>정의 JIT(Just-In-Time) 컴파일러는 두 가지의 방식을 혼합한 방식으로 생각할 수 있는데, 실행 시점에서 인터프리트 방식으로 기계어 코드를 생성하면서 그 코드를 캐싱하여, 같은 함수가 여러 번 불릴 때 매번 기계어 코드를 생성하는 것을 방지한다.
+JVM에서 자바 프로그램코드를 기계어로 변환하는 과정 자바 프로그램코드 -&amp;gt; 바이트코드 -&amp;gt; 바이트코드 실행시에 JIT 컴파일 수행 -&amp;gt; 기계어
+설명 바이트 코드는 기계어는 아니지만 가상 머신에 의해 기계어로 손쉽게 변환할 수 있는 코드다. JIT 컴파일러는 바이트 코드를 읽어 빠른속도로 기계어를 생성한다.</description>
+    </item>
+    
+    <item>
+      <title>Static</title>
+      <link>https://92SooJong.github.io/posts/java/static/</link>
+      <pubDate>Mon, 27 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/static/</guid>
+      <description>클래스 클래스내부에 있는 클래스에는 두가지 유형이 있는데 하나는 Static 키워드가 붙어있는 클래스이고, 다른 하나는 Static 키워드가 없는 클래스이다.
+두가지 유형을 일반적으로 아래처럼 명명해서 사용중이다. None Static Class는 inner class Static Class는 static nested class static nested class static nested class는 자신을 감싸고 있는 클래스를 통해서 접근이 가능하다. Top-Class의 인스턴스를 사용하지 않고도 nested class를 사용할 수 있다. 외부의 필드에 static 키워드가 없다면 접근이 불가능하다. 외부 클래스의 인스턴스를 통해서 접근해야한다. 클래스의 역할은 인스턴스를 만드는 &amp;lsquo;설계도&amp;rsquo;의 역할을 할 뿐이고, static 클래스라고해서 인스턴스가 만들어져 있는게 아니다.</description>
+    </item>
+    
+    <item>
+      <title>Joshua의 BuilderPattern</title>
+      <link>https://92SooJong.github.io/posts/design-pattern/joshua-builderpattern/</link>
+      <pubDate>Thu, 23 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/design-pattern/joshua-builderpattern/</guid>
+      <description>1//////////////////////// Phone.java 2public class Phone{ 3 4 private String name; 5 private String realeseDate; 6 private String companyName; 7 private boolean isAndroid; 8 private boolean isKoreaCompany; 9 10 public static class Builder{ 11 12 private String name; 13 private String realeseDate; 14 private String companyName; 15 private boolean isAndroid; 16 private boolean isKoreaCompany; 17 18 public Builder name(String name){ 19 this.name = name; 20 return this; 21 } 22 public Builder realeseDate(String realeseDate){ 23 this.</description>
+    </item>
+    
+    <item>
+      <title>GoF의 BuilderPattern</title>
+      <link>https://92SooJong.github.io/posts/design-pattern/gof-builderpattern/</link>
+      <pubDate>Wed, 22 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/design-pattern/gof-builderpattern/</guid>
+      <description>1//////////////////////////////////// PhoneBuilder.java 2public interface PhoneBuilder { 3 4 5 void buildName(); 6 void buildRealeseDate(); 7 void buildCompanyName(); 8 void buildIsAndroid(); 9 void buildIsKoreaCompany(); 10 Phone getPhone(); 11 12} 13 14//////////////////////////////////// Iphone13Builder.java 15public class Iphone13Builder implements PhoneBuilder{ 16 17 private Phone phone; 18 19 public Iphone13Builder() { 20 this.phone = new Phone(); 21 } 22 23 @Override 24 public void buildName() { 25 phone.setName(&amp;#34;Iphone13&amp;#34;); 26 } 27 28 @Override 29 public void buildRealeseDate() { 30 phone.</description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://92SooJong.github.io/posts/java/lambda/</link>
+      <pubDate>Fri, 17 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/lambda/</guid>
+      <description>정의 lambda는 Java 8에서 처음으로 등장했다. lambda는 이름이 없는 함수, 익명함수 정도로 이해하면 되겠다. lambda는 변수형태로 저장이 가능하며 따라서 메서드의 인수로 전달이 가능하다. 1import java.util.ArrayList; 2 3public class Main { 4 public static void main(String[] args) { 5 ArrayList&amp;lt;Integer&amp;gt; numbers = new ArrayList&amp;lt;Integer&amp;gt;(); 6 numbers.add(5); 7 numbers.add(9); 8 numbers.add(8); 9 numbers.add(1); 10 // (parameter) -&amp;gt; {code block} 형태로 작성한 예제이다. 11 numbers.forEach( (n) -&amp;gt; { System.out.println(n); } ); 12 13 } 14} Java의 Consumer 인터페이스를 통해서 lambda를 변수에 할당할 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>Garbage Collector</title>
+      <link>https://92SooJong.github.io/posts/java/garbage-collector/</link>
+      <pubDate>Wed, 15 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/garbage-collector/</guid>
+      <description>역할 자바에서는 메모리를 GC라는 알고리즘을 통하여 관리한다. 자바에서 쓰레기는 객체이다. 객체는 메모리를 점유하고 있으며, 필요가 없어진다면 메모리에서 제거되어야 한다. 객체를 사용하는 메소드를 호출해서 특정 작업을 수행한다고 해보자. 메소드가 종료될때 사용했던 객체들은 GC에 의해 메모리에서 제거된다. GC는 객체를 메모리에 할당하는 작업을 수행하며, 메모리중 사용중인 공간과 사용하지 않고 있는 공간을 찾을 수 있다. GC가 더이상 사용하지 않는 공간을 찾을 수 없을때 객체를 메모리에 할당하려고 한다면 OutOfMemoryError이 발생한다. JVM 메모리 구조 JVM의 메모리 구조는 크게 아래 4가지로 나뉜다.</description>
+    </item>
+    
+    <item>
+      <title>Docker 용어</title>
+      <link>https://92SooJong.github.io/posts/docker/basic/</link>
+      <pubDate>Mon, 29 Nov 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/basic/</guid>
+      <description>도커란? 컨테이너를 사용하여 응용프로그램을 더 쉽게 만들고 배포하고 실행할 수 있도록 설계된 도구이다. 컨테이너 기반의 오픈소스 가상화 플랫폼이자, 생태계이다. 컨테이너란? 컨테이너 안에는 다양한 프로그램 및 실행환경을 담고있는 상자다. 컨테이너에는 Sysql, Spring 등 각종 환경을 담고 있다. 따라서 AWS, Azure, Google cloud등 어디서든 쉽게 실행이 가능하게 해준다. 컨테이너(도커) 이미지란? 코드, 런타임, 시스템 도구, 시스템 라이브러리 및 설정과 같은 응용 프로그램을 실행하는데 필요한 모든 것을 포함하는 가볍고 독립적이며 실행 가능한 소프트웨어 패키지이다. 프로그램을 실행하는데 필요한 설정이나 종속성들을 갖고있다.</description>
+    </item>
+    
+    <item>
+      <title>PLSQL과 NoSQL</title>
+      <link>https://92SooJong.github.io/posts/database/plsql-and-nosql/</link>
+      <pubDate>Sat, 20 Nov 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/database/plsql-and-nosql/</guid>
+      <description>SQL의 정의 SQL은 &amp;lsquo;구조화 된 쿼리 언어 (Structured Query Language)&amp;lsquo;를 말합니다. SQL은 관계형 DB에 저장된 데이터에 access하기 위해 사용하는 표준 언어. ( SELECT, UPDATE, INSERT 등 ) 일반적으로 우리가 배워왔던 Mysql, Oracle, Mssql 같은 고전적인 데이터베이스를 관계형 데이터베이스라고하며 이들은 모두 SQL을 기반으로 만들어졌다. PL/SQL PL/SQL은 SQL문을 사용하여 프로그램을 작성할 수 있도록 확장해놓은 오라클의 절차적언어 ( DECLARE, EXCEPTION, LOOP등 절차적 프로그래밍 가능 )
+NoSQL 비관계형 Database를 NoSQL이라고 부르며, Not Only SQL(SQL 뿐만이 아닌.</description>
+    </item>
+    
+    <item>
+      <title>StringBuilder</title>
+      <link>https://92SooJong.github.io/posts/java/stringbuilder/</link>
+      <pubDate>Wed, 06 Oct 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/stringbuilder/</guid>
+      <description>StringBuilder String 간의 Concat연산을 메모리를 최대한 효율적으로 활용해서 수행하기 위한 객체다. &amp;ldquo;aaa&amp;rdquo; + &amp;ldquo;bbb&amp;quot;를 수행하면 Java는 내부적으로 &amp;ldquo;aaabbbb&amp;quot;를 담기 위해 새로운 메모리공간을 사용한다. StringBuilder는 &amp;ldquo;aaa&amp;rdquo;,&amp;ldquo;bbb&amp;quot;연산을 하면 새로운 메모리 공간을 사용하지 않고 &amp;ldquo;aaa&amp;quot;와 &amp;ldquo;bbb&amp;quot;를 합치게 해준다. 1 2StringBuilder sb = new StringBuilder(); 3 4sb.append(&amp;#34;aaa&amp;#34;); 5sb.append(&amp;#34;bbb&amp;#34;); 6 7System.out.println(sb.toString()); 동기화를 보장하진 않는다. StringBuilder는 MultiThread 환경에서는 사용하지 않는게 좋다. ( Thread가 String Buffer에 동시접근이 가능하다. ) 동기화가 요구된다면 StringBuffer를 사용할 것을 권장한다. StringBuffer StringBuffer는 Multi Thread로부터 안전하다.</description>
+    </item>
+    
+    <item>
+      <title>Thread</title>
+      <link>https://92SooJong.github.io/posts/java/thread/</link>
+      <pubDate>Sun, 29 Aug 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/thread/</guid>
+      <description>자바의 Thread의 실행순서는 JVM이 결정하는것이 아니라 OS의 Thread 스케쥴러에 의해 결정된다. OS에 의존적인 JVM의 몇가지 사항중 하나다. 쓰레드는 자신만의 Call Stack을 가짐으로써 쓰레드간 독립적인 작업을 수행할 수 있게 된다. start() 함수가 새로운 Call Stack을 생성하는 명령어다. run() 메소드를 직접 호출해선 안된다. Thread에는 사용자 쓰레드와 데몬 쓰레드가 있다. 데몬 쓰레드는 사용자 쓰레드가 수행할 작업을 보조하는 역할을 한다. 프로그램은 사용자 쓰레드가 하나도 없을때 종료된다. sleep 함수는 쓰레드를 sleep 시킬 수 있으며, static 메소드기 때문에 자신에게만 적용된다.</description>
+    </item>
+    
+    <item>
+      <title>Annotation</title>
+      <link>https://92SooJong.github.io/posts/java/annotation/</link>
+      <pubDate>Sun, 22 Aug 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/annotation/</guid>
+      <description>자바 어노테이션에대해 설명한 내용을 번역합니다. 출처 : https://dzone.com/articles/how-annotations-work-java
+어노테이션은 자바에서 중요한 부분입니다. 자바 어노테이션은 J2SE 5.0에서 처음 등장했습니다. 우리가 흔히 마주하는 어노테이션으론 @Override나 @Deprecated같은 것들이 있습니다.
+어노테이션이란 무엇인가? 어노테이션은 메타데이터다. 메타데이터는 데이터에 대한 데이터다.( 특정 데이터 집합을 설명하는 데이터라고 이해하면 쉽다. ) 자바의 어노테이션은 코드를 위한 메타데이터다. 아래의 코드를 보자.
+1@Override 2public String toString() { 3 return &amp;#34;This is String Representation of current object.&amp;#34;; 4} 나는 toString() 메소드를 오버라이드 받았다. 그리고 @Override 어노테이션이 해당 코드의 윗부분에 위치하고 있다.</description>
+    </item>
+    
+    <item>
+      <title>Java Beans</title>
+      <link>https://92SooJong.github.io/posts/java/javabeans/</link>
+      <pubDate>Thu, 22 Jul 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/javabeans/</guid>
+      <description>JavaBean은 단지 클래스 작성 규약일뿐이다.
+All properties are private (use getters/setters)
+A public no-argument constructor
+Implements Serializable.
+https://stackoverflow.com/questions/3295496/what-is-a-javabean-exactly
+java.bean 패키지 설명 링크
+https://www.geeksforgeeks.org/pojo-vs-java-beans/</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>AWS on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/aws/</link>
+    <description>Recent content in AWS on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 18 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title> General Immersion Day(10/18) 정리</title>
+      <link>https://92SooJong.github.io/posts/aws/general-immersion-day/</link>
+      <pubDate>Tue, 18 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/aws/general-immersion-day/</guid>
+      <description>Infra Overview 리전(Region)과 가용영역(Availability Zone) 데이터센터의 모음 또는 그룹을 의미하며, AWS가 전 세계에서 데이터 센터를 클러스터링하는 물리적 위치를 뜻합니다.
+2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.
+AWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.
+콘텐츠 전송 네트워크(CDN) 최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다.</description>
+    </item>
+    
+  </channel>
+</rss>

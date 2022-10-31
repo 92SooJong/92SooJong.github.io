@@ -128,23 +128,28 @@
         </div>
         <ul id="menu">
             <li>
-                <a href="https://92SooJong.github.io/archives" title="Archive">
-                    <span>Archive</span>
+                <a href="https://92SooJong.github.io/posts/" title="카테고리">
+                    <span>카테고리</span>
                 </a>
             </li>
             <li>
-                <a href="https://92SooJong.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
-                    <span>Search</span>
+                <a href="https://92SooJong.github.io/archives/" title="아카이브">
+                    <span>아카이브</span>
                 </a>
             </li>
             <li>
-                <a href="https://92SooJong.github.io/tags/" title="Tags">
-                    <span>Tags</span>
+                <a href="https://92SooJong.github.io/search/" title="검색">
+                    <span>검색</span>
                 </a>
             </li>
             <li>
-                <a href="https://soojong.tistory.com/" title="Tistory">
-                    <span>Tistory</span>&nbsp;
+                <a href="https://92SooJong.github.io/tags/" title="태그">
+                    <span>태그</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://soojong.tistory.com/" title="티스토리">
+                    <span>티스토리</span>&nbsp;
                     <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
                         stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
                         <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
@@ -168,10 +173,7 @@
     <h2>기본키 매핑 방식
     </h2>
   </header>
-  <div class="entry-content">
-    <p>기본키 매핑 방식 직접 할당 기본 키를 애플리케이션에서 직접 할당한다 자동 생성 IDENTITY 기본키 생성을 데이터베이스에 위임한다. MySQL의 경우 AUTO_INCREMENT를 ID 컬럼에 옵션으로 붙여서 테이블을 생성한다. IDENTITY 방식은 실제 Table에 Insert를 수행할때 ID가 할당된다. ID를 얻으려면 Table을 조회해야하는 비효율이 발생하는데 Insert와 동시에 JPA로 ID를 가져오기 위해 Statement.getGeneratedKeys()를 사용하면 된다. 엔터티가 영속 상태가 되려면 식별자가 반드시 필요하기때문에 em.persist()를 호출하는 즉시 Insert 쿼리문에 데이터베이스에 전달된다. 따라서 IDENTITY 방식은 쓰기 지연이 동작하지 않는다. SEQUENCE 데이터베이스 시퀀스를 사용해서 기본 키를 할당한다....</p>
-  </div>
-  <footer class="entry-footer"><span title='2022-05-06 22:55:00 +0900 KST'>May 6, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Soo Jong</footer>
+  <footer class="entry-footer"><span title='2022-05-06 22:55:00 +0900 KST'>May 6, 2022</span>&nbsp;·&nbsp;Soo Jong</footer>
   <a class="entry-link" aria-label="post link to 기본키 매핑 방식" href="https://92SooJong.github.io/posts/jpa/%EA%B8%B0%EB%B3%B8%ED%82%A4-%EB%A7%A4%ED%95%91/"></a>
 </article>
 
@@ -180,10 +182,7 @@
     <h2>(교재) Java ORM 표준 JPA 프로그래밍
     </h2>
   </header>
-  <div class="entry-content">
-    <p></p>
-  </div>
-  <footer class="entry-footer"><span title='2022-08-02 22:55:00 +0900 KST'>August 2, 2022</span>&nbsp;·&nbsp;0 min&nbsp;·&nbsp;Soo Jong</footer>
+  <footer class="entry-footer"><span title='2022-08-02 22:55:00 +0900 KST'>August 2, 2022</span>&nbsp;·&nbsp;Soo Jong</footer>
   <a class="entry-link" aria-label="post link to (교재) Java ORM 표준 JPA 프로그래밍" href="https://92SooJong.github.io/posts/jpa/book-1/"></a>
 </article>
     </main>
