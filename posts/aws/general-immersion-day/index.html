@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title> General Immersion Day(10/18) 정리 | Today I Learn</title>
+<meta name="keywords" content="AWS, Korean">
+<meta name="description" content="Infra Overview 리전(Region)과 가용영역(Availability Zone) 데이터센터의 모음 또는 그룹을 의미하며, AWS가 전 세계에서 데이터 센터를 클러스터링하는 물리적 위치를 뜻합니다.
+2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.
+AWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.
+콘텐츠 전송 네트워크(CDN) 최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다.">
+<meta name="author" content="Soo Jong">
+<link rel="canonical" href="https://92SooJong.github.io/posts/aws/general-immersion-day/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://92SooJong.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://92SooJong.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://92SooJong.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://92SooJong.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://92SooJong.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content=" General Immersion Day(10/18) 정리" />
+<meta property="og:description" content="Infra Overview 리전(Region)과 가용영역(Availability Zone) 데이터센터의 모음 또는 그룹을 의미하며, AWS가 전 세계에서 데이터 센터를 클러스터링하는 물리적 위치를 뜻합니다.
+2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.
+AWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.
+콘텐츠 전송 네트워크(CDN) 최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://92SooJong.github.io/posts/aws/general-immersion-day/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-10-18T22:55:00+09:00" />
+<meta property="article:modified_time" content="2022-10-18T22:55:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=" General Immersion Day(10/18) 정리"/>
+<meta name="twitter:description" content="Infra Overview 리전(Region)과 가용영역(Availability Zone) 데이터센터의 모음 또는 그룹을 의미하며, AWS가 전 세계에서 데이터 센터를 클러스터링하는 물리적 위치를 뜻합니다.
+2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.
+AWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.
+콘텐츠 전송 네트워크(CDN) 최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://92SooJong.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AWS",
+      "item": "https://92SooJong.github.io/posts/aws/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": " General Immersion Day(10/18) 정리",
+      "item": "https://92SooJong.github.io/posts/aws/general-immersion-day/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": " General Immersion Day(10/18) 정리",
+  "name": " General Immersion Day(10\/18) 정리",
+  "description": "Infra Overview 리전(Region)과 가용영역(Availability Zone) 데이터센터의 모음 또는 그룹을 의미하며, AWS가 전 세계에서 데이터 센터를 클러스터링하는 물리적 위치를 뜻합니다.\n2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.\nAWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.\n콘텐츠 전송 네트워크(CDN) 최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다.",
+  "keywords": [
+    "AWS", "Korean"
+  ],
+  "articleBody": "Infra Overview 리전(Region)과 가용영역(Availability Zone) 데이터센터의 모음 또는 그룹을 의미하며, AWS가 전 세계에서 데이터 센터를 클러스터링하는 물리적 위치를 뜻합니다.\n2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.\nAWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.\n콘텐츠 전송 네트워크(CDN) 최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다.\n글로벌 네트워크 대양 횡단 케이블로 연결된 이중화된 100GbE로 구축했으며, 대륙횡단 케이블을 직접 설치하고 운용합니다.\n전용 연결(Direct Connect) 데이터 센터, 사무실 또는 코로케이션 환경과 AWS 리전 사이에 직접 연결을 제공합니다.\nAWS Network VPC Virtual Private Cloud의 약자이며 사용자가 정의한 가상의 네트워크 공간을 의미합니다.\nIP와 Subnet의 범위, 라우팅 테이블 정의 등 완전한 네트워크 제어가 가능합니다.\nVPC 내의 모든 EC2 인스턴스들은 Private IP가 부여되며, 이 뜻은 모든 EC2는 VPC내에 속해야함을 의미합니다.\n물론 EC2 인스턴스에 Public IP를 할당할 수도 있습니다.(여기선 비용이 발생합니다.) 앞서 말한 CDN은 어떤 리전에도 속해있지 않습니다. S3는 VPC에 속하지 않고, 리전안에만 속해있습니다. 환경을 구성할때 이런 부분을 먼저 파악하고 작업해야합니다.\nVPC안에 서브넷은 항상 있어야합니다.\n서울에는 총 6개의 가용영역(AZ)이 있습니다. 그중 2개는 Wave length라 부르며 이동 통신사의 국사안에 존재한다.(SKT에 2개) Wave length는 자율 주행서비스처럼 고속 인터넷이 필요한 서비스를 위해 만들어 졌습니다.\nVPC를 생성하는데 있어 첫번째 작업은 CIDR(Classless Inter-Domain Routing) 블록 주소 대역을 설정하는 것입니다. CIDR 방식을 통해 VPC 범위를 설정하고 같은 방법으로 VPC내의 Subnet을 구성할 수 있습니다.\n그다음 인터넷 게이트웨이를 생성합니다. 인터넷 게이트웨이를 통해서 VPC의 내부 자원을 외부로 보낼 수 있습니다.\nPrivate Subnet이 외부와 통신하기 위해 Public Subnet에 NAT Gateway를 구성할 수 있습니다. (Private Subnet과 외부 자원이 직접 통신하는것은 보안상 적절하지 않습니다.)\nAWS Compute Elastic Compute Cloud(EC2) Amazon Elastic Compute Cloud를 줄여서 EC2라고 부릅니다. EC2는 하이퍼바이저를 통해 가상화된 운영환경을 제공하는 기술.\nEC2는 기본적으로 AMI와 EBS를 통해 구성됩니다.\nAmazon Machine Image(AMI) 루트 볼륨을 구성하는 템플릿입니다. 즉, EC2 생성을 위한 이미지를 뜻합니다. (OS, 어플리케이션 등) Elastic Block Storage(EBS) EC2 인스턴스에서 사용할 물리적 스토리지를 뜻합니다. 하나의 EBS 볼륨은 하나의 인스턴스에만 연결됩니다. 스냅샷을 통해 특정 시점 백업이 가능합니다. EC2의 상태는 크게 아래 3개로 구성됩니다.\n실행중(Running) 정지됨(Stopped) 정지됨 상태는 EBS 볼륨을 루트로 사용하는 인스턴스만 가질 수 있는 상태입니다. EC2가 정지 되었더라도 EBS 볼륨에 대한 과금은 발생 될 수 있습니다. 정지됨에서 실행중으로 갈때 새로운 물리 서버를 찾는 과정이 있는데 이때 이전에 썻던 물리 서버를 사용하지 않게된다. IP의 변경이 발생할 수 있습니다. 종료됨(Terminated) 인스턴스가 완전히 제거된 상태를 뜻하며, 시작이나, 정지가 불가능합니다. 네이밍을 통해 EC2자원의 특징을 파악할 수 있습니다.\n예를 들어 M5d.xlarge라는 자원이 있다면 아래와 같이 문자열 자리별로 인스턴스 유형을 파악할 수 있습니다.\n상세한 정보는 아래 사이트에서 확인 가능합니다. AWS에선 매년 개선된 인스턴스를 만들어 내기 때문에 가능하면 최신 세대의 인스턴스를 선택하는것이 비용절감에 효과적입니다.\nhttps://aws.amazon.com/ko/ec2/instance-types/\nElastic Load Balancing(ELB) 애플리케이션 트래픽을 분산해주는 역할을 하는 Computing 서비스입니다.\n종류로는 Application, Network, Classic으로 총 3개가 있습니다.\n각 종류별 특징을 살펴보면 아래와 같습니다.\nApplication Load Balaner Layer 7(HTTP, HTTPS) 로드밸런싱을 담당합니다. EC2, Container, AWS Lambda, Private IP주소에 대한 로드 밸런싱을 지원합니다. Network Load Balaner Layer 4(TCP, UDP)의 로드밸런싱을 담당합니다. EC2, Container, Private 주소에 대한 로드 밸런싱을 지원합니다. Classic Load Balaner Layer 4,7을 모두 커버하는 로드 밸런서 입니다. (잘 사용하지 않는지 수업에서 별다른 언급이 없었습니다.) EC2 Auto Scaling EC2 Auto Scaling를 통해 변화하는 수요에 동적으로 대응하고 비용을 최적화합니다.\nUser Data EC2의 User Data 기능을 통해서 인스턴스 실행시 쉘 스크립트를 실행할 수 있습니다.\nLaunch templates Launch templates을 작성해서 EC2 인스턴스를 생성할 수 있습니다.\nCloudWatch CloudWatch를 통해 AWS의 리소스 및 애플리케이션을 모니터링 할수 있습니다.\nAWS Database 쿼리 응답 시간 = I/O 타임 + cpu 타임 + 대기 이벤트\n좋은 쿼리 = 적은 데이터 블럭을 빠른 I/O로 읽는 것\n데이터 트렌드 매 5년마다 약 10배 증가하는 데이터가 증가하고 있으며, DevOps 도입으로 인한 데이터베이스에 대한 변화율이 증가 하고 있습니다.\nAmazon RDS Amazon RDS는 가장 많이 선호하는 6가지 데이터베이스( Amazon Aurora, MySQL, PostgreSQL, MariaDB, SQLServer, Oracle)엔진을 갖춘 관계형 데이터 베이스입니다.\n몇 번의 클릭만으로 하드웨어 프로비저닝, 패치, 백업, 복구, 확장, 고가용성 등의 작업이 가능합니다. 또한, Built-in 된 모니터링 및 보안 기능을 제공합니다.\n물리적으로 분리된 가용 영역에 standby 데이터베이스를 운영하여 가용성을 높입니다. (다중 AZ방식)\n또한 읽기전용 복제본 생성을 통해서 읽기 업무에 대한 워크로드 부하를 완화합니다. 이 기능을 통해서 다른 지역의 애플리케이션에 데이터를 제공할 수 있으며, 장애 발생시엔 빠른 복구를 위해 읽기 전용 복제본을 마스터로 승격할 수 있습니다. (읽기전용 복제본 생성방식)\n다중 AZ방식과 읽기전용 복제 방식의 특징은 아래와 같습니다.\nAWS Storage Elastic Block Store(EBS) EBS는 AWS에서 제공하는 블록 스토리지입니다.\nEC2에서 사용하도록 설계된 되었으며, EBS 볼륨을 통해서 파일 시스템을 생성하거나 블록 디바이스 자체로 활용합니다.\n고성능 대규모 데이터처리, 트랜잭션 집약적인 워크로드 처리를 위해 사용됩니다.\nEC2는 데이터 손실 방지를 위해 가용 영역 내에서 자동으로 볼륨을 복제합니다.\nElastic File System(EFS) EFS는 AWS에서 제공하는 파일 스토리지입니다. 디렉토리 구조로 파일을 저장하며, 스토리지 레벨에서 파일 시스템을 생성합니다.\nSimple Storage Service(S3) S3는 AWS에서 제공하는 오브젝트 스토리지입니다. REST 기반의 API 호출을 통해서 데이터에 접근할 수 있습니다.\nS3의 데이터는 3곳 이상의 물리적으로 분리된 가용 영역에 저장되어 있습니다. 또한 S3는 Multi-destination 복제를 통해 오브젝트를 동일 리전 또는 다른 리전에 복사 합니다.\nS3의 내구성을 99.999999999%입니다.\n",
+  "wordCount" : "797",
+  "inLanguage": "en",
+  "datePublished": "2022-10-18T22:55:00+09:00",
+  "dateModified": "2022-10-18T22:55:00+09:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Soo Jong"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://92SooJong.github.io/posts/aws/general-immersion-day/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Today I Learn",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://92SooJong.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://92SooJong.github.io/" accesskey="h" title="Today I Learn (Alt + H)">Today I Learn</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://92SooJong.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://soojong.tistory.com/" title="Tistory">
+                    <span>Tistory</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://92SooJong.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/aws/">AWS</a></div>
+    <h1 class="post-title">
+       General Immersion Day(10/18) 정리
+    </h1>
+    <div class="post-meta"><span title='2022-10-18 22:55:00 +0900 KST'>October 18, 2022</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Soo Jong&nbsp;|&nbsp;<a href="https://github.com/92SooJong/92SooJong.github.io/issues" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#infra-overview" aria-label="Infra Overview">Infra Overview</a><ul>
+                        
+                <li>
+                    <a href="#%eb%a6%ac%ec%a0%84region%ea%b3%bc-%ea%b0%80%ec%9a%a9%ec%98%81%ec%97%adavailability-zone" aria-label="리전(Region)과 가용영역(Availability Zone)">리전(Region)과 가용영역(Availability Zone)</a></li>
+                <li>
+                    <a href="#%ec%bd%98%ed%85%90%ec%b8%a0-%ec%a0%84%ec%86%a1-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%accdn" aria-label="콘텐츠 전송 네트워크(CDN)">콘텐츠 전송 네트워크(CDN)</a></li>
+                <li>
+                    <a href="#%ea%b8%80%eb%a1%9c%eb%b2%8c-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac" aria-label="글로벌 네트워크">글로벌 네트워크</a></li>
+                <li>
+                    <a href="#%ec%a0%84%ec%9a%a9-%ec%97%b0%ea%b2%b0direct-connect" aria-label="전용 연결(Direct Connect)">전용 연결(Direct Connect)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#aws-network" aria-label="AWS Network">AWS Network</a><ul>
+                        
+                <li>
+                    <a href="#vpc" aria-label="VPC">VPC</a></li></ul>
+                </li>
+                <li>
+                    <a href="#aws-compute" aria-label="AWS Compute">AWS Compute</a><ul>
+                        
+                <li>
+                    <a href="#elastic-compute-cloudec2" aria-label="Elastic Compute Cloud(EC2)">Elastic Compute Cloud(EC2)</a></li>
+                <li>
+                    <a href="#elastic-load-balancingelb" aria-label="Elastic Load Balancing(ELB)">Elastic Load Balancing(ELB)</a></li>
+                <li>
+                    <a href="#ec2-auto-scaling" aria-label="EC2 Auto Scaling">EC2 Auto Scaling</a></li>
+                <li>
+                    <a href="#user-data" aria-label="User Data">User Data</a></li>
+                <li>
+                    <a href="#launch-templates" aria-label="Launch templates">Launch templates</a></li>
+                <li>
+                    <a href="#cloudwatch" aria-label="CloudWatch">CloudWatch</a></li></ul>
+                </li>
+                <li>
+                    <a href="#aws-database" aria-label="AWS Database">AWS Database</a><ul>
+                        
+                <li>
+                    <a href="#%eb%8d%b0%ec%9d%b4%ed%84%b0-%ed%8a%b8%eb%a0%8c%eb%93%9c" aria-label="데이터 트렌드">데이터 트렌드</a></li>
+                <li>
+                    <a href="#amazon-rds" aria-label="Amazon RDS">Amazon RDS</a></li></ul>
+                </li>
+                <li>
+                    <a href="#aws-storage" aria-label="AWS Storage">AWS Storage</a><ul>
+                        
+                <li>
+                    <a href="#elastic-block-storeebs" aria-label="Elastic Block Store(EBS)">Elastic Block Store(EBS)</a></li>
+                <li>
+                    <a href="#elastic-file-systemefs" aria-label="Elastic File System(EFS)">Elastic File System(EFS)</a></li>
+                <li>
+                    <a href="#simple-storage-services3" aria-label="Simple Storage Service(S3)">Simple Storage Service(S3)</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="infra-overview">Infra Overview<a hidden class="anchor" aria-hidden="true" href="#infra-overview">#</a></h1>
+<h2 id="리전region과-가용영역availability-zone">리전(Region)과 가용영역(Availability Zone)<a hidden class="anchor" aria-hidden="true" href="#리전region과-가용영역availability-zone">#</a></h2>
+<p>데이터센터의 모음 또는 그룹을 의미하며, AWS가 전 세계에서 데이터 센터를 클러스터링하는 물리적 위치를 뜻합니다.</p>
+<p>2022년 현재 27개의 리전, 87개 가용영역(논리적 데이터 센터)이 존재합니다.</p>
+<p>AWS 리전은 가용성, 확장성, 내결함성을 위해서 다중 가용역역으로 구성되며,따라서 리전내에 여러개의 가용영역(AZ)이 존재합니다. 가용영역은 완전히 격리된 환경에 구축되어 앞서 말한 가용성, 확장성, 내결함성을 충족하도록 설계됩니다.</p>
+<h2 id="콘텐츠-전송-네트워크cdn">콘텐츠 전송 네트워크(CDN)<a hidden class="anchor" aria-hidden="true" href="#콘텐츠-전송-네트워크cdn">#</a></h2>
+<p>최종 사용자에게 더 짧은 지연 시간으로 콘텐츠를 전송하기 위해 AWS CloudFront라는 CDN을 구축했습니다. CDN을 통해서 고객이 실제로 위치한 가장 가까운 곳에 캐싱을 제공하도록 합니다.</p>
+<h2 id="글로벌-네트워크">글로벌 네트워크<a hidden class="anchor" aria-hidden="true" href="#글로벌-네트워크">#</a></h2>
+<p>대양 횡단 케이블로 연결된 이중화된 100GbE로 구축했으며, 대륙횡단 케이블을 직접 설치하고 운용합니다.</p>
+<h2 id="전용-연결direct-connect">전용 연결(Direct Connect)<a hidden class="anchor" aria-hidden="true" href="#전용-연결direct-connect">#</a></h2>
+<p>데이터 센터, 사무실 또는 코로케이션 환경과 AWS 리전 사이에 직접 연결을 제공합니다.</p>
+<h1 id="aws-network">AWS Network<a hidden class="anchor" aria-hidden="true" href="#aws-network">#</a></h1>
+<h2 id="vpc">VPC<a hidden class="anchor" aria-hidden="true" href="#vpc">#</a></h2>
+<p>Virtual Private Cloud의 약자이며 사용자가 정의한 가상의 네트워크 공간을 의미합니다.</p>
+<p>IP와 Subnet의 범위, 라우팅 테이블 정의 등 완전한 네트워크 제어가 가능합니다.</p>
+<p>VPC 내의 모든 EC2 인스턴스들은 Private IP가 부여되며, 이 뜻은 모든 EC2는 VPC내에 속해야함을 의미합니다.</p>
+<p>물론 EC2 인스턴스에 Public IP를 할당할 수도 있습니다.(여기선 비용이 발생합니다.) 앞서 말한 CDN은 어떤 리전에도 속해있지 않습니다. S3는 VPC에 속하지 않고, 리전안에만 속해있습니다. 환경을 구성할때 이런 부분을 먼저 파악하고 작업해야합니다.</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled.png" alt="Untitled"  />
+</p>
+<p>VPC안에 서브넷은 항상 있어야합니다.</p>
+<p>서울에는 총 6개의 가용영역(AZ)이 있습니다. 그중 2개는 Wave length라 부르며 이동 통신사의 국사안에 존재한다.(SKT에 2개) Wave length는 자율 주행서비스처럼 고속 인터넷이 필요한 서비스를 위해 만들어 졌습니다.</p>
+<p>VPC를 생성하는데 있어 첫번째 작업은 CIDR(Classless Inter-Domain Routing) 블록 주소 대역을 설정하는 것입니다. CIDR 방식을 통해 VPC 범위를 설정하고 같은 방법으로 VPC내의 Subnet을 구성할 수 있습니다.</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%201.png" alt="Untitled"  />
+</p>
+<p>그다음 인터넷 게이트웨이를 생성합니다. 인터넷 게이트웨이를 통해서 VPC의 내부 자원을 외부로 보낼 수 있습니다.</p>
+<p>Private Subnet이 외부와 통신하기 위해 Public Subnet에 NAT Gateway를 구성할 수 있습니다. (Private Subnet과 외부 자원이 직접 통신하는것은 보안상 적절하지 않습니다.)</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%202.png" alt="Untitled"  />
+</p>
+<h1 id="aws-compute">AWS Compute<a hidden class="anchor" aria-hidden="true" href="#aws-compute">#</a></h1>
+<h2 id="elastic-compute-cloudec2">Elastic Compute Cloud(EC2)<a hidden class="anchor" aria-hidden="true" href="#elastic-compute-cloudec2">#</a></h2>
+<p>Amazon Elastic Compute Cloud를 줄여서 EC2라고 부릅니다. EC2는 하이퍼바이저를 통해 가상화된 운영환경을 제공하는 기술.</p>
+<p>EC2는 기본적으로 AMI와 EBS를 통해 구성됩니다.</p>
+<ul>
+<li>Amazon Machine Image(AMI)
+<ul>
+<li>루트 볼륨을 구성하는 템플릿입니다. 즉, EC2 생성을 위한 이미지를 뜻합니다. (OS, 어플리케이션 등)</li>
+</ul>
+</li>
+<li>Elastic Block Storage(EBS)
+<ul>
+<li>EC2 인스턴스에서 사용할 물리적 스토리지를 뜻합니다. 하나의 EBS 볼륨은 하나의 인스턴스에만 연결됩니다.</li>
+<li>스냅샷을 통해 특정 시점 백업이 가능합니다.</li>
+</ul>
+</li>
+</ul>
+<p>EC2의 상태는 크게 아래 3개로 구성됩니다.</p>
+<ul>
+<li>실행중(Running)</li>
+<li>정지됨(Stopped)
+<ul>
+<li>정지됨 상태는 EBS 볼륨을 루트로 사용하는 인스턴스만 가질 수 있는 상태입니다. EC2가 정지 되었더라도 EBS 볼륨에 대한 과금은 발생 될 수 있습니다.</li>
+<li>정지됨에서 실행중으로 갈때 새로운 물리 서버를 찾는 과정이 있는데 이때 이전에 썻던 물리 서버를 사용하지 않게된다. IP의 변경이 발생할 수 있습니다.</li>
+</ul>
+</li>
+<li>종료됨(Terminated)
+<ul>
+<li>인스턴스가 완전히 제거된 상태를 뜻하며, 시작이나, 정지가 불가능합니다.</li>
+</ul>
+</li>
+</ul>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%203.png" alt="Untitled"  />
+</p>
+<p>네이밍을 통해 EC2자원의 특징을 파악할 수 있습니다.</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%204.png" alt="Untitled"  />
+</p>
+<p>예를 들어 M5d.xlarge라는 자원이 있다면 아래와 같이 문자열 자리별로 인스턴스 유형을 파악할 수 있습니다.</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%205.png" alt="Untitled"  />
+</p>
+<p>상세한 정보는 아래 사이트에서 확인 가능합니다. AWS에선 매년 개선된 인스턴스를 만들어 내기 때문에 가능하면 최신 세대의 인스턴스를 선택하는것이 비용절감에 효과적입니다.</p>
+<p><strong><a href="https://aws.amazon.com/ko/ec2/instance-types/">https://aws.amazon.com/ko/ec2/instance-types/</a></strong></p>
+<h2 id="elastic-load-balancingelb">Elastic Load Balancing(ELB)<a hidden class="anchor" aria-hidden="true" href="#elastic-load-balancingelb">#</a></h2>
+<p>애플리케이션 트래픽을 분산해주는 역할을 하는 Computing 서비스입니다.</p>
+<p>종류로는 Application, Network, Classic으로 총 3개가 있습니다.</p>
+<p>각 종류별 특징을 살펴보면 아래와 같습니다.</p>
+<ul>
+<li>Application Load Balaner
+<ul>
+<li>Layer 7(HTTP, HTTPS) 로드밸런싱을 담당합니다.</li>
+<li>EC2, Container, AWS Lambda, Private IP주소에 대한 로드 밸런싱을 지원합니다.</li>
+</ul>
+</li>
+<li>Network Load Balaner
+<ul>
+<li>Layer 4(TCP, UDP)의 로드밸런싱을 담당합니다.</li>
+<li>EC2, Container, Private 주소에 대한 로드 밸런싱을 지원합니다.</li>
+</ul>
+</li>
+<li>Classic Load Balaner
+<ul>
+<li>Layer 4,7을 모두 커버하는 로드 밸런서 입니다. (잘 사용하지 않는지 수업에서 별다른 언급이 없었습니다.)</li>
+</ul>
+</li>
+</ul>
+<h2 id="ec2-auto-scaling">EC2 Auto Scaling<a hidden class="anchor" aria-hidden="true" href="#ec2-auto-scaling">#</a></h2>
+<p>EC2 Auto Scaling를 통해 변화하는 수요에 동적으로 대응하고 비용을 최적화합니다.</p>
+<h2 id="user-data">User Data<a hidden class="anchor" aria-hidden="true" href="#user-data">#</a></h2>
+<p>EC2의 User Data 기능을 통해서 인스턴스 실행시 쉘 스크립트를 실행할 수 있습니다.</p>
+<h2 id="launch-templates">Launch templates<a hidden class="anchor" aria-hidden="true" href="#launch-templates">#</a></h2>
+<p>Launch templates을 작성해서 EC2 인스턴스를 생성할 수 있습니다.</p>
+<h2 id="cloudwatch">CloudWatch<a hidden class="anchor" aria-hidden="true" href="#cloudwatch">#</a></h2>
+<p>CloudWatch를 통해 AWS의 리소스 및 애플리케이션을 모니터링 할수 있습니다.</p>
+<h1 id="aws-database">AWS Database<a hidden class="anchor" aria-hidden="true" href="#aws-database">#</a></h1>
+<p>쿼리 응답 시간 = I/O 타임 + cpu 타임 + 대기 이벤트</p>
+<p>좋은 쿼리 = 적은 데이터 블럭을 빠른 I/O로 읽는 것</p>
+<h2 id="데이터-트렌드">데이터 트렌드<a hidden class="anchor" aria-hidden="true" href="#데이터-트렌드">#</a></h2>
+<p>매 5년마다 약 10배 증가하는 데이터가 증가하고 있으며, DevOps 도입으로 인한 데이터베이스에 대한 변화율이 증가 하고 있습니다.</p>
+<h2 id="amazon-rds">Amazon RDS<a hidden class="anchor" aria-hidden="true" href="#amazon-rds">#</a></h2>
+<p>Amazon RDS는 가장 많이 선호하는 6가지 데이터베이스( Amazon Aurora, MySQL, PostgreSQL, MariaDB, SQLServer, Oracle)엔진을 갖춘 관계형 데이터 베이스입니다.</p>
+<p>몇 번의 클릭만으로 하드웨어 프로비저닝, 패치, 백업, 복구, 확장, 고가용성 등의 작업이 가능합니다. 또한, Built-in 된 모니터링 및 보안 기능을 제공합니다.</p>
+<p>물리적으로 분리된 가용 영역에 standby 데이터베이스를 운영하여 가용성을 높입니다. (다중 AZ방식)</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%206.png" alt="Untitled"  />
+</p>
+<p>또한 읽기전용 복제본 생성을 통해서 읽기 업무에 대한 워크로드 부하를 완화합니다. 이 기능을 통해서 다른 지역의 애플리케이션에 데이터를 제공할 수 있으며, 장애 발생시엔 빠른 복구를 위해 읽기 전용 복제본을 마스터로 승격할 수 있습니다. (읽기전용 복제본 생성방식)</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%207.png" alt="Untitled"  />
+</p>
+<p>다중 AZ방식과 읽기전용 복제 방식의 특징은 아래와 같습니다.</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%208.png" alt="Untitled"  />
+</p>
+<h1 id="aws-storage">AWS Storage<a hidden class="anchor" aria-hidden="true" href="#aws-storage">#</a></h1>
+<h2 id="elastic-block-storeebs">Elastic Block Store(EBS)<a hidden class="anchor" aria-hidden="true" href="#elastic-block-storeebs">#</a></h2>
+<p>EBS는 AWS에서 제공하는 블록 스토리지입니다.</p>
+<p>EC2에서 사용하도록 설계된 되었으며, EBS 볼륨을 통해서 파일 시스템을 생성하거나 블록 디바이스 자체로 활용합니다.</p>
+<p>고성능 대규모 데이터처리, 트랜잭션 집약적인 워크로드 처리를 위해 사용됩니다.</p>
+<p>EC2는 데이터 손실 방지를 위해 가용 영역 내에서 자동으로 볼륨을 복제합니다.</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%209.png" alt="Untitled"  />
+</p>
+<h2 id="elastic-file-systemefs">Elastic File System(EFS)<a hidden class="anchor" aria-hidden="true" href="#elastic-file-systemefs">#</a></h2>
+<p>EFS는 AWS에서 제공하는 파일 스토리지입니다. 디렉토리 구조로 파일을 저장하며, 스토리지 레벨에서 파일 시스템을 생성합니다.</p>
+<h2 id="simple-storage-services3">Simple Storage Service(S3)<a hidden class="anchor" aria-hidden="true" href="#simple-storage-services3">#</a></h2>
+<p>S3는 AWS에서 제공하는 오브젝트 스토리지입니다. REST 기반의 API 호출을 통해서 데이터에 접근할 수 있습니다.</p>
+<p>S3의 데이터는 3곳 이상의 물리적으로 분리된 가용 영역에 저장되어 있습니다. 또한 S3는 Multi-destination 복제를 통해 오브젝트를 동일 리전 또는 다른 리전에 복사 합니다.</p>
+<p>S3의 내구성을 99.999999999%입니다.</p>
+<p><img loading="lazy" src="/images/aws/General-Immersion-Day-20221018//Untitled%2010.png" alt="Untitled"  />
+</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://92SooJong.github.io/posts/seminar/%ED%95%9C%EA%B8%B0%EC%9A%A9%EB%8B%98-%EB%AC%B4%EC%8B%A0%EC%82%AC-20221020/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>한기용님-무신사-20221020-강연정리</span>
+  </a>
+  <a class="next" href="https://92SooJong.github.io/posts/java/java-standard/generic/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Generic</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  General Immersion Day(10/18) 정리 on twitter"
+        href="https://twitter.com/intent/tweet/?text=%20General%20Immersion%20Day%2810%2f18%29%20%ec%a0%95%eb%a6%ac&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2faws%2fgeneral-immersion-day%2f&amp;hashtags=AWS%2cKorean">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  General Immersion Day(10/18) 정리 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2faws%2fgeneral-immersion-day%2f&amp;title=%20General%20Immersion%20Day%2810%2f18%29%20%ec%a0%95%eb%a6%ac&amp;summary=%20General%20Immersion%20Day%2810%2f18%29%20%ec%a0%95%eb%a6%ac&amp;source=https%3a%2f%2f92SooJong.github.io%2fposts%2faws%2fgeneral-immersion-day%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  General Immersion Day(10/18) 정리 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2f92SooJong.github.io%2fposts%2faws%2fgeneral-immersion-day%2f&title=%20General%20Immersion%20Day%2810%2f18%29%20%ec%a0%95%eb%a6%ac">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  General Immersion Day(10/18) 정리 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f92SooJong.github.io%2fposts%2faws%2fgeneral-immersion-day%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  General Immersion Day(10/18) 정리 on whatsapp"
+        href="https://api.whatsapp.com/send?text=%20General%20Immersion%20Day%2810%2f18%29%20%ec%a0%95%eb%a6%ac%20-%20https%3a%2f%2f92SooJong.github.io%2fposts%2faws%2fgeneral-immersion-day%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share  General Immersion Day(10/18) 정리 on telegram"
+        href="https://telegram.me/share/url?text=%20General%20Immersion%20Day%2810%2f18%29%20%ec%a0%95%eb%a6%ac&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2faws%2fgeneral-immersion-day%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://92SooJong.github.io/">Today I Learn</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

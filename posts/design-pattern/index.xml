@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Design Pattern on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/design-pattern/</link>
+    <description>Recent content in Design Pattern on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 Dec 2021 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/design-pattern/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Joshua의 BuilderPattern</title>
+      <link>https://92SooJong.github.io/posts/design-pattern/joshua-builderpattern/</link>
+      <pubDate>Thu, 23 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/design-pattern/joshua-builderpattern/</guid>
+      <description>1//////////////////////// Phone.java 2public class Phone{ 3 4 private String name; 5 private String realeseDate; 6 private String companyName; 7 private boolean isAndroid; 8 private boolean isKoreaCompany; 9 10 public static class Builder{ 11 12 private String name; 13 private String realeseDate; 14 private String companyName; 15 private boolean isAndroid; 16 private boolean isKoreaCompany; 17 18 public Builder name(String name){ 19 this.name = name; 20 return this; 21 } 22 public Builder realeseDate(String realeseDate){ 23 this.</description>
+    </item>
+    
+    <item>
+      <title>GoF의 BuilderPattern</title>
+      <link>https://92SooJong.github.io/posts/design-pattern/gof-builderpattern/</link>
+      <pubDate>Wed, 22 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/design-pattern/gof-builderpattern/</guid>
+      <description>1//////////////////////////////////// PhoneBuilder.java 2public interface PhoneBuilder { 3 4 5 void buildName(); 6 void buildRealeseDate(); 7 void buildCompanyName(); 8 void buildIsAndroid(); 9 void buildIsKoreaCompany(); 10 Phone getPhone(); 11 12} 13 14//////////////////////////////////// Iphone13Builder.java 15public class Iphone13Builder implements PhoneBuilder{ 16 17 private Phone phone; 18 19 public Iphone13Builder() { 20 this.phone = new Phone(); 21 } 22 23 @Override 24 public void buildName() { 25 phone.setName(&amp;#34;Iphone13&amp;#34;); 26 } 27 28 @Override 29 public void buildRealeseDate() { 30 phone.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>(교재) Java ORM 표준 JPA 프로그래밍 | Today I Learn</title>
+<meta name="keywords" content="">
+<meta name="description" content="(교재) Java ORM 표준 JPA 프로그래밍 - Today I Learn">
+<meta name="author" content="Soo Jong">
+<link rel="canonical" href="https://92SooJong.github.io/posts/jpa/book-1/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://92SooJong.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://92SooJong.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://92SooJong.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://92SooJong.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://92SooJong.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://92SooJong.github.io/posts/jpa/book-1/index.xml">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="(교재) Java ORM 표준 JPA 프로그래밍" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://92SooJong.github.io/posts/jpa/book-1/" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="(교재) Java ORM 표준 JPA 프로그래밍"/>
+<meta name="twitter:description" content=""/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://92SooJong.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "JPA",
+      "item": "https://92SooJong.github.io/posts/jpa/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "(교재) Java ORM 표준 JPA 프로그래밍",
+      "item": "https://92SooJong.github.io/posts/jpa/book-1/"
+    }
+  ]
+}
+</script>
+</head>
+
+<body class="list" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://92SooJong.github.io/" accesskey="h" title="Today I Learn (Alt + H)">Today I Learn</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://92SooJong.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://soojong.tistory.com/" title="Tistory">
+                    <span>Tistory</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><div class="breadcrumbs"><a href="https://92SooJong.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/jpa/">JPA</a></div>
+  <h1>
+    (교재) Java ORM 표준 JPA 프로그래밍
+  </h1>
+</header>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>7.3 복합 키와 식별 관계 매핑
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>7.3 복합 키와 식별 관계 매핑 7.3.1 식별 관계 vs 비식별 관계 식별관계 부모 테이블의 기본 키를 내려받아서 자식 테이블의 기본 키 &#43; 외래 키로 사용한다. 비식별 관계 부모 테이블의 기본 키를 받아서 자식 테이블의 외래 키로만 사용하는 관계다. 필수적 비식별 관계(Mandatory) 외래 키에 NULL을 허용하지 않는다. 반드시 연관관계를 맺어야 한다. 선택적 비식별 관계(Optional) 외래 키에 NULL을 허용한다. 연관관계를 맺을지 말지 선택할 수 있다. 최근 트렌드는 비식별 관계를 주로 사용하고 꼭 필요한 곳에만 식별 관계를 사용하는 추세다....</p>
+  </div>
+  <footer class="entry-footer"><span title='2022-08-02 22:55:00 +0900 KST'>August 2, 2022</span>&nbsp;·&nbsp;5 min&nbsp;·&nbsp;Soo Jong</footer>
+  <a class="entry-link" aria-label="post link to 7.3 복합 키와 식별 관계 매핑" href="https://92SooJong.github.io/posts/jpa/book-1/7-3-%EB%B3%B5%ED%95%A9-%ED%82%A4%EC%99%80-%EC%8B%9D%EB%B3%84-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>7.2 @MappedSuperClass
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>7.2 @MappedSuperClass 7.1에서 본 전략은 부모 클래스가 실제 물리 테이블과 매핑되어 있어야 한다. @MappedSuperClass 를 사용하면 부모 클래스는 물리 테이블과 매핑하지 않고 부모 클래스를 상속받은 자식만 물리 테이블로 생성할 수 있다. 2개의 자식 클래스가 BaseEntity를 상속받는다. 물리테이블은 아래와 같이 2개만 생성된다. </p>
+  </div>
+  <footer class="entry-footer"><span title='2022-08-01 22:55:00 +0900 KST'>August 1, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Soo Jong</footer>
+  <a class="entry-link" aria-label="post link to 7.2 @MappedSuperClass" href="https://92SooJong.github.io/posts/jpa/book-1/7-2-mappedsuperclass/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>7.1 상속 관계 매핑
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>7.1 상속 관계 매핑 조인 전략 슈퍼타입 역할을 할 엔티티를 만든다. @Inheritance 어노테이션을 통해서 매핑전략을 지정할 수 있다. 현재 예시에선 조인 전략을 사용하므로 InheritanceType.JOINED 로 전략을 지정한다. @DiscriminatorColumn 어노테이션을 통해서 자식 엔티티를 구분하기 위한 컬럼을 생성한다. 자식 엔티티는 부모 엔티티인 Item을 상속한다. @DiscriminatorValue 어노테이션을 통해 엔터티 구분을 위한 코드를 지정한다. @PrimaryKeyJoinColumn 어노테이션을 통해 부모 엔터티에서 제공하는 PK명을 수정할 수 있다. 물리테이블과 컬럼은 아래와 같이 생성된다. 장점 테이블 정규화 외래 키 참조 무결성 제약조건 활용 가능 저장공간의 효율성 단점 조회시 Join을 사용하므로 성능 저하 발생가능성이 높아짐 조회 쿼리가 복잡하다....</p>
+  </div>
+  <footer class="entry-footer"><span title='2022-07-31 22:55:00 +0900 KST'>July 31, 2022</span>&nbsp;·&nbsp;1 min&nbsp;·&nbsp;Soo Jong</footer>
+  <a class="entry-link" aria-label="post link to 7.1 상속 관계 매핑" href="https://92SooJong.github.io/posts/jpa/book-1/7-1-%EC%83%81%EC%86%8D-%EA%B4%80%EA%B3%84-%EB%A7%A4%ED%95%91/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2>16.1 트랜잭션과 락
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>16.1 트랜잭션과 락 16.1.1 트랜잭션과 격리 수준 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.
+격리수준(Isolation Level) 동시성 처리를 위해서 대부분의 Database는 READ COMMITED를 기본으로한다
+READ UNCOMMITTED 커밋하지 않은 데이터를 읽을 수 있다. 트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다. READ COMMITED 커밋한 데이터만 읽을 수 있다....</p>
+  </div>
+  <footer class="entry-footer"><span title='2022-07-26 22:55:00 +0900 KST'>July 26, 2022</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Soo Jong</footer>
+  <a class="entry-link" aria-label="post link to 16.1 트랜잭션과 락" href="https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/"></a>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://92SooJong.github.io/">Today I Learn</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

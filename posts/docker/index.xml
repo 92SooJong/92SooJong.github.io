@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Docker on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/docker/</link>
+    <description>Recent content in Docker on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 29 Jul 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/docker/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Docker 용어</title>
+      <link>https://92SooJong.github.io/posts/docker/basic/</link>
+      <pubDate>Mon, 29 Nov 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/docker/basic/</guid>
+      <description>도커란? 컨테이너를 사용하여 응용프로그램을 더 쉽게 만들고 배포하고 실행할 수 있도록 설계된 도구이다. 컨테이너 기반의 오픈소스 가상화 플랫폼이자, 생태계이다. 컨테이너란? 컨테이너 안에는 다양한 프로그램 및 실행환경을 담고있는 상자다. 컨테이너에는 Sysql, Spring 등 각종 환경을 담고 있다. 따라서 AWS, Azure, Google cloud등 어디서든 쉽게 실행이 가능하게 해준다. 컨테이너(도커) 이미지란? 코드, 런타임, 시스템 도구, 시스템 라이브러리 및 설정과 같은 응용 프로그램을 실행하는데 필요한 모든 것을 포함하는 가볍고 독립적이며 실행 가능한 소프트웨어 패키지이다. 프로그램을 실행하는데 필요한 설정이나 종속성들을 갖고있다.</description>
+    </item>
+    
+  </channel>
+</rss>

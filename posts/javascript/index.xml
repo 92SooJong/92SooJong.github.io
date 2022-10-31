@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Javascript on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/javascript/</link>
+    <description>Recent content in Javascript on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Apr 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Javascript 기초</title>
+      <link>https://92SooJong.github.io/posts/javascript/javascript-%EA%B8%B0%EC%B4%88/</link>
+      <pubDate>Tue, 26 Apr 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/javascript/javascript-%EA%B8%B0%EC%B4%88/</guid>
+      <description>Javascript 개요 역사 Brendan Eich에 의해 1995년에 만들어졌으며 1997년에 ECMA 표준이되었다. 모카 -&amp;gt; 라이브스크립트 -&amp;gt; 자바스크립트 -&amp;gt; ECMA스크립트 현재는 ECMAScript6가 작업중 script 태그 script 태그를 만나면 브라우저는 이를 스크립트 코드로 인식함. HTML5부터 태그에 type이나 language 속성을 지정할 필요가 없음 언어적 특징 컴파일이 아닌 인터프리터 방식 프로그램 작성 측면에서 보다 쉽고 빠르나, 컴파일 언어보다 제한된 능력과 실행 속도를 가짐 타입 체크가 느슨함. 너무 유연하기 때문에 예상치 못한 부작용 발생 가능성 높음 객체 지향보다는 객체 기반 node.</description>
+    </item>
+    
+  </channel>
+</rss>

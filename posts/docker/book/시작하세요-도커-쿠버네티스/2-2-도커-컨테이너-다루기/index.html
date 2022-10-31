@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>2.2 도커 컨테이너 다루기 | Today I Learn</title>
+<meta name="keywords" content="Docker, Book, Korean">
+<meta name="description" content="2.2 도커 컨테이너 다루기 컨테이너 실행해보기 run 명령어를 사용해서 우분투 14.04 컨테이너 실행하기
+1docker run -i -t ubuntu:14.04 로컬에 설치된 이미지가 없기 때문에 내려받아서 컨테이너를 실행 시켜줌.
+사용자 이름을 보면 알 수 있듯이 컨테이너 내부에 들어온것을 볼수 있다.
+-i 옵션으로 상호 입출력을 가능하게 한다.
+-t 옵션으로 tty를 활성화 해서 bash shell을 사용할 수 있도록 한다.
+두 옵션이 없으면 shell을 정상적으로 사용할 수 없게 된다.
+create 명령어를 사용해서 centos 컨테이너를 생성한다. --name 옵션을 통해서 컨테이너의 이름을 설정한다.">
+<meta name="author" content="Soo Jong">
+<link rel="canonical" href="https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://92SooJong.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://92SooJong.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://92SooJong.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://92SooJong.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://92SooJong.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="2.2 도커 컨테이너 다루기" />
+<meta property="og:description" content="2.2 도커 컨테이너 다루기 컨테이너 실행해보기 run 명령어를 사용해서 우분투 14.04 컨테이너 실행하기
+1docker run -i -t ubuntu:14.04 로컬에 설치된 이미지가 없기 때문에 내려받아서 컨테이너를 실행 시켜줌.
+사용자 이름을 보면 알 수 있듯이 컨테이너 내부에 들어온것을 볼수 있다.
+-i 옵션으로 상호 입출력을 가능하게 한다.
+-t 옵션으로 tty를 활성화 해서 bash shell을 사용할 수 있도록 한다.
+두 옵션이 없으면 shell을 정상적으로 사용할 수 없게 된다.
+create 명령어를 사용해서 centos 컨테이너를 생성한다. --name 옵션을 통해서 컨테이너의 이름을 설정한다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-22T22:55:00+09:00" />
+<meta property="article:modified_time" content="2022-07-22T22:55:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="2.2 도커 컨테이너 다루기"/>
+<meta name="twitter:description" content="2.2 도커 컨테이너 다루기 컨테이너 실행해보기 run 명령어를 사용해서 우분투 14.04 컨테이너 실행하기
+1docker run -i -t ubuntu:14.04 로컬에 설치된 이미지가 없기 때문에 내려받아서 컨테이너를 실행 시켜줌.
+사용자 이름을 보면 알 수 있듯이 컨테이너 내부에 들어온것을 볼수 있다.
+-i 옵션으로 상호 입출력을 가능하게 한다.
+-t 옵션으로 tty를 활성화 해서 bash shell을 사용할 수 있도록 한다.
+두 옵션이 없으면 shell을 정상적으로 사용할 수 없게 된다.
+create 명령어를 사용해서 centos 컨테이너를 생성한다. --name 옵션을 통해서 컨테이너의 이름을 설정한다."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://92SooJong.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Docker",
+      "item": "https://92SooJong.github.io/posts/docker/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Book",
+      "item": "https://92SooJong.github.io/posts/docker/book/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  5 ,
+      "name": "2.2 도커 컨테이너 다루기",
+      "item": "https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "2.2 도커 컨테이너 다루기",
+  "name": "2.2 도커 컨테이너 다루기",
+  "description": "2.2 도커 컨테이너 다루기 컨테이너 실행해보기 run 명령어를 사용해서 우분투 14.04 컨테이너 실행하기\n1docker run -i -t ubuntu:14.04 로컬에 설치된 이미지가 없기 때문에 내려받아서 컨테이너를 실행 시켜줌.\n사용자 이름을 보면 알 수 있듯이 컨테이너 내부에 들어온것을 볼수 있다.\n-i 옵션으로 상호 입출력을 가능하게 한다.\n-t 옵션으로 tty를 활성화 해서 bash shell을 사용할 수 있도록 한다.\n두 옵션이 없으면 shell을 정상적으로 사용할 수 없게 된다.\ncreate 명령어를 사용해서 centos 컨테이너를 생성한다. --name 옵션을 통해서 컨테이너의 이름을 설정한다.",
+  "keywords": [
+    "Docker", "Book", "Korean"
+  ],
+  "articleBody": "2.2 도커 컨테이너 다루기 컨테이너 실행해보기 run 명령어를 사용해서 우분투 14.04 컨테이너 실행하기\n1docker run -i -t ubuntu:14.04 로컬에 설치된 이미지가 없기 때문에 내려받아서 컨테이너를 실행 시켜줌.\n사용자 이름을 보면 알 수 있듯이 컨테이너 내부에 들어온것을 볼수 있다.\n-i 옵션으로 상호 입출력을 가능하게 한다.\n-t 옵션으로 tty를 활성화 해서 bash shell을 사용할 수 있도록 한다.\n두 옵션이 없으면 shell을 정상적으로 사용할 수 없게 된다.\ncreate 명령어를 사용해서 centos 컨테이너를 생성한다. --name 옵션을 통해서 컨테이너의 이름을 설정한다. start 명령어를 통해 컨테이너를 실행한다. attach 명령어를 통해 컨테이너 내부로 들어간다. run 명령어는 start 와 attach 명령어를 실행해준다. 반대로 create 명령어를 실행하지 않고 컨테이너 생성까지만 수행한다. run 과 create 는 기본적으노 pull 명령어와 create 명령어를 수행한다. pull 은 이미지가 존재하지 않을때 원격 저장소에서 이미지를 가져올 수 있도록 하며, create 는 이미지로 컨테이너를 만드는 일을 수행한다. 조회, 삭제, 종료 exit 입력 또는 Ctrl + D 를 입력하면 된다.\n이때 컨테이너가 중단되는 것에 주의한다.\nCtrl + P, Q 를 입력하면 컨테이너를 정지하지 않고 빠져나올 수 있다.(3개를 동시에 누르는게 아니라 P먼저 누르고 Q를 눌러야 함)\n도커 엔진에 존재하는 이미지의 목록 조회는 images 명령어를 사용한다.\n1docker images 실행중인 컨테이너 목록 확인은 ps 명령어를 사용한다. COMMAND는 컨테이너가 실행될때 수행할 명령어를 뜻한다. 정지된 컨테이너까지 조회하려면 -a 옵션을 사용하면 된다. 컨테이너를 중지하려면 stop 명령어를 사용하면 된다. 컨테이너 삭제는 rm 명령어를 사용하면 된다. 일괄중지는 sudo docker stop $(sudo docker ps -a -q) 명령어를 사용한다. 일괄삭제는 sudo docker rm $(sudo docker ps -a -q) 명령어를 사용한다. 컨테이너 외부 노출 테스트를 위한 우분투 컨테이너를 실행한다. 1sudo docker run -i -t --name network_test ubuntu:14.04 컨테이너에서 ifconfig 명령어를 실행한다. 컨테이너는 기본적으로 172.17.0.x IP를 할당받는다. 컨테이너는 외부에서 접속은 불가능 하며 호스트에서만 접근이 가능한 상태다. 외부 노출을 위해 eth0의 IP와 포트를 호스트의 IP와 포트에 바인딩 해야한다. -p 옵션을 사용해서 [호스트의 포트]:[컨테이너의 포트] 형태로 바인딩한다. -p 옵션을 여러번 사용해서 포트를 여러개 바인딩 할수도 있다. 단순히 -p 80 과 같이 입력할 수 있는데 이때는 호스트의 포트가 랜덤으로 배정되기 때문에 ps 명령어를 통해서 확인해야한다. 1sudo docker run -i -t --name mywebserer -p 80:80 ubuntu:14.04 우분투 컨테이너에 아파치 웹서버를 설치하고 실행한다. 1apt-get update 2apt-get install apache2 -y 3service apache2 start 웹 브라우저를 통해 접속해본다. 샘플 애플리케이션 구축 데이터베이스와 웹서버를 하나의 컨테이너로 관리하기 보단 나눠서 컨테이너를 생성하고 관리하도록 하자. mysql 컨테이너를 실행한다. -d 옵션은 컨테이너를 백그라운드에서 동작하는 애플리케이션으로써 실행하도록 한다. -e 옵션은 컨테이너 내부의 환경변수를 설정한다. --link 옵션을 통해서 컨테이너간 네트워킹이 가능하도록 해준다. 컨테이너의 IP는 동적으로 할당되기 때문에 alias를 사용해서 연결한다. 컨테이너가 실행중이지 않다면 에러가 발생한다. 추후 삭제될 가능성이 높은 옵션이므로 브리지 네트워크 기능으로 연결하도록 하자. 1sudo docker run -d \\ 2--name wordpressdb \\ 3-e MYSQL_ROOT_PASSWORD=password \\ 4-e MYSQL_DATABASE=wordpress \\ 5mysql:5.7 wordpress 웹서버 컨테이너를 실행한다. 1sudo docker run -d \\ 2-e WORDPRESS_DB_HOST=mysql \\ 3-e WORDPRESS_DB_USER=root \\ 4-e WORDPRESS_DB_PASSWORD=password \\ 5--name wordpress \\ 6--link wordpressdb:mysql \\ 7-p 80 \\ 8wordpress wordpress 웹 서버 컨테이너와 바인딩된 호스트의 IP를 확인한다. 정상적으로 접속된다. 컨테이너 입출력 -d 옵션으로 run 을 실행하면 입출력이 없는 상태로 컨테이너를 실행한다. 컨테이너 내부에서 프로그램이 터미널을 차지하는 foreground로 실행되기 때문이다. 따라서 -d 옵션을 사용한 컨테이너는 반드시 컨테이너 내에서 foreground로 프로그램이 실행되도록 해야한다.(터미널에 프로그램을 할당해야한다.) 그렇지 않은 경우는 컨테이너가 즉시 종료 된다. ubuntu 컨테이너를 -d 옵션을 걸어서 실행하면 아래처럼 바로 종료된다. MySql 컨테이너에 -i -t 옵션을 걸면 컨테이너로 접속해서 컨테이너에서 foreground로 실행되고 있는 프로그램을 확인할 수 있다. 상호 입출력은 불가능하고 단순히 foreground로 구동되는 프로그램의 로그만 볼 수있다. 1sudo docker run -i -t \\ 2--name mysql_attach_test \\ 3-e MYSQL_ROOT_PASSWORD=password \\ 4-e MYSQL_DATABASE=wordpress \\ 5mysql:5.7 컨테이너 내부에서 echo ${환경변수명} 명령어를 입력하면 환경변수 확인이 가능하다. echo 명령어를 사용하기 위해선 상호 입출력이 가능한 shell이 컨테이너에서 실행되어야한다. 위의 mysql 컨테이너는 이미 attach로 접근해도 foreground로 프로그램이 이미 실행중이다. 따라서 exec 명령어를 사용하도록 한다. exec 명령어를 사용하면 컨테이너 내보의 shell을 사용할 수 있다. 1sudo docker exec -i -t mysql_attach_test /bin/bash mysql -u root -p 를 통해 password가 올바르게 적용되었는지 확인해본다. exit 명령어로 빠져나와도 컨테이너가 종료되지 않는다. 도커 볼륨 이미 생성된 이미지는 어떠한 경우로도 변경되지 않는다. mysql 컨테이너를 생성했다면, 컨테이너에 운영중 생성된 데이터들이 저장된다. 이때 컨테이너를 삭제하면 컨테이너에 존재하던 데이터도 함께 삭제된다. 컨테이너에 있는 데이터의 영속성을 확보하기 위해 볼륨을 활용한다. 호스트 볼륨 공유 -v 옵션을 통해 호스트의 /home/wordpress_db 디렉터리와 컨테이너의 /var/lib/mysql 을디렉터리를 공유한도록 한다. 호스트에 해당 디렉터리가 없다면 자동으로 생성해준다. 이미 호스트에 존재하는 디렉터리인 경우 호스트의 디렉터리를 컨테이너 디렉터리에 덮어쓰기 한다. 즉, 호스트가 우선순위가 더 높다. 1sudo docker run -d \\ 2--name wordpressdb_hostvolume \\ 3-e MYSQL_ROOT_PASSWORD=password \\ 4-e MYSQL_DATABASE=wordpress \\ 5-v /home/wordpress_db:/var/lib/mysql \\ 6mysql:5.7 wordpress 웹서버 컨테이너를 실행한다. 1sudo docker run -d \\ 2-e WORDPRESS_DB_PASSWORD=password \\ 3--name wordpress_hostvolume \\ 4--link wordpressdb_hostvolume:mysql \\ 5-p 80 \\ 6wordpress 볼륨 컨테이너 -v 옵션을 사용하는 컨테이너와 연결하는 방법이다. 한마디로 -v 옵션을 사용하는 컨테이너를 브리지로 사용하는것이다 --volumes-from 옵션을 사용하면 된다. 도커 볼륨 volume create 명령어를 통해 도커 자체에서 제공하는 볼륨 기능을 사용할 수 있다. 해당 볼륨은 도커 엔진에 의해 제어된다. 1sudo docker volume create --name myvolume 여러 종류의 스토리지를 사용할 수 있으며, 아래는 호스트(local)의 스토리지를 사용하도록 한다. 1sudo docker volume ls myvolume_1,myvolume_2 컨테이너가 myvolume 볼륨 컨테이너를 사용하도록 한다. myvolume_1 컨테이너에 접속해서 /root 디렉토리 아래에 파일을 생성하면, myvolume_2 컨테이너의 /root 디렉토리 파일에서 확인이 가능하게 된다. 1sudo docker run -i -t --name myvolume_1 \\ 2-v myvolume:/root/ \\ 3ubuntu:14.04 1sudo docker run -i -t --name myvolume_2 \\ 2-v myvolume:/root/ \\ 3ubuntu:14.04 inspect 명령어를 통해서 도커 볼륨이 호스트의 어떤 디렉터리에서 저장되고 있는지 확인할 수 있다. 1sudo docker inspect --type volume myvolume 도커 네트워크 호스트에서 ifconfig 명령어를 입력하면 실행중인 컨테이너의 개수 만큼 veth가 생성된것을 확인할 수 있다. eth0는 공인 IP 또는 내부 IP가 할당되어 실제로 외부와 통신할 수 있는 호스트의 네트워크 인터페이스이다. docker0는 eth0와 veth의 중간 다리 역할을 한다. 컨테이너는 호스트의 veth… 과 연결되며 veth…은 docker0와 연결되어 외부와 통신할 수 있게된다. (docker0는 호스트의 eth0와 연결!) 도커 네트워크 기능 컨테이너를 생성하면 docker0 브리지를 통해서 외부와 통신할 수 있는 환경을 제공받는다. 사용자의 선택에 따라 여러 네트워크 드라이버 사용이 가능하다. 대표적으로 브리지(bridge), 호스트(host), 논(none), 컨테이너(container), 오버레이(overlay)가 있다. docker network ls 명령어를 통해 사용가능한 네트워크를 확인할 수 있다. 이미 bridge, host, none이 존재하는걸 확인할 수 있다. bridge 네트워크는 컨테이너를 생성할 때 자동으로 연결되는 docker0 브리지를 활용하도록 설정되어있다.\n이 네트워크는 172.17.0.x IP대역을 순차적으로 할당한다.\ndocker network inspect 명령어를 통해 네트워크의 자세한 정보를 확인할 수 있다.브리지 네트워크\n브리지 네트워크 docker network create --driver bridge mybridge 명령어를 사용하면 기존의 docker0 브리지가 아닌 새로운 브리지 네트워크 생성이가능하다. (mybridge 브리지 네트워크 생성)\n컨테이너 생성시에 --net 옵션을 사용해서 생성한 브리지 사용이 가능하다.\n1docker run -i -t --name mynetwork_container \\ 2--net mybridge \\ 3ubuntu:14.04 connect disconnect 명령어를 통해서 컨테이너에 네트워크를 유동적으로 붙였다 뗐다 할수 있다.\n다만 브리지 네트워크, 오버레이 네트워크와 같이 특정 IP 대역을 갖는 네트워크 모드에서만 사용이 가능하다.\n아래와 같이 다양한 옵션을 사용해서 원하는 대역폭이나 gateway를 설정할 수 있다.( --subnet 과 --ip-range 는 같은 대역을 가져야 한다. )\n1docker network create --driver=bridge \\ 2--subnet=172.72.0.0/16 \\ 3--ip-range=172.72.0.0/24 \\ 4--gateway=172.72.0.1 \\ 5my_custom_network 호스트 네트워크 호스트의 네트워크 환경을 그대로 쓰는 방식이다.\n별도의 네트워크 생성이 필요 없으며, 기존의 host라는 이름의 네트워크를 그대로 사용한다.\n1docker run -i -t --name network_host \\ 2--net host \\ 3ubuntu:14.04 컨테이너에서 ifconfig를 수행하면 호스트의 네트워크가 정보가 출력된다.\n사실상 호스트에서 서비스를 구동하는 것과 같은 효과를 가지게 된다.\n논 네트워크 none은 아무런 네트워크를 쓰지않는 것을 뜻한다.\n1docker run -i -t --name network_none \\ 2--net none \\ 3ubuntu:14.04 컨테이너 네트워크 다른 컨테이너의 네트워크 네임스페이스 환경을 공유할 수 있다.\n공유되는 속성으로는 내부IP, 네트워크 인터페이스의 맥(MAC) 주소 등이 있다.\n--net container:[다른 컨테이너의 ID] 와 같이 작성하면 된다.\n1docker run -i -t -d --name network_container_1 ubuntu:14.04 2 3docker run -i -t -d --name network_container_2 \\ 4--net container:network_container_1 \\ 5ubuntu:14.04 두 컨테이너의 네트워크가 같은 것을 확인할 수 있다.\n컨테이너 네트워크의 구조를 그림으로 표현하면 아래와 같다.\n브리지 네트워크와 –net-alias 브리지 타입의 네트워크와 --net-alias 옵션을 함께 사용하면 특정 호스트 이름으로 컨테이너 여러 개에 접근 할 수 있다.\n1docker run -i -t -d --name network_alias_container_1 \\ 2--net mybridge \\ 3--net-alias alicek106 \\ 4ubuntu:14.04 5 6docker run -i -t -d --name network_alias_container_2 \\ 7--net mybridge \\ 8--net-alias alicek106 \\ 9ubuntu:14.04 10 11docker run -i -t -d --name network_alias_container_3 \\ 12--net mybridge \\ 13--net-alias alicek106 \\ 14ubuntu:14.04 위 명령어를 그림으로 나타내면 아래와 같다.\nmybridge 라는 네트워크에 속한 3개의 컨테이너는 --net-alias 옵션에 alicek106이라는 값을 입력했다.\n이 컨테이너의 IP는 DNS서버에 alicek106이라는 호스트 이름으로 등록된다.\nmybridge 네트워크에 속한 컨테이너에게 alicek106이라는 호스트 이름으로 접근하면 도커 내장 DNS는 라운드로빈 방식으로 컨테이너의 IP리스트를 반환한다.\nping은 IP 리스트에서 첫번째 IP를 사용하므로 매번 다른 IP를 응답하게 된다. ( DNS 서버는 라운드 로빈방식으로 컨테이너의 IP 리스트를 반환하기 때문이다. )\nMacVLAN 네트워크 호스트의 네트워크 인터페이스 카드를 가상화해 물리 네트워크 환경을 컨테이너에게 동일하게 제공하는 방식이다.\nMacVLAN을 사용하면 컨테이너도 가상의 Mac 주소를 가지게 된다.\n덕분에 해당 네트워크에 연결된 다른 장치와의 통신이 가능하게 된다.\n다만, 컨테이너A는 서버2,컨테이너B와 통신이 가능하지만 서버1(자신의 호스트)과는 통신이 불가능하다.\n컨테이너 로깅 ",
+  "wordCount" : "1377",
+  "inLanguage": "en",
+  "datePublished": "2022-07-22T22:55:00+09:00",
+  "dateModified": "2022-07-22T22:55:00+09:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Soo Jong"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-2-%EB%8F%84%EC%BB%A4-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%8B%A4%EB%A3%A8%EA%B8%B0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Today I Learn",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://92SooJong.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://92SooJong.github.io/" accesskey="h" title="Today I Learn (Alt + H)">Today I Learn</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://92SooJong.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://soojong.tistory.com/" title="Tistory">
+                    <span>Tistory</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://92SooJong.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/docker/">Docker</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/docker/book/">Book</a></div>
+    <h1 class="post-title">
+      2.2 도커 컨테이너 다루기
+    </h1>
+    <div class="post-meta"><span title='2022-07-22 22:55:00 +0900 KST'>July 22, 2022</span>&nbsp;·&nbsp;7 min&nbsp;·&nbsp;Soo Jong&nbsp;|&nbsp;<a href="https://github.com/92SooJong/92SooJong.github.io/issues" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#22-%eb%8f%84%ec%bb%a4-%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88-%eb%8b%a4%eb%a3%a8%ea%b8%b0" aria-label="2.2 도커 컨테이너 다루기">2.2 도커 컨테이너 다루기</a><ul>
+                        
+                <li>
+                    <a href="#%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88-%ec%8b%a4%ed%96%89%ed%95%b4%eb%b3%b4%ea%b8%b0" aria-label="컨테이너 실행해보기">컨테이너 실행해보기</a></li>
+                <li>
+                    <a href="#%ec%a1%b0%ed%9a%8c-%ec%82%ad%ec%a0%9c-%ec%a2%85%eb%a3%8c" aria-label="조회, 삭제, 종료">조회, 삭제, 종료</a></li>
+                <li>
+                    <a href="#%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88-%ec%99%b8%eb%b6%80-%eb%85%b8%ec%b6%9c" aria-label="컨테이너 외부 노출">컨테이너 외부 노출</a></li>
+                <li>
+                    <a href="#%ec%83%98%ed%94%8c-%ec%95%a0%ed%94%8c%eb%a6%ac%ec%bc%80%ec%9d%b4%ec%85%98-%ea%b5%ac%ec%b6%95" aria-label="샘플 애플리케이션 구축">샘플 애플리케이션 구축</a></li>
+                <li>
+                    <a href="#%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88-%ec%9e%85%ec%b6%9c%eb%a0%a5" aria-label="컨테이너 입출력">컨테이너 입출력</a></li>
+                <li>
+                    <a href="#%eb%8f%84%ec%bb%a4-%eb%b3%bc%eb%a5%a8" aria-label="도커 볼륨">도커 볼륨</a><ul>
+                        
+                <li>
+                    <a href="#%ed%98%b8%ec%8a%a4%ed%8a%b8-%eb%b3%bc%eb%a5%a8-%ea%b3%b5%ec%9c%a0" aria-label="호스트 볼륨 공유">호스트 볼륨 공유</a></li>
+                <li>
+                    <a href="#%eb%b3%bc%eb%a5%a8-%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88" aria-label="볼륨 컨테이너">볼륨 컨테이너</a></li>
+                <li>
+                    <a href="#%eb%8f%84%ec%bb%a4-%eb%b3%bc%eb%a5%a8-1" aria-label="도커 볼륨">도커 볼륨</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%eb%8f%84%ec%bb%a4-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac" aria-label="도커 네트워크">도커 네트워크</a><ul>
+                        
+                <li>
+                    <a href="#%eb%8f%84%ec%bb%a4-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac-%ea%b8%b0%eb%8a%a5" aria-label="도커 네트워크 기능">도커 네트워크 기능</a></li>
+                <li>
+                    <a href="#%eb%b8%8c%eb%a6%ac%ec%a7%80-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac" aria-label="브리지 네트워크">브리지 네트워크</a></li>
+                <li>
+                    <a href="#%ed%98%b8%ec%8a%a4%ed%8a%b8-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac" aria-label="호스트 네트워크">호스트 네트워크</a></li>
+                <li>
+                    <a href="#%eb%85%bc-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac" aria-label="논 네트워크">논 네트워크</a></li>
+                <li>
+                    <a href="#%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac" aria-label="컨테이너 네트워크">컨테이너 네트워크</a></li>
+                <li>
+                    <a href="#%eb%b8%8c%eb%a6%ac%ec%a7%80-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac%ec%99%80---net-alias" aria-label="브리지 네트워크와 &amp;ndash;net-alias">브리지 네트워크와 &ndash;net-alias</a></li>
+                <li>
+                    <a href="#macvlan-%eb%84%a4%ed%8a%b8%ec%9b%8c%ed%81%ac" aria-label="MacVLAN 네트워크">MacVLAN 네트워크</a></li></ul>
+                </li>
+                <li>
+                    <a href="#%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88-%eb%a1%9c%ea%b9%85" aria-label="컨테이너 로깅">컨테이너 로깅</a>
+                </li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="22-도커-컨테이너-다루기">2.2 도커 컨테이너 다루기<a hidden class="anchor" aria-hidden="true" href="#22-도커-컨테이너-다루기">#</a></h1>
+<h2 id="컨테이너-실행해보기">컨테이너 실행해보기<a hidden class="anchor" aria-hidden="true" href="#컨테이너-실행해보기">#</a></h2>
+<ul>
+<li>
+<p><code>run</code> 명령어를 사용해서 우분투 14.04 컨테이너 실행하기</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>docker run -i -t ubuntu:14.04
+</span></span></code></pre></div></li>
+<li>
+<p>로컬에 설치된 이미지가 없기 때문에 내려받아서 컨테이너를 실행 시켜줌.</p>
+</li>
+<li>
+<p>사용자 이름을 보면 알 수 있듯이 컨테이너 내부에 들어온것을 볼수 있다.</p>
+</li>
+<li>
+<p><code>-i</code> 옵션으로 상호 입출력을 가능하게 한다.</p>
+</li>
+<li>
+<p><code>-t</code> 옵션으로 tty를 활성화 해서 bash shell을 사용할 수 있도록 한다.</p>
+</li>
+<li>
+<p>두 옵션이 없으면 shell을 정상적으로 사용할 수 없게 된다.</p>
+</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled.png" alt="Untitled"  />
+</p>
+<ul>
+<li><code>create</code> 명령어를 사용해서 centos 컨테이너를 생성한다.</li>
+<li><code>--name</code> 옵션을 통해서 컨테이너의 이름을 설정한다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%201.png" alt="Untitled"  />
+</p>
+<ul>
+<li><code>start</code> 명령어를 통해 컨테이너를 실행한다.</li>
+<li><code>attach</code> 명령어를 통해 컨테이너 내부로 들어간다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%202.png" alt="Untitled"  />
+</p>
+<ul>
+<li><code>run</code> 명령어는 <code>start</code> 와 <code>attach</code> 명령어를 실행해준다.</li>
+<li>반대로 <code>create</code> 명령어를 실행하지 않고 컨테이너 생성까지만 수행한다.</li>
+<li><code>run</code> 과 <code>create</code> 는 기본적으노 <code>pull</code> 명령어와 <code>create</code> 명령어를 수행한다.</li>
+<li><code>pull</code> 은 이미지가 존재하지 않을때 원격 저장소에서 이미지를 가져올 수 있도록 하며, <code>create</code> 는 이미지로 컨테이너를 만드는 일을 수행한다.</li>
+</ul>
+<h2 id="조회-삭제-종료">조회, 삭제, 종료<a hidden class="anchor" aria-hidden="true" href="#조회-삭제-종료">#</a></h2>
+<ul>
+<li>
+<p><code>exit</code> 입력 또는 <code>Ctrl + D</code> 를 입력하면 된다.</p>
+</li>
+<li>
+<p>이때 컨테이너가 중단되는 것에 주의한다.</p>
+</li>
+<li>
+<p><code>Ctrl + P, Q</code> 를 입력하면 컨테이너를 정지하지 않고 빠져나올 수 있다.(3개를 동시에 누르는게 아니라 P먼저 누르고 Q를 눌러야 함)</p>
+</li>
+<li>
+<p>도커 엔진에 존재하는 이미지의 목록 조회는 <code>images</code> 명령어를 사용한다.</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>docker images
+</span></span></code></pre></div><ul>
+<li>실행중인 컨테이너 목록 확인은 <code>ps</code> 명령어를 사용한다.</li>
+<li>COMMAND는 컨테이너가 실행될때 수행할 명령어를 뜻한다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%203.png" alt="Untitled"  />
+</p>
+<ul>
+<li>정지된 컨테이너까지 조회하려면 <code>-a</code> 옵션을 사용하면 된다.</li>
+<li>컨테이너를 중지하려면 <code>stop</code> 명령어를 사용하면 된다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%204.png" alt="Untitled"  />
+</p>
+<ul>
+<li>컨테이너 삭제는 <code>rm</code> 명령어를 사용하면 된다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%205.png" alt="Untitled"  />
+</p>
+<ul>
+<li>일괄중지는 <code>sudo docker stop $(sudo docker ps -a -q)</code> 명령어를 사용한다.</li>
+<li>일괄삭제는 <code>sudo docker rm $(sudo docker ps -a -q)</code> 명령어를 사용한다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%206.png" alt="Untitled"  />
+</p>
+<h2 id="컨테이너-외부-노출">컨테이너 외부 노출<a hidden class="anchor" aria-hidden="true" href="#컨테이너-외부-노출">#</a></h2>
+<ul>
+<li>테스트를 위한 우분투 컨테이너를 실행한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -i -t --name network_test ubuntu:14.04
+</span></span></code></pre></div><ul>
+<li>컨테이너에서 <code>ifconfig</code> 명령어를 실행한다.</li>
+<li>컨테이너는 기본적으로 172.17.0.x IP를 할당받는다.</li>
+<li>컨테이너는 외부에서 접속은 불가능 하며 호스트에서만 접근이 가능한 상태다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%207.png" alt="Untitled"  />
+</p>
+<ul>
+<li>외부 노출을 위해 eth0의 IP와 포트를 호스트의 IP와 포트에 바인딩 해야한다.</li>
+<li><code>-p</code> 옵션을 사용해서 <code>[호스트의 포트]:[컨테이너의 포트]</code> 형태로 바인딩한다.</li>
+<li><code>-p</code> 옵션을 여러번 사용해서 포트를 여러개 바인딩 할수도 있다.</li>
+<li>단순히 <code>-p 80</code> 과 같이 입력할 수 있는데 이때는 호스트의 포트가 랜덤으로 배정되기 때문에 <code>ps</code> 명령어를 통해서 확인해야한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -i -t --name mywebserer -p 80:80 ubuntu:14.04
+</span></span></code></pre></div><ul>
+<li>우분투 컨테이너에 아파치 웹서버를 설치하고 실행한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>apt-get update
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>apt-get install apache2 -y
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>service apache2 start
+</span></span></code></pre></div><ul>
+<li>웹 브라우저를 통해 접속해본다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%208.png" alt="Untitled"  />
+</p>
+<h2 id="샘플-애플리케이션-구축">샘플 애플리케이션 구축<a hidden class="anchor" aria-hidden="true" href="#샘플-애플리케이션-구축">#</a></h2>
+<ul>
+<li>데이터베이스와 웹서버를 하나의 컨테이너로 관리하기 보단 나눠서 컨테이너를 생성하고 관리하도록 하자.</li>
+<li>mysql 컨테이너를 실행한다.</li>
+<li><code>-d</code> 옵션은 컨테이너를 백그라운드에서 동작하는 애플리케이션으로써 실행하도록 한다.</li>
+<li><code>-e</code> 옵션은 컨테이너 내부의 환경변수를 설정한다.</li>
+<li><code>--link</code> 옵션을 통해서 컨테이너간 네트워킹이 가능하도록 해준다. 컨테이너의 IP는 동적으로 할당되기 때문에 alias를 사용해서 연결한다. 컨테이너가 실행중이지 않다면 에러가 발생한다.</li>
+<li>추후 삭제될 가능성이 높은 옵션이므로 브리지 네트워크 기능으로 연결하도록 하자.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ae81ff"></span>--name wordpressdb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff"></span>-e MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span>password <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#ae81ff"></span>-e MYSQL_DATABASE<span style="color:#f92672">=</span>wordpress <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ae81ff"></span>mysql:5.7
+</span></span></code></pre></div><ul>
+<li>wordpress 웹서버 컨테이너를 실행한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ae81ff"></span>-e WORDPRESS_DB_HOST<span style="color:#f92672">=</span>mysql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff"></span>-e WORDPRESS_DB_USER<span style="color:#f92672">=</span>root <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#ae81ff"></span>-e WORDPRESS_DB_PASSWORD<span style="color:#f92672">=</span>password <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ae81ff"></span>--name wordpress <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#ae81ff"></span>--link wordpressdb:mysql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#ae81ff"></span>-p <span style="color:#ae81ff">80</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span><span style="color:#ae81ff"></span>wordpress
+</span></span></code></pre></div><ul>
+<li>wordpress 웹 서버 컨테이너와 바인딩된 호스트의 IP를 확인한다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%209.png" alt="Untitled"  />
+</p>
+<ul>
+<li>정상적으로 접속된다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2010.png" alt="Untitled"  />
+</p>
+<h2 id="컨테이너-입출력">컨테이너 입출력<a hidden class="anchor" aria-hidden="true" href="#컨테이너-입출력">#</a></h2>
+<ul>
+<li><code>-d</code> 옵션으로 <code>run</code> 을 실행하면 입출력이 없는 상태로 컨테이너를 실행한다.</li>
+<li>컨테이너 내부에서 프로그램이 터미널을 차지하는 foreground로 실행되기 때문이다.</li>
+<li>따라서 <code>-d</code> 옵션을 사용한 컨테이너는 반드시 컨테이너 내에서 foreground로 프로그램이 실행되도록 해야한다.(터미널에 프로그램을 할당해야한다.) 그렇지 않은 경우는 컨테이너가 즉시 종료 된다.</li>
+<li>ubuntu 컨테이너를 <code>-d</code> 옵션을 걸어서 실행하면 아래처럼 바로 종료된다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2011.png" alt="Untitled"  />
+</p>
+<ul>
+<li>MySql 컨테이너에 <code>-i -t</code> 옵션을 걸면 컨테이너로 접속해서 컨테이너에서 foreground로 실행되고 있는 프로그램을 확인할 수 있다. 상호 입출력은 불가능하고 단순히 foreground로 구동되는 프로그램의 로그만 볼 수있다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -i -t <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ae81ff"></span>--name mysql_attach_test <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff"></span>-e MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span>password <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#ae81ff"></span>-e MYSQL_DATABASE<span style="color:#f92672">=</span>wordpress <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ae81ff"></span>mysql:5.7
+</span></span></code></pre></div><p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2012.png" alt="Untitled"  />
+</p>
+<ul>
+<li>컨테이너 내부에서 <code>echo ${환경변수명}</code> 명령어를 입력하면 환경변수 확인이 가능하다.</li>
+<li><code>echo</code> 명령어를 사용하기 위해선 상호 입출력이 가능한 shell이 컨테이너에서 실행되어야한다. 위의 mysql 컨테이너는 이미 attach로 접근해도 foreground로 프로그램이 이미 실행중이다. 따라서 <code>exec</code> 명령어를 사용하도록 한다.</li>
+<li><code>exec</code> 명령어를 사용하면 컨테이너 내보의 shell을 사용할 수 있다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker exec -i -t mysql_attach_test /bin/bash
+</span></span></code></pre></div><p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2013.png" alt="Untitled"  />
+</p>
+<ul>
+<li><code>mysql -u root -p</code> 를 통해 password가 올바르게 적용되었는지 확인해본다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2014.png" alt="Untitled"  />
+</p>
+<ul>
+<li><code>exit</code> 명령어로 빠져나와도 컨테이너가 종료되지 않는다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2015.png" alt="Untitled"  />
+</p>
+<h2 id="도커-볼륨">도커 볼륨<a hidden class="anchor" aria-hidden="true" href="#도커-볼륨">#</a></h2>
+<ul>
+<li>이미 생성된 이미지는 어떠한 경우로도 변경되지 않는다.</li>
+<li>mysql 컨테이너를 생성했다면, 컨테이너에 운영중 생성된 데이터들이 저장된다. 이때 컨테이너를 삭제하면 컨테이너에 존재하던 데이터도 함께 삭제된다.</li>
+<li>컨테이너에 있는 데이터의 영속성을 확보하기 위해 볼륨을 활용한다.</li>
+</ul>
+<h3 id="호스트-볼륨-공유">호스트 볼륨 공유<a hidden class="anchor" aria-hidden="true" href="#호스트-볼륨-공유">#</a></h3>
+<ul>
+<li><code>-v</code> 옵션을 통해 호스트의 <code>/home/wordpress_db</code> 디렉터리와 컨테이너의 <code>/var/lib/mysql</code> 을디렉터리를 공유한도록 한다.</li>
+<li>호스트에 해당 디렉터리가 없다면 자동으로 생성해준다.</li>
+<li>이미 호스트에 존재하는 디렉터리인 경우 호스트의 디렉터리를 컨테이너 디렉터리에 덮어쓰기 한다. 즉, 호스트가 우선순위가 더 높다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ae81ff"></span>--name wordpressdb_hostvolume <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff"></span>-e MYSQL_ROOT_PASSWORD<span style="color:#f92672">=</span>password <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#ae81ff"></span>-e MYSQL_DATABASE<span style="color:#f92672">=</span>wordpress <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ae81ff"></span>-v /home/wordpress_db:/var/lib/mysql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#ae81ff"></span>mysql:5.7
+</span></span></code></pre></div><ul>
+<li>wordpress 웹서버 컨테이너를 실행한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ae81ff"></span>-e WORDPRESS_DB_PASSWORD<span style="color:#f92672">=</span>password <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff"></span>--name wordpress_hostvolume <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#ae81ff"></span>--link wordpressdb_hostvolume:mysql <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ae81ff"></span>-p <span style="color:#ae81ff">80</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#ae81ff"></span>wordpress
+</span></span></code></pre></div><p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2016.png" alt="Untitled"  />
+</p>
+<h3 id="볼륨-컨테이너">볼륨 컨테이너<a hidden class="anchor" aria-hidden="true" href="#볼륨-컨테이너">#</a></h3>
+<ul>
+<li><code>-v</code> 옵션을 사용하는 컨테이너와 연결하는 방법이다. 한마디로 <code>-v</code> 옵션을 사용하는 컨테이너를 브리지로 사용하는것이다</li>
+<li><code>--volumes-from</code> 옵션을 사용하면 된다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2017.png" alt="Untitled"  />
+</p>
+<h3 id="도커-볼륨-1">도커 볼륨<a hidden class="anchor" aria-hidden="true" href="#도커-볼륨-1">#</a></h3>
+<ul>
+<li><code>volume create</code> 명령어를 통해 도커 자체에서 제공하는 볼륨 기능을 사용할 수 있다.</li>
+<li>해당 볼륨은 도커 엔진에 의해 제어된다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker volume create --name myvolume
+</span></span></code></pre></div><ul>
+<li>여러 종류의 스토리지를 사용할 수 있으며, 아래는 호스트(local)의 스토리지를 사용하도록 한다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker volume ls
+</span></span></code></pre></div><p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2018.png" alt="Untitled"  />
+</p>
+<ul>
+<li>myvolume_1,myvolume_2 컨테이너가 myvolume 볼륨 컨테이너를 사용하도록 한다.</li>
+<li>myvolume_1 컨테이너에 접속해서 /root 디렉토리 아래에 파일을 생성하면, myvolume_2 컨테이너의 /root 디렉토리 파일에서 확인이 가능하게 된다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -i -t --name myvolume_1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ae81ff"></span>-v myvolume:/root/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff"></span>ubuntu:14.04
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker run -i -t --name myvolume_2 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#ae81ff"></span>-v myvolume:/root/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff"></span>ubuntu:14.04
+</span></span></code></pre></div><ul>
+<li><code>inspect</code> 명령어를 통해서 도커 볼륨이 호스트의 어떤 디렉터리에서 저장되고 있는지 확인할 수 있다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>sudo docker inspect --type volume myvolume
+</span></span></code></pre></div><p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2019.png" alt="Untitled"  />
+</p>
+<h2 id="도커-네트워크">도커 네트워크<a hidden class="anchor" aria-hidden="true" href="#도커-네트워크">#</a></h2>
+<ul>
+<li>호스트에서 <code>ifconfig</code> 명령어를 입력하면 실행중인 컨테이너의 개수 만큼 veth가 생성된것을 확인할 수 있다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2020.png" alt="Untitled"  />
+</p>
+<ul>
+<li>eth0는 공인 IP 또는 내부 IP가 할당되어 실제로 외부와 통신할 수 있는 호스트의 네트워크 인터페이스이다.</li>
+<li>docker0는 eth0와 veth의 중간 다리 역할을 한다.</li>
+<li>컨테이너는 호스트의 veth… 과 연결되며 veth…은 docker0와 연결되어 외부와 통신할 수 있게된다. (docker0는 호스트의 eth0와 연결!)</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2021.png" alt="Untitled"  />
+</p>
+<h3 id="도커-네트워크-기능">도커 네트워크 기능<a hidden class="anchor" aria-hidden="true" href="#도커-네트워크-기능">#</a></h3>
+<ul>
+<li>컨테이너를 생성하면 docker0 브리지를 통해서 외부와 통신할 수 있는 환경을 제공받는다.</li>
+<li>사용자의 선택에 따라 여러 네트워크 드라이버 사용이 가능하다.</li>
+<li>대표적으로 브리지(bridge), 호스트(host), 논(none), 컨테이너(container), 오버레이(overlay)가 있다.</li>
+<li><code>docker network ls</code> 명령어를 통해 사용가능한 네트워크를 확인할 수 있다.</li>
+<li>이미 bridge, host, none이 존재하는걸 확인할 수 있다.</li>
+</ul>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2022.png" alt="Untitled"  />
+</p>
+<ul>
+<li>
+<p>bridge 네트워크는 컨테이너를 생성할 때 자동으로 연결되는 docker0 브리지를 활용하도록 설정되어있다.</p>
+</li>
+<li>
+<p>이 네트워크는 172.17.0.x IP대역을 순차적으로 할당한다.</p>
+</li>
+<li>
+<p><code>docker network inspect</code> 명령어를 통해 네트워크의 자세한 정보를 확인할 수 있다.브리지 네트워크</p>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2023.png" alt="Untitled"  />
+</p>
+</li>
+</ul>
+<h3 id="브리지-네트워크">브리지 네트워크<a hidden class="anchor" aria-hidden="true" href="#브리지-네트워크">#</a></h3>
+<ul>
+<li>
+<p><code>docker network create --driver bridge mybridge</code> 명령어를 사용하면 기존의 docker0 브리지가 아닌 새로운 브리지 네트워크 생성이가능하다. (mybridge 브리지 네트워크 생성)</p>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2024.png" alt="Untitled"  />
+</p>
+</li>
+<li>
+<p>컨테이너 생성시에 <code>--net</code> 옵션을 사용해서 생성한 브리지 사용이 가능하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ae81ff">docker run -i -t --name mynetwork_container \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>--<span style="color:#ae81ff">net mybridge \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff">ubuntu:14.04</span>
+</span></span></code></pre></div><p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2025.png" alt="Untitled"  />
+</p>
+</li>
+<li>
+<p><code>connect</code> <code>disconnect</code> 명령어를 통해서 컨테이너에 네트워크를 유동적으로 붙였다 뗐다 할수 있다.</p>
+</li>
+<li>
+<p>다만 브리지 네트워크, 오버레이 네트워크와 같이 특정 IP 대역을 갖는 네트워크 모드에서만 사용이 가능하다.</p>
+</li>
+<li>
+<p>아래와 같이 다양한 옵션을 사용해서 원하는 대역폭이나 gateway를 설정할 수 있다.( <code>--subnet</code> 과 <code>--ip-range</code> 는 같은 대역을 가져야 한다. )</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ae81ff">docker network create --driver=bridge \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>--<span style="color:#ae81ff">subnet=172.72.0.0/16 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>--<span style="color:#ae81ff">ip-range=172.72.0.0/24 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>--<span style="color:#ae81ff">gateway=172.72.0.1 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ae81ff">my_custom_network</span>
+</span></span></code></pre></div></li>
+</ul>
+<h3 id="호스트-네트워크">호스트 네트워크<a hidden class="anchor" aria-hidden="true" href="#호스트-네트워크">#</a></h3>
+<ul>
+<li>
+<p>호스트의 네트워크 환경을 그대로 쓰는 방식이다.</p>
+</li>
+<li>
+<p>별도의 네트워크 생성이 필요 없으며, 기존의 host라는 이름의 네트워크를 그대로 사용한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ae81ff">docker run -i -t --name network_host \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>--<span style="color:#ae81ff">net host \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff">ubuntu:14.04</span>
+</span></span></code></pre></div></li>
+<li>
+<p>컨테이너에서 ifconfig를 수행하면 호스트의 네트워크가 정보가 출력된다.</p>
+</li>
+<li>
+<p>사실상 호스트에서 서비스를 구동하는 것과 같은 효과를 가지게 된다.</p>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2026.png" alt="Untitled"  />
+</p>
+</li>
+</ul>
+<h3 id="논-네트워크">논 네트워크<a hidden class="anchor" aria-hidden="true" href="#논-네트워크">#</a></h3>
+<ul>
+<li>
+<p>none은 아무런 네트워크를 쓰지않는 것을 뜻한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ae81ff">docker run -i -t --name network_none \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>--<span style="color:#ae81ff">net none \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff">ubuntu:14.04</span>
+</span></span></code></pre></div><p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2027.png" alt="Untitled"  />
+</p>
+</li>
+</ul>
+<h3 id="컨테이너-네트워크">컨테이너 네트워크<a hidden class="anchor" aria-hidden="true" href="#컨테이너-네트워크">#</a></h3>
+<ul>
+<li>
+<p>다른 컨테이너의 네트워크 네임스페이스 환경을 공유할 수 있다.</p>
+</li>
+<li>
+<p>공유되는 속성으로는 내부IP, 네트워크 인터페이스의 맥(MAC) 주소 등이 있다.</p>
+</li>
+<li>
+<p><code>--net container:[다른 컨테이너의 ID]</code> 와 같이 작성하면 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#ae81ff">docker run -i -t -d --name network_container_1 ubuntu:14.04</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#ae81ff">docker run -i -t -d --name network_container_2 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>--<span style="color:#ae81ff">net container:network_container_1 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#ae81ff">ubuntu:14.04</span>
+</span></span></code></pre></div></li>
+<li>
+<p>두 컨테이너의 네트워크가 같은 것을 확인할 수 있다.</p>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2028.png" alt="Untitled"  />
+</p>
+</li>
+<li>
+<p>컨테이너 네트워크의 구조를 그림으로 표현하면 아래와 같다.</p>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2029.png" alt="Untitled"  />
+</p>
+</li>
+</ul>
+<h3 id="브리지-네트워크와---net-alias">브리지 네트워크와 &ndash;net-alias<a hidden class="anchor" aria-hidden="true" href="#브리지-네트워크와---net-alias">#</a></h3>
+<ul>
+<li>
+<p>브리지 타입의 네트워크와 <code>--net-alias</code> 옵션을 함께 사용하면 특정 호스트 이름으로 컨테이너 여러 개에 접근 할 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#ae81ff">docker run -i -t -d --name network_alias_container_1 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>--<span style="color:#ae81ff">net mybridge \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>--<span style="color:#ae81ff">net-alias alicek106 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#ae81ff">ubuntu:14.04</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#ae81ff">docker run -i -t -d --name network_alias_container_2 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>--<span style="color:#ae81ff">net mybridge \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>--<span style="color:#ae81ff">net-alias alicek106 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#ae81ff">ubuntu:14.04</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#ae81ff">docker run -i -t -d --name network_alias_container_3 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>--<span style="color:#ae81ff">net mybridge \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>--<span style="color:#ae81ff">net-alias alicek106 \</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#ae81ff">ubuntu:14.04</span>
+</span></span></code></pre></div></li>
+<li>
+<p>위 명령어를 그림으로 나타내면 아래와 같다.</p>
+</li>
+<li>
+<p>mybridge 라는 네트워크에 속한 3개의 컨테이너는 <code>--net-alias</code> 옵션에 alicek106이라는 값을 입력했다.</p>
+</li>
+<li>
+<p>이 컨테이너의 IP는 DNS서버에 alicek106이라는 호스트 이름으로 등록된다.</p>
+</li>
+<li>
+<p>mybridge 네트워크에 속한 컨테이너에게 alicek106이라는 호스트 이름으로 접근하면 도커 내장 DNS는 라운드로빈 방식으로 컨테이너의 IP리스트를 반환한다.</p>
+</li>
+<li>
+<p>ping은 IP 리스트에서 첫번째 IP를 사용하므로 매번 다른 IP를 응답하게 된다. ( DNS 서버는 라운드 로빈방식으로 컨테이너의 IP 리스트를 반환하기 때문이다. )</p>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2030.png" alt="Untitled"  />
+</p>
+</li>
+</ul>
+<h3 id="macvlan-네트워크">MacVLAN 네트워크<a hidden class="anchor" aria-hidden="true" href="#macvlan-네트워크">#</a></h3>
+<ul>
+<li>
+<p>호스트의 네트워크 인터페이스 카드를 가상화해 물리 네트워크 환경을 컨테이너에게 동일하게 제공하는 방식이다.</p>
+</li>
+<li>
+<p>MacVLAN을 사용하면 컨테이너도 가상의 Mac 주소를 가지게 된다.</p>
+</li>
+<li>
+<p>덕분에 해당 네트워크에 연결된 다른 장치와의 통신이 가능하게 된다.</p>
+</li>
+<li>
+<p>다만, 컨테이너A는 서버2,컨테이너B와 통신이 가능하지만 서버1(자신의 호스트)과는 통신이 불가능하다.</p>
+<p><img loading="lazy" src="/images/docker/book/%ec%8b%9c%ec%9e%91%ed%95%98%ec%84%b8%ec%9a%94-%eb%8f%84%ec%bb%a4-%ec%bf%a0%eb%b2%84%eb%84%a4%ed%8b%b0%ec%8a%a4/2-2/Untitled%2031.png" alt="Untitled"  />
+</p>
+</li>
+</ul>
+<h2 id="컨테이너-로깅">컨테이너 로깅<a hidden class="anchor" aria-hidden="true" href="#컨테이너-로깅">#</a></h2>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/2-3-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>2.3 도커 이미지</span>
+  </a>
+  <a class="next" href="https://92SooJong.github.io/posts/database/database-engine/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Database Engine</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2.2 도커 컨테이너 다루기 on twitter"
+        href="https://twitter.com/intent/tweet/?text=2.2%20%eb%8f%84%ec%bb%a4%20%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%20%eb%8b%a4%eb%a3%a8%ea%b8%b0&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fdocker%2fbook%2f%25EC%258B%259C%25EC%259E%2591%25ED%2595%2598%25EC%2584%25B8%25EC%259A%2594-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BF%25A0%25EB%25B2%2584%25EB%2584%25A4%25ED%258B%25B0%25EC%258A%25A4%2f2-2-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BB%25A8%25ED%2585%258C%25EC%259D%25B4%25EB%2584%2588-%25EB%258B%25A4%25EB%25A3%25A8%25EA%25B8%25B0%2f&amp;hashtags=Docker%2cBook%2cKorean">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2.2 도커 컨테이너 다루기 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fdocker%2fbook%2f%25EC%258B%259C%25EC%259E%2591%25ED%2595%2598%25EC%2584%25B8%25EC%259A%2594-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BF%25A0%25EB%25B2%2584%25EB%2584%25A4%25ED%258B%25B0%25EC%258A%25A4%2f2-2-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BB%25A8%25ED%2585%258C%25EC%259D%25B4%25EB%2584%2588-%25EB%258B%25A4%25EB%25A3%25A8%25EA%25B8%25B0%2f&amp;title=2.2%20%eb%8f%84%ec%bb%a4%20%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%20%eb%8b%a4%eb%a3%a8%ea%b8%b0&amp;summary=2.2%20%eb%8f%84%ec%bb%a4%20%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%20%eb%8b%a4%eb%a3%a8%ea%b8%b0&amp;source=https%3a%2f%2f92SooJong.github.io%2fposts%2fdocker%2fbook%2f%25EC%258B%259C%25EC%259E%2591%25ED%2595%2598%25EC%2584%25B8%25EC%259A%2594-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BF%25A0%25EB%25B2%2584%25EB%2584%25A4%25ED%258B%25B0%25EC%258A%25A4%2f2-2-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BB%25A8%25ED%2585%258C%25EC%259D%25B4%25EB%2584%2588-%25EB%258B%25A4%25EB%25A3%25A8%25EA%25B8%25B0%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2.2 도커 컨테이너 다루기 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2f92SooJong.github.io%2fposts%2fdocker%2fbook%2f%25EC%258B%259C%25EC%259E%2591%25ED%2595%2598%25EC%2584%25B8%25EC%259A%2594-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BF%25A0%25EB%25B2%2584%25EB%2584%25A4%25ED%258B%25B0%25EC%258A%25A4%2f2-2-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BB%25A8%25ED%2585%258C%25EC%259D%25B4%25EB%2584%2588-%25EB%258B%25A4%25EB%25A3%25A8%25EA%25B8%25B0%2f&title=2.2%20%eb%8f%84%ec%bb%a4%20%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%20%eb%8b%a4%eb%a3%a8%ea%b8%b0">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2.2 도커 컨테이너 다루기 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f92SooJong.github.io%2fposts%2fdocker%2fbook%2f%25EC%258B%259C%25EC%259E%2591%25ED%2595%2598%25EC%2584%25B8%25EC%259A%2594-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BF%25A0%25EB%25B2%2584%25EB%2584%25A4%25ED%258B%25B0%25EC%258A%25A4%2f2-2-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BB%25A8%25ED%2585%258C%25EC%259D%25B4%25EB%2584%2588-%25EB%258B%25A4%25EB%25A3%25A8%25EA%25B8%25B0%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2.2 도커 컨테이너 다루기 on whatsapp"
+        href="https://api.whatsapp.com/send?text=2.2%20%eb%8f%84%ec%bb%a4%20%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%20%eb%8b%a4%eb%a3%a8%ea%b8%b0%20-%20https%3a%2f%2f92SooJong.github.io%2fposts%2fdocker%2fbook%2f%25EC%258B%259C%25EC%259E%2591%25ED%2595%2598%25EC%2584%25B8%25EC%259A%2594-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BF%25A0%25EB%25B2%2584%25EB%2584%25A4%25ED%258B%25B0%25EC%258A%25A4%2f2-2-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BB%25A8%25ED%2585%258C%25EC%259D%25B4%25EB%2584%2588-%25EB%258B%25A4%25EB%25A3%25A8%25EA%25B8%25B0%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 2.2 도커 컨테이너 다루기 on telegram"
+        href="https://telegram.me/share/url?text=2.2%20%eb%8f%84%ec%bb%a4%20%ec%bb%a8%ed%85%8c%ec%9d%b4%eb%84%88%20%eb%8b%a4%eb%a3%a8%ea%b8%b0&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fdocker%2fbook%2f%25EC%258B%259C%25EC%259E%2591%25ED%2595%2598%25EC%2584%25B8%25EC%259A%2594-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BF%25A0%25EB%25B2%2584%25EB%2584%25A4%25ED%258B%25B0%25EC%258A%25A4%2f2-2-%25EB%258F%2584%25EC%25BB%25A4-%25EC%25BB%25A8%25ED%2585%258C%25EC%259D%25B4%25EB%2584%2588-%25EB%258B%25A4%25EB%25A3%25A8%25EA%25B8%25B0%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://92SooJong.github.io/">Today I Learn</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

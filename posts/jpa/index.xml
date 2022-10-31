@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>JPA on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/jpa/</link>
+    <description>Recent content in JPA on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 02 Aug 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/jpa/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>기본키 매핑 방식</title>
+      <link>https://92SooJong.github.io/posts/jpa/%EA%B8%B0%EB%B3%B8%ED%82%A4-%EB%A7%A4%ED%95%91/</link>
+      <pubDate>Fri, 06 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/jpa/%EA%B8%B0%EB%B3%B8%ED%82%A4-%EB%A7%A4%ED%95%91/</guid>
+      <description>기본키 매핑 방식 직접 할당 기본 키를 애플리케이션에서 직접 할당한다 자동 생성 IDENTITY 기본키 생성을 데이터베이스에 위임한다. MySQL의 경우 AUTO_INCREMENT를 ID 컬럼에 옵션으로 붙여서 테이블을 생성한다. IDENTITY 방식은 실제 Table에 Insert를 수행할때 ID가 할당된다. ID를 얻으려면 Table을 조회해야하는 비효율이 발생하는데 Insert와 동시에 JPA로 ID를 가져오기 위해 Statement.getGeneratedKeys()를 사용하면 된다. 엔터티가 영속 상태가 되려면 식별자가 반드시 필요하기때문에 em.persist()를 호출하는 즉시 Insert 쿼리문에 데이터베이스에 전달된다. 따라서 IDENTITY 방식은 쓰기 지연이 동작하지 않는다. SEQUENCE 데이터베이스 시퀀스를 사용해서 기본 키를 할당한다.</description>
+    </item>
+    
+  </channel>
+</rss>

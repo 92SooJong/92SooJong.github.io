@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Seminar on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/seminar/</link>
+    <description>Recent content in Seminar on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 20 Oct 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/seminar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>한기용님-무신사-20221020-강연정리</title>
+      <link>https://92SooJong.github.io/posts/seminar/%ED%95%9C%EA%B8%B0%EC%9A%A9%EB%8B%98-%EB%AC%B4%EC%8B%A0%EC%82%AC-20221020/</link>
+      <pubDate>Thu, 20 Oct 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/seminar/%ED%95%9C%EA%B8%B0%EC%9A%A9%EB%8B%98-%EB%AC%B4%EC%8B%A0%EC%82%AC-20221020/</guid>
+      <description>들으면서 퀵하게 적은 내용을 다시 쓴 거라 정리하는 과정에서 나의 해석이 들어갔을 가능성 있음.
+돌아보니 개발 스킬보다는 행동양식이 더 중요하다. 태도가 준비가 되어있지 않으면 스킬이 좋아도 의미가 없다. 스타트업의 초기 멤버는 사실상 주니어급들이다. 그러다 보니 면접으로 기술자를 뽑을때 주니어가 주니어를 뽑는 일이 발생한다. 이 경우 사람은 늘어 나는데 생산성이 나오지 않는 현상이 발생한다. 자신보다 능력이 좋은 사람을 뽑을 수 있는 용기가 있어야한다. 완벽주의자는 위로 갈수록 힘들어진다. 모든 일을 자신이 다 하려고 하면 안된다.</description>
+    </item>
+    
+  </channel>
+</rss>

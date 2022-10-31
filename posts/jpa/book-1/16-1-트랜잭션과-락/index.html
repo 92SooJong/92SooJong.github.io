@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>16.1 트랜잭션과 락 | Today I Learn</title>
+<meta name="keywords" content="JPA, Book, Korean">
+<meta name="description" content="16.1 트랜잭션과 락 16.1.1 트랜잭션과 격리 수준 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.
+격리수준(Isolation Level) 동시성 처리를 위해서 대부분의 Database는 READ COMMITED를 기본으로한다
+READ UNCOMMITTED 커밋하지 않은 데이터를 읽을 수 있다. 트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다. READ COMMITED 커밋한 데이터만 읽을 수 있다.">
+<meta name="author" content="Soo Jong">
+<link rel="canonical" href="https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://92SooJong.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://92SooJong.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://92SooJong.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://92SooJong.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://92SooJong.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="16.1 트랜잭션과 락" />
+<meta property="og:description" content="16.1 트랜잭션과 락 16.1.1 트랜잭션과 격리 수준 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.
+격리수준(Isolation Level) 동시성 처리를 위해서 대부분의 Database는 READ COMMITED를 기본으로한다
+READ UNCOMMITTED 커밋하지 않은 데이터를 읽을 수 있다. 트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다. READ COMMITED 커밋한 데이터만 읽을 수 있다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-07-26T22:55:00+09:00" />
+<meta property="article:modified_time" content="2022-07-26T22:55:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="16.1 트랜잭션과 락"/>
+<meta name="twitter:description" content="16.1 트랜잭션과 락 16.1.1 트랜잭션과 격리 수준 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.
+격리수준(Isolation Level) 동시성 처리를 위해서 대부분의 Database는 READ COMMITED를 기본으로한다
+READ UNCOMMITTED 커밋하지 않은 데이터를 읽을 수 있다. 트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다. READ COMMITED 커밋한 데이터만 읽을 수 있다."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://92SooJong.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "JPA",
+      "item": "https://92SooJong.github.io/posts/jpa/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "(교재) Java ORM 표준 JPA 프로그래밍",
+      "item": "https://92SooJong.github.io/posts/jpa/book-1/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  4 ,
+      "name": "16.1 트랜잭션과 락",
+      "item": "https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "16.1 트랜잭션과 락",
+  "name": "16.1 트랜잭션과 락",
+  "description": "16.1 트랜잭션과 락 16.1.1 트랜잭션과 격리 수준 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.\n격리수준(Isolation Level) 동시성 처리를 위해서 대부분의 Database는 READ COMMITED를 기본으로한다\nREAD UNCOMMITTED 커밋하지 않은 데이터를 읽을 수 있다. 트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다. READ COMMITED 커밋한 데이터만 읽을 수 있다.",
+  "keywords": [
+    "JPA", "Book", "Korean"
+  ],
+  "articleBody": "16.1 트랜잭션과 락 16.1.1 트랜잭션과 격리 수준 트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.\n격리수준(Isolation Level) 동시성 처리를 위해서 대부분의 Database는 READ COMMITED를 기본으로한다\nREAD UNCOMMITTED 커밋하지 않은 데이터를 읽을 수 있다. 트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다. READ COMMITED 커밋한 데이터만 읽을 수 있다. 트랜잭션1이 회원A를 조회중일때, 트랜잭션2가 회원A 정보를 수정하고 커밋을 하면 트랜잭션 1이 다시 회원 A를 조회했을때 수정된 데이터가 조회된다. 하나의 트랜잭션에서 같은 회원A 정보를 읽지 못하는 현상이 발생하게된다. 이를 NON-REPEATABLE READ라 한다. REPEATABLE READ 한 번 조회한 데이터를 반복해서 조회해도 같은 데이터가 조회된다. 트랜잭션 1이 10살 이하의 회원을 조회했는데 트랜잭션 2가 5살 회원을 추가하고 커밋하면 트랜잭션1이 다시 10살 이하의 회원을 조회했을 때 회원 하나가 추가된 상태로 조회된다. 이처럼 반복 조회시 결과 집합(개수)가 달라지는 것을 PHANTOM READ라고한다. SERIALIZABLE 가장 엄격한 트랜잭션 격리 수준이다. PHANTOM READ가 발생하지 않으나 동시성 처리 성능이 급격히 떨어진다. 16.1.2 낙관적 락과 비관적 락 기초 JPA의 영속성 컨텍스트(1차 캐시)를 적절히 활용하면 데이터베이스 트랜잭션이 READ COMMITTED 격리 수준이어도 애플리케이션 레벨에서 반복 가능한 읽기가 가능하다. (엔티티가 아닌 스칼라 값을 읽는 경우는 예외.) JPA는 데이터베이스 트랜잭션 격리 수준을 READ COMMITTED 정도로 가정한다. 일부 로직에 더 높은 격리 수준이 필요하다면 낙관적 락과 비관적 락 중 하나를 사용하면 된다. 낙관적 락 트랜잭션 대부분은 충돌이 발생하지 않는다고 낙관적으로 가정하는 방법이다. 데이터베이스가 제공하는 락 기능을 사용하는 것이 아니라 JPA가 제공하는 버전 관리 기능을 사용한다. 낙관적 락은 트랜잭션을 커밋하기 전까지는 트랜잭션의 충돌을 알 수 없다. 비관적 락 트랜잭션의 충돌이 발생하낟고 가정하고 우선 락을 걸고 보는 방법이다. 이것은 데이터베이스가 제공하는 락 기능을 사용한다. 대표적으로 select for update 구문이 있다. 두 번의 갱신 분실 문제(second lost updates problem) A와 B가 공지사항의 내용을 수정하는 경우 A가 수정후 Commit을 했다. 이후 B가 Commit을 한다면 A의 내용은 무시된다. 이 문제를 해결하는 3가지 방법은 아래와 같다. 마지막 커밋만 인정하기 최초 커밋만 인정하기 충돌하는 갱신 내용 병합하기 기본값은 마지막 커밋만 인정하기이다. JPA가 제공하는 버전 관리 기능을 사용하면 손쉽게 최초 커밋만 인정하기를 구현할 수 있다. 16.1.3 @Version @Version 어노테이션은 Long, Integer, Short, Timestap 타입에만 적용이 가능하다.\n버전 관리 기능을 사용하기 위해서 버전 관리용 필드를 추가해야한다.\n엔티티를 수정할 때 마다 버전이 하나씩 자동으로 증가한다.\n엔티티를 수정할 때 조회 시점의 버전과 수정 시점의 버전이 다르면 예외가 발생한다.\n아래와 같이 트랜잭션 A에서 board의 버전이 변경되는 경우 예외가 발생한다.\n트랜잭션2에 의해 테이블의 version은 2로 변경되었다. 트랜잭션이 1이 테이블에 저장하려고 할때 version이 1이기 때문에 예외가 발생한다.\n버전 정보를 사용하면 최초 커밋만 인정하기가 적용된다.\n1 // 트랜잭션 1조회 title=\"제목A\", version=1 2 Board board = em.find(Board.class,id); 3 4 // 트랜잭션 2에서 해당 게시글이 수정되었다. 5 // title = \"제목C\" , version=2로 변경 6 7 board.setTitle(\"제목B\"); // 트랜잭션1 데이터 수정 8 9 save(board); 10 tx.commit(); // 예외 발생, 데이터베이스 version=2, 엔티티 version=1 16.1.4 JPA 락 사용 JPA를 사용할때 추천하는 방법은 READ COMMITTED 트랜잭션 격리 수전 + 낙관적 버전 관리이다. em.find(Board.class, id, LockModeType.OPTIMISTIC); 과 같은 형태로 Lock을 걸 수 있다. 아래와 같은 방법도 사용가능하다. 1Board board = em.find(Board.class,id); 2... 3em.lock(board, LockModeType.OPTIMISTIC); 16.1.5 JPA 낙관적 락 JPA가 제공하는 낙관적 락은 @Version을 사용한다 낙관적 락은 트랜잭션을 커밋하는 시점에 충돌을 알 수 있다는 특징이 있다. NONE 락 옵션을 적용하지 않아도 엔티티에 @Version 이 적용된 필드만 있으면 낙관적 락이 적용된다. 조회한 엔티티를 수정할 때 다른 트랜잭션에 의해 변경(삭제)되지 않도록 하기 위해서 사용한다. 조회 시점부터 수정 시점까지를 보장한다. 엔티티를 수정할 때 버전을 체크하면서 버전을 증가시킨다.(자동으로 Update 쿼리가 날라감) 두 번의 갱실 분실 문제를 예방한다. OPTIMISTIC 엔티티를 조회만 해도 버전을 체크한다. NONE은 안정적 수정을 보장, OPTIMISTIC은 안정적 조회를 보장 한 번 조회한 엔티티는 트랜잭션을 종료할 때까지 다른 트랜잭션에서 변경하지 않음을 보장한다. 조회한 엔티티는 트랜잭션이 끝날 때까지 다른 트랜잭션에 의해 변경되지 않아야 한다. 트랜잭션을 커밋할때 버전 정보를 조회해서 현재 엔티티의 버전과 같은지 확인한다. (버전 조회를 위한 SELECT 쿼리문 실행) OPTIMISTIC 옵션은 DIRTY READ와 NON-REPEATABLE READ를 방지한다. OPTIMISTIC_FORCE_INCREMENT 낙관적 락을 사용하면서 버전 정보를 강제로 증가시킨다. 게시물과 첨부파일 엔티티가 일대다 관계를 가지는 경우, 첨부파일 엔티티 정보만 변경하면 첨부파일 엔티티의 버전만 올라가게 된다. 이때 게시물 엔티티의 버전을 강제로 증가시키키 위해 OPTIMISTIC_FORCE_INCREMENT를 사용한다. 엔티티를 수정하지 않아도 트랜잭션을 커밋할 때 UPDATE 쿼리를 사용해서 버전 정보를 강제로 증가 시킨다. 조회후 추가로 엔티티를 수정하게 된다면 버전은 2가 증가헤 된다. 16.1.6 JPA 비관적 락 데이터베이스 트랜잭션 락 메커니즘에 의존하는 방법이다. SQL의 select for update 구문을 사용하며, 버전정보는 사용하지 않는다. 비관적 락의 장점은 다음과 같다. 엔티티가 아닌 스칼라 타입을 조회할 때도 사용할 수 있다. 데이터를 수정하는 즉시 트랜잭션 충동을 감지할 수 있다. PESSIMISTIC_WRITE 데이터베이스에 쓰기 락을 걸때 사용한다. 데이터베이스의 select for update를 사용해서 락을 건다. NON-REPEATABLE READ를 방지한다. 락이 걸린 로우는 다른 트랜잭션이 수정할 수 없다. PESSIMISTIC_READ(잘 사용하진 않음..) 데이터를 반복 읽기만 하고 수정하지 않는 용도로 락을 걸 때 사용한다. MySQL의 경우 lock in share mode PostgreSQL의 경우 for share PESSIMISTIC_FORCE_INCREMENT 비관적 락중 유일하게 버전 정보를 사용한다. 비관적 락이지만 버전 정보를 강제로 증가시킨다. 하이버네이트는 nowait를 지원하는 데이터베이스에 대해서 for update nowait옵션을 적용한다. nowait를 지원하지 않으면 for update가 사용된다. 16.1.7 비관적 락과 타임아웃 비관적 락을 사용하면 락을 획득할 때까지 트랜잭션이 대기한다. 무한정 기다릴 수 없기때문에 타임아웃 시간을 줄 수 있다. 타임아웃은 데이터베이스 특성에 따라 동작하지 않을 수 있다. 1Map\u003cString,Object\u003e properties = new HashMap\u003cString,Object\u003e(); 2 3// 타임아웃 10초 설정 4properties.put(\"javax.persistence.lock.timeout\",10000); 5 6Board board = em.find(Board.class, \"boardId\",LockModeType.PESSIMISTIC_WRITE,properties); ",
+  "wordCount" : "835",
+  "inLanguage": "en",
+  "datePublished": "2022-07-26T22:55:00+09:00",
+  "dateModified": "2022-07-26T22:55:00+09:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Soo Jong"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://92SooJong.github.io/posts/jpa/book-1/16-1-%ED%8A%B8%EB%9E%9C%EC%9E%AD%EC%85%98%EA%B3%BC-%EB%9D%BD/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Today I Learn",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://92SooJong.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://92SooJong.github.io/" accesskey="h" title="Today I Learn (Alt + H)">Today I Learn</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://92SooJong.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://soojong.tistory.com/" title="Tistory">
+                    <span>Tistory</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://92SooJong.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/jpa/">JPA</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/jpa/book-1/">(교재) Java ORM 표준 JPA 프로그래밍</a></div>
+    <h1 class="post-title">
+      16.1 트랜잭션과 락
+    </h1>
+    <div class="post-meta"><span title='2022-07-26 22:55:00 +0900 KST'>July 26, 2022</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Soo Jong&nbsp;|&nbsp;<a href="https://github.com/92SooJong/92SooJong.github.io/issues" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#161-%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ea%b3%bc-%eb%9d%bd" aria-label="16.1 트랜잭션과 락">16.1 트랜잭션과 락</a></li>
+                <li>
+                    <a href="#1611-%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ea%b3%bc-%ea%b2%a9%eb%a6%ac-%ec%88%98%ec%a4%80" aria-label="16.1.1 트랜잭션과 격리 수준">16.1.1 트랜잭션과 격리 수준</a><ul>
+                        
+                <li>
+                    <a href="#%ea%b2%a9%eb%a6%ac%ec%88%98%ec%a4%80isolation-level" aria-label="격리수준(Isolation Level)">격리수준(Isolation Level)</a><ul>
+                        
+                <li>
+                    <a href="#read-uncommitted" aria-label="READ UNCOMMITTED">READ UNCOMMITTED</a></li>
+                <li>
+                    <a href="#read-commited" aria-label="READ COMMITED">READ COMMITED</a></li>
+                <li>
+                    <a href="#repeatable-read" aria-label="REPEATABLE READ">REPEATABLE READ</a></li>
+                <li>
+                    <a href="#serializable" aria-label="SERIALIZABLE">SERIALIZABLE</a></li></ul>
+                </li></ul>
+                </li>
+                <li>
+                    <a href="#1612-%eb%82%99%ea%b4%80%ec%a0%81-%eb%9d%bd%ea%b3%bc-%eb%b9%84%ea%b4%80%ec%a0%81-%eb%9d%bd-%ea%b8%b0%ec%b4%88" aria-label="16.1.2 낙관적 락과 비관적 락 기초">16.1.2 낙관적 락과 비관적 락 기초</a><ul>
+                        
+                <li>
+                    <a href="#%eb%82%99%ea%b4%80%ec%a0%81-%eb%9d%bd" aria-label="낙관적 락">낙관적 락</a></li>
+                <li>
+                    <a href="#%eb%b9%84%ea%b4%80%ec%a0%81-%eb%9d%bd" aria-label="비관적 락">비관적 락</a></li>
+                <li>
+                    <a href="#%eb%91%90-%eb%b2%88%ec%9d%98-%ea%b0%b1%ec%8b%a0-%eb%b6%84%ec%8b%a4-%eb%ac%b8%ec%a0%9csecond-lost-updates-problem" aria-label="두 번의 갱신 분실 문제(second lost updates problem)">두 번의 갱신 분실 문제(second lost updates problem)</a></li></ul>
+                </li>
+                <li>
+                    <a href="#1613-version" aria-label="16.1.3 @Version">16.1.3 @Version</a></li>
+                <li>
+                    <a href="#1614-jpa-%eb%9d%bd-%ec%82%ac%ec%9a%a9" aria-label="16.1.4 JPA 락 사용">16.1.4 JPA 락 사용</a></li>
+                <li>
+                    <a href="#1615-jpa-%eb%82%99%ea%b4%80%ec%a0%81-%eb%9d%bd" aria-label="16.1.5 JPA 낙관적 락">16.1.5 JPA 낙관적 락</a><ul>
+                        
+                <li>
+                    <a href="#none" aria-label="NONE">NONE</a></li>
+                <li>
+                    <a href="#optimistic" aria-label="OPTIMISTIC">OPTIMISTIC</a></li>
+                <li>
+                    <a href="#optimistic_force_increment" aria-label="OPTIMISTIC_FORCE_INCREMENT">OPTIMISTIC_FORCE_INCREMENT</a></li></ul>
+                </li>
+                <li>
+                    <a href="#1616-jpa-%eb%b9%84%ea%b4%80%ec%a0%81-%eb%9d%bd" aria-label="16.1.6 JPA 비관적 락">16.1.6 JPA 비관적 락</a><ul>
+                        
+                <li>
+                    <a href="#pessimistic_write" aria-label="PESSIMISTIC_WRITE">PESSIMISTIC_WRITE</a></li>
+                <li>
+                    <a href="#pessimistic_read%ec%9e%98-%ec%82%ac%ec%9a%a9%ed%95%98%ec%a7%84-%ec%95%8a%ec%9d%8c" aria-label="PESSIMISTIC_READ(잘 사용하진 않음..)">PESSIMISTIC_READ(잘 사용하진 않음..)</a></li>
+                <li>
+                    <a href="#pessimistic_force_increment" aria-label="PESSIMISTIC_FORCE_INCREMENT">PESSIMISTIC_FORCE_INCREMENT</a></li></ul>
+                </li>
+                <li>
+                    <a href="#1617-%eb%b9%84%ea%b4%80%ec%a0%81-%eb%9d%bd%ea%b3%bc-%ed%83%80%ec%9e%84%ec%95%84%ec%9b%83" aria-label="16.1.7 비관적 락과 타임아웃">16.1.7 비관적 락과 타임아웃</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h1 id="161-트랜잭션과-락">16.1 트랜잭션과 락<a hidden class="anchor" aria-hidden="true" href="#161-트랜잭션과-락">#</a></h1>
+<h1 id="1611-트랜잭션과-격리-수준">16.1.1 트랜잭션과 격리 수준<a hidden class="anchor" aria-hidden="true" href="#1611-트랜잭션과-격리-수준">#</a></h1>
+<p>트랜잭션은 기본적으로 ACID중 원자성, 일관성, 지속성은 만족한다. 여기서 다루기 피곤한 녀석이 격리성이다. 단순히 트랜잭션 간에 간섭이 없도록 격리성을 분리해버리면 테이블 접근이 제한적이기때문에 동시성 처리 성능이 떨어지게된다.</p>
+<h2 id="격리수준isolation-level">격리수준(Isolation Level)<a hidden class="anchor" aria-hidden="true" href="#격리수준isolation-level">#</a></h2>
+<p>동시성 처리를 위해서 대부분의 Database는 <code>READ COMMITED</code>를 기본으로한다</p>
+<h3 id="read-uncommitted">READ UNCOMMITTED<a hidden class="anchor" aria-hidden="true" href="#read-uncommitted">#</a></h3>
+<ul>
+<li>커밋하지 않은 데이터를 읽을 수 있다.</li>
+<li>트랜잭션1이 데이터를 변경하는 로직을 수행하더라도 트랜잭션2는 데이터를 읽을수 있다. 이를 DIRTY READ라 한다.</li>
+</ul>
+<h3 id="read-commited">READ COMMITED<a hidden class="anchor" aria-hidden="true" href="#read-commited">#</a></h3>
+<ul>
+<li>커밋한 데이터만 읽을 수 있다.</li>
+<li>트랜잭션1이 회원A를 조회중일때, 트랜잭션2가 회원A 정보를 수정하고 커밋을 하면 트랜잭션 1이 다시 회원 A를 조회했을때 수정된 데이터가 조회된다. 하나의 트랜잭션에서 같은 회원A 정보를 읽지 못하는 현상이 발생하게된다. 이를 NON-REPEATABLE READ라 한다.</li>
+</ul>
+<h3 id="repeatable-read">REPEATABLE READ<a hidden class="anchor" aria-hidden="true" href="#repeatable-read">#</a></h3>
+<ul>
+<li>한 번 조회한 데이터를 반복해서 조회해도 같은 데이터가 조회된다.</li>
+<li>트랜잭션 1이 10살 이하의 회원을 조회했는데 트랜잭션 2가 5살 회원을 추가하고 커밋하면 트랜잭션1이 다시 10살 이하의 회원을 조회했을 때 회원 하나가 추가된 상태로 조회된다. 이처럼 반복 조회시 결과 집합(개수)가 달라지는 것을 PHANTOM READ라고한다.</li>
+</ul>
+<h3 id="serializable">SERIALIZABLE<a hidden class="anchor" aria-hidden="true" href="#serializable">#</a></h3>
+<ul>
+<li>가장 엄격한 트랜잭션 격리 수준이다.</li>
+<li>PHANTOM READ가 발생하지 않으나 동시성 처리 성능이 급격히 떨어진다.</li>
+</ul>
+<h1 id="1612-낙관적-락과-비관적-락-기초">16.1.2 낙관적 락과 비관적 락 기초<a hidden class="anchor" aria-hidden="true" href="#1612-낙관적-락과-비관적-락-기초">#</a></h1>
+<ul>
+<li>JPA의 영속성 컨텍스트(1차 캐시)를 적절히 활용하면 데이터베이스 트랜잭션이 <code>READ COMMITTED</code> 격리 수준이어도 애플리케이션 레벨에서 반복 가능한 읽기가 가능하다. (엔티티가 아닌 스칼라 값을 읽는 경우는 예외.)</li>
+<li>JPA는 데이터베이스 트랜잭션 격리 수준을 READ COMMITTED 정도로 가정한다.</li>
+<li>일부 로직에 더 높은 격리 수준이 필요하다면 낙관적 락과 비관적 락 중 하나를 사용하면 된다.</li>
+</ul>
+<h2 id="낙관적-락">낙관적 락<a hidden class="anchor" aria-hidden="true" href="#낙관적-락">#</a></h2>
+<ul>
+<li>트랜잭션 대부분은 충돌이 발생하지 않는다고 낙관적으로 가정하는 방법이다.</li>
+<li>데이터베이스가 제공하는 락 기능을 사용하는 것이 아니라 JPA가 제공하는 버전 관리 기능을 사용한다.</li>
+<li>낙관적 락은 트랜잭션을 커밋하기 전까지는 트랜잭션의 충돌을 알 수 없다.</li>
+</ul>
+<h2 id="비관적-락">비관적 락<a hidden class="anchor" aria-hidden="true" href="#비관적-락">#</a></h2>
+<ul>
+<li>트랜잭션의 충돌이 발생하낟고 가정하고 우선 락을 걸고 보는 방법이다.</li>
+<li>이것은 데이터베이스가 제공하는 락 기능을 사용한다.</li>
+<li>대표적으로 <code>select for update</code> 구문이 있다.</li>
+</ul>
+<h2 id="두-번의-갱신-분실-문제second-lost-updates-problem">두 번의 갱신 분실 문제(second lost updates problem)<a hidden class="anchor" aria-hidden="true" href="#두-번의-갱신-분실-문제second-lost-updates-problem">#</a></h2>
+<ul>
+<li>A와 B가 공지사항의 내용을 수정하는 경우 A가 수정후 Commit을 했다.</li>
+<li>이후 B가 Commit을 한다면 A의 내용은 무시된다.</li>
+<li>이 문제를 해결하는 3가지 방법은 아래와 같다.
+<ul>
+<li>마지막 커밋만 인정하기</li>
+<li>최초 커밋만 인정하기</li>
+<li>충돌하는 갱신 내용 병합하기</li>
+</ul>
+</li>
+<li>기본값은 마지막 커밋만 인정하기이다.</li>
+<li>JPA가 제공하는 버전 관리 기능을 사용하면 손쉽게 최초 커밋만 인정하기를 구현할 수 있다.</li>
+</ul>
+<h1 id="1613-version">16.1.3 @Version<a hidden class="anchor" aria-hidden="true" href="#1613-version">#</a></h1>
+<ul>
+<li>
+<p><code>@Version</code> 어노테이션은 <code>Long, Integer, Short, Timestap</code> 타입에만 적용이 가능하다.</p>
+</li>
+<li>
+<p>버전 관리 기능을 사용하기 위해서 버전 관리용 필드를 추가해야한다.</p>
+</li>
+<li>
+<p>엔티티를 수정할 때 마다 버전이 하나씩 자동으로 증가한다.</p>
+</li>
+<li>
+<p>엔티티를 수정할 때 조회 시점의 버전과 수정 시점의 버전이 다르면 예외가 발생한다.</p>
+<p><img loading="lazy" src="/images/jpa/book-1//16-1/Untitled.png" alt="Untitled"  />
+</p>
+</li>
+<li>
+<p>아래와 같이 트랜잭션 A에서 board의 버전이 변경되는 경우 예외가 발생한다.</p>
+</li>
+<li>
+<p>트랜잭션2에 의해 테이블의 version은 2로 변경되었다. 트랜잭션이 1이 테이블에 저장하려고 할때 version이 1이기 때문에 예외가 발생한다.</p>
+</li>
+<li>
+<p><strong>버전 정보를 사용하면 최초 커밋만 인정하기</strong>가 적용된다.</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>  <span style="color:#75715e">// 트랜잭션 1조회 title=&#34;제목A&#34;, version=1
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#75715e"></span>  Board board <span style="color:#f92672">=</span> em<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>Board<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span>id<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>  <span style="color:#75715e">// 트랜잭션 2에서 해당 게시글이 수정되었다.
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span><span style="color:#75715e"></span>  <span style="color:#75715e">// title = &#34;제목C&#34; , version=2로 변경
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>  board<span style="color:#f92672">.</span><span style="color:#a6e22e">setTitle</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;제목B&#34;</span><span style="color:#f92672">);</span> <span style="color:#75715e">// 트랜잭션1 데이터 수정
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>  save<span style="color:#f92672">(</span>board<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>  tx<span style="color:#f92672">.</span><span style="color:#a6e22e">commit</span><span style="color:#f92672">();</span> <span style="color:#75715e">// 예외 발생, 데이터베이스 version=2, 엔티티 version=1
+</span></span></span></code></pre></div><h1 id="1614-jpa-락-사용">16.1.4 JPA 락 사용<a hidden class="anchor" aria-hidden="true" href="#1614-jpa-락-사용">#</a></h1>
+<ul>
+<li>JPA를 사용할때 추천하는 방법은 READ COMMITTED 트랜잭션 격리 수전 + 낙관적 버전 관리이다.</li>
+<li><code>em.find(Board.class, id, LockModeType.OPTIMISTIC);</code> 과 같은 형태로 Lock을 걸 수 있다.</li>
+<li>아래와 같은 방법도 사용가능하다.
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>Board board <span style="color:#f92672">=</span> em<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>Board<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span>id<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>em<span style="color:#f92672">.</span><span style="color:#a6e22e">lock</span><span style="color:#f92672">(</span>board<span style="color:#f92672">,</span> LockModeType<span style="color:#f92672">.</span><span style="color:#a6e22e">OPTIMISTIC</span><span style="color:#f92672">);</span>
+</span></span></code></pre></div></li>
+</ul>
+<h1 id="1615-jpa-낙관적-락">16.1.5 JPA 낙관적 락<a hidden class="anchor" aria-hidden="true" href="#1615-jpa-낙관적-락">#</a></h1>
+<ul>
+<li>JPA가 제공하는 낙관적 락은 <code>@Version</code>을 사용한다</li>
+<li>낙관적 락은 트랜잭션을 커밋하는 시점에 충돌을 알 수 있다는 특징이 있다.</li>
+</ul>
+<h2 id="none">NONE<a hidden class="anchor" aria-hidden="true" href="#none">#</a></h2>
+<ul>
+<li>락 옵션을 적용하지 않아도 엔티티에 <code>@Version</code> 이 적용된 필드만 있으면 낙관적 락이 적용된다.</li>
+<li>조회한 엔티티를 수정할 때 다른 트랜잭션에 의해 변경(삭제)되지 않도록 하기 위해서 사용한다.</li>
+<li>조회 시점부터 수정 시점까지를 보장한다.</li>
+<li>엔티티를 수정할 때 버전을 체크하면서 버전을 증가시킨다.(자동으로 Update 쿼리가 날라감)</li>
+<li>두 번의 갱실 분실 문제를 예방한다.</li>
+</ul>
+<h2 id="optimistic">OPTIMISTIC<a hidden class="anchor" aria-hidden="true" href="#optimistic">#</a></h2>
+<ul>
+<li>엔티티를 조회만 해도 버전을 체크한다.</li>
+<li>NONE은 안정적 수정을 보장, OPTIMISTIC은 안정적 조회를 보장</li>
+<li>한 번 조회한 엔티티는 트랜잭션을 종료할 때까지 다른 트랜잭션에서 변경하지 않음을 보장한다.</li>
+<li>조회한 엔티티는 트랜잭션이 끝날 때까지 다른 트랜잭션에 의해 변경되지 않아야 한다.</li>
+<li>트랜잭션을 커밋할때 버전 정보를 조회해서 현재 엔티티의 버전과 같은지 확인한다. (버전 조회를 위한 SELECT 쿼리문 실행)</li>
+<li>OPTIMISTIC 옵션은 DIRTY READ와 NON-REPEATABLE READ를 방지한다.</li>
+</ul>
+<h2 id="optimistic_force_increment">OPTIMISTIC_FORCE_INCREMENT<a hidden class="anchor" aria-hidden="true" href="#optimistic_force_increment">#</a></h2>
+<ul>
+<li>낙관적 락을 사용하면서 버전 정보를 강제로 증가시킨다.</li>
+<li>게시물과 첨부파일 엔티티가 일대다 관계를 가지는 경우, 첨부파일 엔티티 정보만 변경하면 첨부파일 엔티티의 버전만 올라가게 된다.</li>
+<li>이때 게시물 엔티티의 버전을 강제로 증가시키키 위해 OPTIMISTIC_FORCE_INCREMENT를 사용한다.</li>
+<li>엔티티를 수정하지 않아도 트랜잭션을 커밋할 때 UPDATE 쿼리를 사용해서 버전 정보를 강제로 증가 시킨다.</li>
+<li>조회후 추가로 엔티티를 수정하게 된다면 버전은 2가 증가헤 된다.</li>
+</ul>
+<h1 id="1616-jpa-비관적-락">16.1.6 JPA 비관적 락<a hidden class="anchor" aria-hidden="true" href="#1616-jpa-비관적-락">#</a></h1>
+<ul>
+<li>데이터베이스 트랜잭션 락 메커니즘에 의존하는 방법이다.</li>
+<li>SQL의 <code>select for update</code> 구문을 사용하며, 버전정보는 사용하지 않는다.</li>
+<li>비관적 락의 장점은 다음과 같다.
+<ul>
+<li>엔티티가 아닌 스칼라 타입을 조회할 때도 사용할 수 있다.</li>
+<li>데이터를 수정하는 즉시 트랜잭션 충동을 감지할 수 있다.</li>
+</ul>
+</li>
+</ul>
+<h2 id="pessimistic_write">PESSIMISTIC_WRITE<a hidden class="anchor" aria-hidden="true" href="#pessimistic_write">#</a></h2>
+<ul>
+<li>데이터베이스에 쓰기 락을 걸때 사용한다.</li>
+<li>데이터베이스의 select for update를 사용해서 락을 건다.</li>
+<li>NON-REPEATABLE READ를 방지한다.</li>
+<li>락이 걸린 로우는 다른 트랜잭션이 수정할 수 없다.</li>
+</ul>
+<h2 id="pessimistic_read잘-사용하진-않음">PESSIMISTIC_READ(잘 사용하진 않음..)<a hidden class="anchor" aria-hidden="true" href="#pessimistic_read잘-사용하진-않음">#</a></h2>
+<ul>
+<li>데이터를 반복 읽기만 하고 수정하지 않는 용도로 락을 걸 때 사용한다.</li>
+<li>MySQL의 경우 lock in share mode</li>
+<li>PostgreSQL의 경우 for share</li>
+</ul>
+<h2 id="pessimistic_force_increment">PESSIMISTIC_FORCE_INCREMENT<a hidden class="anchor" aria-hidden="true" href="#pessimistic_force_increment">#</a></h2>
+<ul>
+<li>비관적 락중 유일하게 버전 정보를 사용한다.</li>
+<li>비관적 락이지만 버전 정보를 강제로 증가시킨다.</li>
+<li>하이버네이트는 nowait를 지원하는 데이터베이스에 대해서 for update nowait옵션을 적용한다.</li>
+<li>nowait를 지원하지 않으면 for update가 사용된다.</li>
+</ul>
+<h1 id="1617-비관적-락과-타임아웃">16.1.7 비관적 락과 타임아웃<a hidden class="anchor" aria-hidden="true" href="#1617-비관적-락과-타임아웃">#</a></h1>
+<ul>
+<li>비관적 락을 사용하면 락을 획득할 때까지 트랜잭션이 대기한다.</li>
+<li>무한정 기다릴 수 없기때문에 타임아웃 시간을 줄 수 있다.</li>
+<li>타임아웃은 데이터베이스 특성에 따라 동작하지 않을 수 있다.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>Map<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>Object<span style="color:#f92672">&gt;</span> properties <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HashMap<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">,</span>Object<span style="color:#f92672">&gt;();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#75715e">// 타임아웃 10초 설정
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#75715e"></span>properties<span style="color:#f92672">.</span><span style="color:#a6e22e">put</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;javax.persistence.lock.timeout&#34;</span><span style="color:#f92672">,</span>10000<span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>Board board <span style="color:#f92672">=</span> em<span style="color:#f92672">.</span><span style="color:#a6e22e">find</span><span style="color:#f92672">(</span>Board<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;boardId&#34;</span><span style="color:#f92672">,</span>LockModeType<span style="color:#f92672">.</span><span style="color:#a6e22e">PESSIMISTIC_WRITE</span><span style="color:#f92672">,</span>properties<span style="color:#f92672">);</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-3-%EC%8A%A4%EC%9B%9C%EB%AA%A8%EB%93%9C/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>3.3 스웜모드</span>
+  </a>
+  <a class="next" href="https://92SooJong.github.io/posts/docker/book/%EC%8B%9C%EC%9E%91%ED%95%98%EC%84%B8%EC%9A%94-%EB%8F%84%EC%BB%A4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4/3-2-%EC%8A%A4%EC%9B%9C-%ED%81%B4%EB%9E%98%EC%8B%9D%EA%B3%BC-%EB%8F%84%EC%BB%A4-%EC%8A%A4%EC%9B%9C-%EB%AA%A8%EB%93%9C/">
+    <span class="title">Next »</span>
+    <br>
+    <span>3.2 스웜 클래식과 도커 스웜 모드</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 16.1 트랜잭션과 락 on twitter"
+        href="https://twitter.com/intent/tweet/?text=16.1%20%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ea%b3%bc%20%eb%9d%bd&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fjpa%2fbook-1%2f16-1-%25ED%258A%25B8%25EB%259E%259C%25EC%259E%25AD%25EC%2585%2598%25EA%25B3%25BC-%25EB%259D%25BD%2f&amp;hashtags=JPA%2cBook%2cKorean">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 16.1 트랜잭션과 락 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fjpa%2fbook-1%2f16-1-%25ED%258A%25B8%25EB%259E%259C%25EC%259E%25AD%25EC%2585%2598%25EA%25B3%25BC-%25EB%259D%25BD%2f&amp;title=16.1%20%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ea%b3%bc%20%eb%9d%bd&amp;summary=16.1%20%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ea%b3%bc%20%eb%9d%bd&amp;source=https%3a%2f%2f92SooJong.github.io%2fposts%2fjpa%2fbook-1%2f16-1-%25ED%258A%25B8%25EB%259E%259C%25EC%259E%25AD%25EC%2585%2598%25EA%25B3%25BC-%25EB%259D%25BD%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 16.1 트랜잭션과 락 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2f92SooJong.github.io%2fposts%2fjpa%2fbook-1%2f16-1-%25ED%258A%25B8%25EB%259E%259C%25EC%259E%25AD%25EC%2585%2598%25EA%25B3%25BC-%25EB%259D%25BD%2f&title=16.1%20%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ea%b3%bc%20%eb%9d%bd">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 16.1 트랜잭션과 락 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f92SooJong.github.io%2fposts%2fjpa%2fbook-1%2f16-1-%25ED%258A%25B8%25EB%259E%259C%25EC%259E%25AD%25EC%2585%2598%25EA%25B3%25BC-%25EB%259D%25BD%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 16.1 트랜잭션과 락 on whatsapp"
+        href="https://api.whatsapp.com/send?text=16.1%20%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ea%b3%bc%20%eb%9d%bd%20-%20https%3a%2f%2f92SooJong.github.io%2fposts%2fjpa%2fbook-1%2f16-1-%25ED%258A%25B8%25EB%259E%259C%25EC%259E%25AD%25EC%2585%2598%25EA%25B3%25BC-%25EB%259D%25BD%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share 16.1 트랜잭션과 락 on telegram"
+        href="https://telegram.me/share/url?text=16.1%20%ed%8a%b8%eb%9e%9c%ec%9e%ad%ec%85%98%ea%b3%bc%20%eb%9d%bd&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fjpa%2fbook-1%2f16-1-%25ED%258A%25B8%25EB%259E%259C%25EC%259E%25AD%25EC%2585%2598%25EA%25B3%25BC-%25EB%259D%25BD%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://92SooJong.github.io/">Today I Learn</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

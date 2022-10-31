@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Annotation | Today I Learn</title>
+<meta name="keywords" content="Java, Korean">
+<meta name="description" content="자바 어노테이션에대해 설명한 내용을 번역합니다. 출처 : https://dzone.com/articles/how-annotations-work-java
+어노테이션은 자바에서 중요한 부분입니다. 자바 어노테이션은 J2SE 5.0에서 처음 등장했습니다. 우리가 흔히 마주하는 어노테이션으론 @Override나 @Deprecated같은 것들이 있습니다.
+어노테이션이란 무엇인가? 어노테이션은 메타데이터다. 메타데이터는 데이터에 대한 데이터다.( 특정 데이터 집합을 설명하는 데이터라고 이해하면 쉽다. ) 자바의 어노테이션은 코드를 위한 메타데이터다. 아래의 코드를 보자.
+1@Override 2public String toString() { 3 return &#34;This is String Representation of current object.&#34;; 4} 나는 toString() 메소드를 오버라이드 받았다. 그리고 @Override 어노테이션이 해당 코드의 윗부분에 위치하고 있다.">
+<meta name="author" content="Soo Jong">
+<link rel="canonical" href="https://92SooJong.github.io/posts/java/annotation/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://92SooJong.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://92SooJong.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://92SooJong.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://92SooJong.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://92SooJong.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Annotation" />
+<meta property="og:description" content="자바 어노테이션에대해 설명한 내용을 번역합니다. 출처 : https://dzone.com/articles/how-annotations-work-java
+어노테이션은 자바에서 중요한 부분입니다. 자바 어노테이션은 J2SE 5.0에서 처음 등장했습니다. 우리가 흔히 마주하는 어노테이션으론 @Override나 @Deprecated같은 것들이 있습니다.
+어노테이션이란 무엇인가? 어노테이션은 메타데이터다. 메타데이터는 데이터에 대한 데이터다.( 특정 데이터 집합을 설명하는 데이터라고 이해하면 쉽다. ) 자바의 어노테이션은 코드를 위한 메타데이터다. 아래의 코드를 보자.
+1@Override 2public String toString() { 3 return &#34;This is String Representation of current object.&#34;; 4} 나는 toString() 메소드를 오버라이드 받았다. 그리고 @Override 어노테이션이 해당 코드의 윗부분에 위치하고 있다." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://92SooJong.github.io/posts/java/annotation/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-08-22T22:55:00+09:00" />
+<meta property="article:modified_time" content="2021-08-22T22:55:00+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Annotation"/>
+<meta name="twitter:description" content="자바 어노테이션에대해 설명한 내용을 번역합니다. 출처 : https://dzone.com/articles/how-annotations-work-java
+어노테이션은 자바에서 중요한 부분입니다. 자바 어노테이션은 J2SE 5.0에서 처음 등장했습니다. 우리가 흔히 마주하는 어노테이션으론 @Override나 @Deprecated같은 것들이 있습니다.
+어노테이션이란 무엇인가? 어노테이션은 메타데이터다. 메타데이터는 데이터에 대한 데이터다.( 특정 데이터 집합을 설명하는 데이터라고 이해하면 쉽다. ) 자바의 어노테이션은 코드를 위한 메타데이터다. 아래의 코드를 보자.
+1@Override 2public String toString() { 3 return &#34;This is String Representation of current object.&#34;; 4} 나는 toString() 메소드를 오버라이드 받았다. 그리고 @Override 어노테이션이 해당 코드의 윗부분에 위치하고 있다."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://92SooJong.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Java",
+      "item": "https://92SooJong.github.io/posts/java/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  3 ,
+      "name": "Annotation",
+      "item": "https://92SooJong.github.io/posts/java/annotation/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Annotation",
+  "name": "Annotation",
+  "description": "자바 어노테이션에대해 설명한 내용을 번역합니다. 출처 : https://dzone.com/articles/how-annotations-work-java\n어노테이션은 자바에서 중요한 부분입니다. 자바 어노테이션은 J2SE 5.0에서 처음 등장했습니다. 우리가 흔히 마주하는 어노테이션으론 @Override나 @Deprecated같은 것들이 있습니다.\n어노테이션이란 무엇인가? 어노테이션은 메타데이터다. 메타데이터는 데이터에 대한 데이터다.( 특정 데이터 집합을 설명하는 데이터라고 이해하면 쉽다. ) 자바의 어노테이션은 코드를 위한 메타데이터다. 아래의 코드를 보자.\n1@Override 2public String toString() { 3 return \u0026#34;This is String Representation of current object.\u0026#34;; 4} 나는 toString() 메소드를 오버라이드 받았다. 그리고 @Override 어노테이션이 해당 코드의 윗부분에 위치하고 있다.",
+  "keywords": [
+    "Java", "Korean"
+  ],
+  "articleBody": "자바 어노테이션에대해 설명한 내용을 번역합니다. 출처 : https://dzone.com/articles/how-annotations-work-java\n어노테이션은 자바에서 중요한 부분입니다. 자바 어노테이션은 J2SE 5.0에서 처음 등장했습니다. 우리가 흔히 마주하는 어노테이션으론 @Override나 @Deprecated같은 것들이 있습니다.\n어노테이션이란 무엇인가? 어노테이션은 메타데이터다. 메타데이터는 데이터에 대한 데이터다.( 특정 데이터 집합을 설명하는 데이터라고 이해하면 쉽다. ) 자바의 어노테이션은 코드를 위한 메타데이터다. 아래의 코드를 보자.\n1@Override 2public String toString() { 3 return \"This is String Representation of current object.\"; 4} 나는 toString() 메소드를 오버라이드 받았다. 그리고 @Override 어노테이션이 해당 코드의 윗부분에 위치하고 있다. 내가 @Override를 작성하지 않더라도 코드는 에러를 발생시키지 않고 잘 실행된다. 그렇다면 어노테이션을 사용해서 얻는 이점이 무엇일까? @Override는 컴파일러에게 이 메소드가 오버라이드 되었다는걸 알려준다.( 메소드에 대한 메타데이터 역할 ) 이떄 만약 부모 클래스에 toString()이 존재하지 않는다면 컴파일러 에러가 발생하게 된다. ( 오버라이드 되었다고 표시해뒀는데 실제론 오버라이드를 수행하지 않기 떄문에 에러 발생! )\n메소드 toString()을 toStrring()으로 잘못 타이핑한 경우를 보자. 만약 @Override를 사용하지 않는다면 오타를 입력했더라도 코드상 문제는 없기때문에 정상적으로 실행된다. 다만 실행결과가 예상한것과 다를것이다. 하지만 @Override를 메소드에 적용했을때는 컴파일러가 부모클래스에서 toStrring()를 찾을것이고 해당 메소드의 이름을 가진 메소드가 없기 때문에 컴파일 에러를 띄운다. 어노테이션은 클래스,메소드,필드,파라미터,변수,생성자 또는 패키지를 꾸밀수 있게 해주는 자바의 특별한 구성요소다.\n어노테이션의 탄생배경은? 어노테이션이 나타나기 이전에는 XML이 메타데이터를 나타내기 위해 주로 사용되었다. 몇몇 개발자들이 XML의 유지보수에 대한 의문점을 가지게 되었다. 그들은 코드와 너무 느슨하게 결합되어 관리되고 있던 XML보다 코드와 밀접하게 결합되어 관리할수 있는 방법을 원했다. XML 설정(Configuration)은 코드와 설정을 분리해서 관리하기 위해 등장한것이다. 즉, 어노테이션과는 완전히 반대되는 목적을 가지고 태어난 친구다. 그렇다보니 구글에 가면 여전히 XML이냐, annotation이냐를 가지고 많이들 논쟁을 벌이고 있다.\n당신이 어플리케이션 전체에 적용하고 싶은 변수나 파라미터를 선언하고 싶은 경우에는 별도의 소스코드를 작성할 필요가 없는 XML이 어노테이션보단 좋은 선택이 된다.(XML문서에만 작성해두면 애플리케이션 어디서든지 사용이 가능하다.) 그런데 만약 몇몇 메소드만 서비스 로직을 처리하는 메소드로 표시하고 싶은 경우( 예. SpringMVC의 @Service 어노테이션) 어노테이션이 XML보다 더 좋은 선택이 된다. 소스의 메소드에 직접 어노테이션을 표기함으로써 개발자가 해당 메소드의 목적을 파악할 수 있게된다.\n어노테이션은 코드상에서 메타데이터를 나타낼수 있다. 어노테이션 등장 이전에는 개발자들이 각자 자신만의 방식으로 메타데이터를 표기했다. ( 마커용 인터페이스를 만든다던지, 주석을 달던지, 팀원간 약속된 키워드를 하는식으로 말이다. ) 하지만 어노테이션은 표준화되어있기 때문에 정형화된 메타데이터 표시가 가능하다. 최근에는 대부분의 프레임워크들이 XML과 어노테이션을 함께 사용하고 있다. ( 프로젝트 전반에 대한 설정은 XML을 사용하고, Bean등록과 같이 선택적인 작업을 할때는 어노테이션을 사용한다. )\n어노테이션은 어떻게 동작하고, 커스텀 어노테이션은 어떻게 만들까? 어노테이션을 생성하는 방법은 인터페이스와 유사하다. 아래는 자바의 기본 어노테이션인 @Override와 직접 작성한 @Tode 어노테이션이다. 먼저 @Override 어노테이션부터 살펴보자.\n1@Target(ElementType.METHOD) 2@Retention(RetentionPolicy.SOURCE) 3public @interface Override { 4} 뭔가 수상한듯한 생김새를 하고 있다. @Override는 어떤 동작도 수행하지 않는다. 그냥 단지 @Override를 가진 메소드가 부모클래스에 정의되어 있는지 체크만하는 역할을 한다. ( 어노테이션은 단지 메타데이터를 의미할뿐 어떠한 비즈니스로직도 가지고 있지 않다는걸 기억해야한다. ) 어노테이션은 단지 어트리뷰트(클래스/메소드/패키지/필드)에 대한 정보를 제공할 뿐이다. 코드들은 이런 정보를 읽어서 적절한 조치를 취한다.\n@Override는 JVM이 사용하며 바이트코드 레벨에서 @Override에 대한 동작을 수행한다. 따라서 @Override는 개발자가 제어할수도 없고, 커스터마이징할 수도 없다. 따라서 필요한 어노테이션이 있다면 우리가 직접 작성해야한다.\nLet’s understand the key terms used for writing annotations one by one. In the above examples, you will see annotations are used on annotations.\nJ2SE 5.0 provides four annotations in the java.lang.annotation package that are used only when writing annotations:\n@Documented – Javadocs에 해당 어노테이션을 추가할지 말지 결정한다.\n@Retention – 언제 어노테이션이 사용되는지를 나타낸다.(=언제까지 어노테이션을 유지할까 = 어노테이션의 라이프사이클 )\n@Target? – 어노테이션이 어디에 적용될지를 나타낸다. ( 작성하지 않으면 7개의 모든 곳에 다 위치할 수 있다. )\nElementType.TYPE (class, interface, enum) ElementType.FIELD (instance variable) ElementType.METHOD ElementType.PARAMETER ElementType.CONSTRUCTOR ElementType.LOCAL_VARIABLE ElementType.ANNOTATION_TYPE (on another annotation) ElementType.PACKAGE (remember package-info.java) @Inherited – 현재의 어노테이션을 적용할 서브클래스는 무엇인가?\n이제 직접 만든 @Todo 어노테이션을 살펴보자. 내부에 어떤 값들이 정의되어 있다. 어노테이션은 Primitive 타입과 String 그리고 enum을 지원한다. 모든 어트리뷰트는 메소드 형태로 정의되며 default값이 필요하다.\n1@Target(ElementType.METHOD) 2@Retention(RetentionPolicy.RUNTIME) 3@interface Todo { 4 public enum Priority {LOW, MEDIUM, HIGH} 5 public enum Status {STARTED, NOT_STARTED} 6 String author() default \"Yash\"; 7 Priority priority() default Priority.LOW; 8 Status status() default Status.NOT_STARTED; 9} @Todo 어노테이션은 아래와 같이 사용하면 된다.\n1@Todo(priority = Todo.Priority.MEDIUM, author = \"Yashwant\", status = Todo.Status.STARTED) 2public void incompleteMethod1() { 3//Some business logic is written 4//But it’s not complete yet 5} 만약 아래와 같이 어트리뷰트가 하나밖에 없는 @Author 어노테이션을 만들었다면 value=“Yashwant\"로 작성하지 않고 “Yashwant\"라고만 작성하면 된다.\n1@interface Author{ 2 String value(); 3} 1@Author(\"Yashwant\") 2public void someMethod() { 3} 이제 어노테이션을 사용하기 위한 코드를 작성해보자. 여기서는 자바의 Reflection을 통해 어노테이션을 사용한다. (Reflection 간단설명 : 컴파일 시간(Compile Time)이 아니라 실행 시간(Run Time)에 동적으로 특정 오브젝트의 정보를 추출하거나, 오브젝트를 생성 할 수 있다. ) Reflection은 클래스,메소드,필드 오브젝트를 제공하는데 각 오브젝트들은 모두 getAnnotation()이라는 메소드를 가지고 있다. getAnnotation()메소드는 오브젝트에 적용되어 있는 어노테이션을 반환해준다. BusinessLogic 이라는 클래스에 들어있는 모든 Method를 For loop를 통해서 불러오고, 메소드에 @Todo 어노테이션이 있다면 결과를 출력하도록 한다.\n1Class businessLogicClass = BusinessLogic.class; 2 3for(Method method : businessLogicClass.getMethods()) { 4 Todo todoAnnotation = (Todo)method.getAnnotation(Todo.class); 5 if(todoAnnotation != null) { 6 System.out.println(\" Method Name : \" + method.getName()); 7 System.out.println(\" Author : \" + todoAnnotation.author()); 8 System.out.println(\" Priority : \" + todoAnnotation.priority()); 9 System.out.println(\" Status : \" + todoAnnotation.status()); 10 } 11} ",
+  "wordCount" : "795",
+  "inLanguage": "en",
+  "datePublished": "2021-08-22T22:55:00+09:00",
+  "dateModified": "2021-08-22T22:55:00+09:00",
+  "author":[{
+    "@type": "Person",
+    "name": "Soo Jong"
+  }],
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://92SooJong.github.io/posts/java/annotation/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Today I Learn",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://92SooJong.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://92SooJong.github.io/" accesskey="h" title="Today I Learn (Alt + H)">Today I Learn</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://92SooJong.github.io/archives" title="Archive">
+                    <span>Archive</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/search/" title="Search (Alt &#43; /)" accesskey=/>
+                    <span>Search</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://92SooJong.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://soojong.tistory.com/" title="Tistory">
+                    <span>Tistory</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <div class="breadcrumbs"><a href="https://92SooJong.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/java/">Java</a></div>
+    <h1 class="post-title">
+      Annotation
+    </h1>
+    <div class="post-meta"><span title='2021-08-22 22:55:00 +0900 KST'>August 22, 2021</span>&nbsp;·&nbsp;4 min&nbsp;·&nbsp;Soo Jong&nbsp;|&nbsp;<a href="https://github.com/92SooJong/92SooJong.github.io/issues" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+
+</div>
+  </header> <div class="toc">
+    <details  open>
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#%ec%96%b4%eb%85%b8%ed%85%8c%ec%9d%b4%ec%85%98%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="어노테이션이란 무엇인가?">어노테이션이란 무엇인가?</a></li>
+                <li>
+                    <a href="#%ec%96%b4%eb%85%b8%ed%85%8c%ec%9d%b4%ec%85%98%ec%9d%98-%ed%83%84%ec%83%9d%eb%b0%b0%ea%b2%bd%ec%9d%80" aria-label="어노테이션의 탄생배경은?">어노테이션의 탄생배경은?</a></li>
+                <li>
+                    <a href="#%ec%96%b4%eb%85%b8%ed%85%8c%ec%9d%b4%ec%85%98%ec%9d%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%8f%99%ec%9e%91%ed%95%98%ea%b3%a0-%ec%bb%a4%ec%8a%a4%ed%85%80-%ec%96%b4%eb%85%b8%ed%85%8c%ec%9d%b4%ec%85%98%ec%9d%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%a7%8c%eb%93%a4%ea%b9%8c" aria-label="어노테이션은 어떻게 동작하고, 커스텀 어노테이션은 어떻게 만들까?">어노테이션은 어떻게 동작하고, 커스텀 어노테이션은 어떻게 만들까?</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><p><em>자바 어노테이션에대해 설명한 내용을 번역합니다. 출처 : <a href="https://dzone.com/articles/how-annotations-work-java">https://dzone.com/articles/how-annotations-work-java</a></em></p>
+<p>어노테이션은 자바에서 중요한 부분입니다. 자바 어노테이션은 J2SE 5.0에서 처음 등장했습니다. 우리가 흔히 마주하는 어노테이션으론 @Override나 @Deprecated같은 것들이 있습니다.</p>
+<h1 id="어노테이션이란-무엇인가">어노테이션이란 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#어노테이션이란-무엇인가">#</a></h1>
+<p>어노테이션은 메타데이터다. 메타데이터는 데이터에 대한 데이터다.( 특정 데이터 집합을 설명하는 데이터라고 이해하면 쉽다. ) 자바의 어노테이션은 코드를 위한 메타데이터다. 아래의 코드를 보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;This is String Representation of current object.&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>나는 toString() 메소드를 오버라이드 받았다. 그리고 @Override 어노테이션이 해당 코드의 윗부분에 위치하고 있다. 내가 @Override를 작성하지 않더라도 코드는 에러를 발생시키지 않고 잘 실행된다.
+그렇다면 어노테이션을 사용해서 얻는 이점이 무엇일까? @Override는 컴파일러에게 이 메소드가 오버라이드 되었다는걸 알려준다.( 메소드에 대한 메타데이터 역할 ) 이떄 만약 부모 클래스에 toString()이 존재하지 않는다면 컴파일러 에러가 발생하게 된다. ( 오버라이드 되었다고 표시해뒀는데 실제론 오버라이드를 수행하지 않기 떄문에 에러 발생! )</p>
+<p>메소드 toString()을 toStrring()으로 잘못 타이핑한 경우를 보자. 만약 @Override를 사용하지 않는다면 오타를 입력했더라도 코드상 문제는 없기때문에 정상적으로 실행된다. 다만 실행결과가 예상한것과 다를것이다. 하지만 @Override를 메소드에 적용했을때는 컴파일러가 부모클래스에서 toStrring()를 찾을것이고 해당 메소드의 이름을 가진 메소드가 없기 때문에 컴파일 에러를 띄운다.
+어노테이션은 클래스,메소드,필드,파라미터,변수,생성자 또는 패키지를 꾸밀수 있게 해주는 자바의 특별한 구성요소다.</p>
+<h1 id="어노테이션의-탄생배경은">어노테이션의 탄생배경은?<a hidden class="anchor" aria-hidden="true" href="#어노테이션의-탄생배경은">#</a></h1>
+<p>어노테이션이 나타나기 이전에는 XML이 메타데이터를 나타내기 위해 주로 사용되었다. 몇몇 개발자들이 XML의 유지보수에 대한 의문점을 가지게 되었다. 그들은 코드와 너무 느슨하게 결합되어 관리되고 있던 XML보다 코드와 밀접하게 결합되어 관리할수 있는 방법을 원했다. XML 설정(Configuration)은 코드와 설정을 분리해서 관리하기 위해 등장한것이다. 즉, 어노테이션과는 완전히 반대되는 목적을 가지고 태어난 친구다. 그렇다보니 구글에 가면 여전히 XML이냐, annotation이냐를 가지고 많이들 논쟁을 벌이고 있다.</p>
+<p>당신이 어플리케이션 전체에 적용하고 싶은 변수나 파라미터를 선언하고 싶은 경우에는 별도의 소스코드를 작성할 필요가 없는 XML이 어노테이션보단 좋은 선택이 된다.(XML문서에만 작성해두면 애플리케이션 어디서든지 사용이 가능하다.) 그런데 만약 몇몇 메소드만 서비스 로직을 처리하는 메소드로 표시하고 싶은 경우( 예. SpringMVC의 @Service 어노테이션) 어노테이션이 XML보다 더 좋은 선택이 된다. 소스의 메소드에 직접 어노테이션을 표기함으로써 개발자가 해당 메소드의 목적을 파악할 수 있게된다.</p>
+<p>어노테이션은 코드상에서 메타데이터를 나타낼수 있다. 어노테이션 등장 이전에는 개발자들이 각자 자신만의 방식으로 메타데이터를 표기했다. ( 마커용 인터페이스를 만든다던지, 주석을 달던지, 팀원간 약속된 키워드를 하는식으로 말이다. ) 하지만 어노테이션은 표준화되어있기 때문에 정형화된 메타데이터 표시가 가능하다.
+최근에는 대부분의 프레임워크들이 XML과 어노테이션을 함께 사용하고 있다. ( 프로젝트 전반에 대한 설정은 XML을 사용하고, Bean등록과 같이 선택적인 작업을 할때는 어노테이션을 사용한다. )</p>
+<h1 id="어노테이션은-어떻게-동작하고-커스텀-어노테이션은-어떻게-만들까">어노테이션은 어떻게 동작하고, 커스텀 어노테이션은 어떻게 만들까?<a hidden class="anchor" aria-hidden="true" href="#어노테이션은-어떻게-동작하고-커스텀-어노테이션은-어떻게-만들까">#</a></h1>
+<p>어노테이션을 생성하는 방법은 인터페이스와 유사하다. 아래는 자바의 기본 어노테이션인 @Override와 직접 작성한 @Tode 어노테이션이다. 먼저 @Override 어노테이션부터 살펴보자.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">METHOD</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">SOURCE</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">@interface</span> Override <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>뭔가 수상한듯한 생김새를 하고 있다. @Override는 어떤 동작도 수행하지 않는다. 그냥 단지 @Override를 가진 메소드가 부모클래스에 정의되어 있는지 체크만하는 역할을 한다. ( 어노테이션은 단지 메타데이터를 의미할뿐 어떠한 비즈니스로직도 가지고 있지 않다는걸 기억해야한다. )
+어노테이션은 단지 어트리뷰트(클래스/메소드/패키지/필드)에 대한 정보를 제공할 뿐이다. 코드들은 이런 정보를 읽어서 적절한 조치를 취한다.</p>
+<p>@Override는 JVM이 사용하며 바이트코드 레벨에서 @Override에 대한 동작을 수행한다. 따라서 @Override는 개발자가 제어할수도 없고, 커스터마이징할 수도 없다. 따라서 필요한 어노테이션이 있다면 우리가 직접 작성해야한다.</p>
+<p>Let’s understand the key terms used for writing annotations one by one. In the above examples, you will see annotations are used on annotations.</p>
+<p>J2SE 5.0 provides four annotations in the java.lang.annotation package that are used only when writing annotations:</p>
+<ul>
+<li>
+<p>@Documented  – Javadocs에 해당 어노테이션을 추가할지 말지 결정한다.</p>
+</li>
+<li>
+<p>@Retention  – 언제 어노테이션이 사용되는지를 나타낸다.(=언제까지 어노테이션을 유지할까 = 어노테이션의 라이프사이클 )</p>
+</li>
+<li>
+<p>@Target?  – 어노테이션이 어디에 적용될지를 나타낸다. ( 작성하지 않으면 7개의 모든 곳에 다 위치할 수 있다. )</p>
+<ul>
+<li>ElementType.TYPE (class, interface, enum)</li>
+<li>ElementType.FIELD (instance variable)</li>
+<li>ElementType.METHOD</li>
+<li>ElementType.PARAMETER</li>
+<li>ElementType.CONSTRUCTOR</li>
+<li>ElementType.LOCAL_VARIABLE</li>
+<li>ElementType.ANNOTATION_TYPE (on another annotation)</li>
+<li>ElementType.PACKAGE (remember package-info.java)</li>
+</ul>
+</li>
+<li>
+<p>@Inherited  – 현재의 어노테이션을 적용할 서브클래스는 무엇인가?</p>
+</li>
+</ul>
+<p>이제 직접 만든 @Todo 어노테이션을 살펴보자. 내부에 어떤 값들이 정의되어 있다.
+어노테이션은 Primitive 타입과 String 그리고 enum을 지원한다. 모든 어트리뷰트는 메소드 형태로 정의되며 default값이 필요하다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">@Target</span><span style="color:#f92672">(</span>ElementType<span style="color:#f92672">.</span><span style="color:#a6e22e">METHOD</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#a6e22e">@Retention</span><span style="color:#f92672">(</span>RetentionPolicy<span style="color:#f92672">.</span><span style="color:#a6e22e">RUNTIME</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#a6e22e">@interface</span> Todo <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> Priority <span style="color:#f92672">{</span>LOW<span style="color:#f92672">,</span> MEDIUM<span style="color:#f92672">,</span> HIGH<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">enum</span> Status <span style="color:#f92672">{</span>STARTED<span style="color:#f92672">,</span> NOT_STARTED<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    String <span style="color:#a6e22e">author</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">default</span> <span style="color:#e6db74">&#34;Yash&#34;</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    Priority <span style="color:#a6e22e">priority</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">default</span> Priority<span style="color:#f92672">.</span><span style="color:#a6e22e">LOW</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    Status <span style="color:#a6e22e">status</span><span style="color:#f92672">()</span> <span style="color:#66d9ef">default</span> Status<span style="color:#f92672">.</span><span style="color:#a6e22e">NOT_STARTED</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>@Todo 어노테이션은 아래와 같이 사용하면 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">@Todo</span><span style="color:#f92672">(</span>priority <span style="color:#f92672">=</span> Todo<span style="color:#f92672">.</span><span style="color:#a6e22e">Priority</span><span style="color:#f92672">.</span><span style="color:#a6e22e">MEDIUM</span><span style="color:#f92672">,</span> author <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Yashwant&#34;</span><span style="color:#f92672">,</span> status <span style="color:#f92672">=</span> Todo<span style="color:#f92672">.</span><span style="color:#a6e22e">Status</span><span style="color:#f92672">.</span><span style="color:#a6e22e">STARTED</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">incompleteMethod1</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#75715e">//Some business logic is written
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#75715e">//But it’s not complete yet
+</span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#75715e"></span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>만약 아래와 같이 어트리뷰트가 하나밖에 없는 @Author 어노테이션을 만들었다면 value=&ldquo;Yashwant&quot;로 작성하지 않고 &ldquo;Yashwant&quot;라고만 작성하면 된다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">@interface</span> Author<span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    String <span style="color:#a6e22e">value</span><span style="color:#f92672">();</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#a6e22e">@Author</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Yashwant&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">someMethod</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p>이제 어노테이션을 사용하기 위한 코드를 작성해보자. 여기서는 자바의 Reflection을 통해 어노테이션을 사용한다. (Reflection 간단설명 : 컴파일 시간(Compile Time)이 아니라 실행 시간(Run Time)에 동적으로 특정 오브젝트의 정보를 추출하거나, 오브젝트를 생성 할 수 있다. )
+Reflection은 클래스,메소드,필드 오브젝트를 제공하는데 각 오브젝트들은 모두 getAnnotation()이라는 메소드를 가지고 있다. getAnnotation()메소드는 오브젝트에 적용되어 있는 어노테이션을 반환해준다.
+BusinessLogic 이라는 클래스에 들어있는 모든 Method를 For loop를 통해서 불러오고, 메소드에 @Todo 어노테이션이 있다면 결과를 출력하도록 한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>Class businessLogicClass <span style="color:#f92672">=</span> BusinessLogic<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#66d9ef">for</span><span style="color:#f92672">(</span>Method method <span style="color:#f92672">:</span> businessLogicClass<span style="color:#f92672">.</span><span style="color:#a6e22e">getMethods</span><span style="color:#f92672">())</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    Todo todoAnnotation <span style="color:#f92672">=</span> <span style="color:#f92672">(</span>Todo<span style="color:#f92672">)</span>method<span style="color:#f92672">.</span><span style="color:#a6e22e">getAnnotation</span><span style="color:#f92672">(</span>Todo<span style="color:#f92672">.</span><span style="color:#a6e22e">class</span><span style="color:#f92672">);</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#66d9ef">if</span><span style="color:#f92672">(</span>todoAnnotation <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; Method Name : &#34;</span> <span style="color:#f92672">+</span> method<span style="color:#f92672">.</span><span style="color:#a6e22e">getName</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; Author : &#34;</span> <span style="color:#f92672">+</span> todoAnnotation<span style="color:#f92672">.</span><span style="color:#a6e22e">author</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; Priority : &#34;</span> <span style="color:#f92672">+</span> todoAnnotation<span style="color:#f92672">.</span><span style="color:#a6e22e">priority</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>        System<span style="color:#f92672">.</span><span style="color:#a6e22e">out</span><span style="color:#f92672">.</span><span style="color:#a6e22e">println</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34; Status : &#34;</span> <span style="color:#f92672">+</span> todoAnnotation<span style="color:#f92672">.</span><span style="color:#a6e22e">status</span><span style="color:#f92672">());</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://92SooJong.github.io/posts/java/thread/">
+    <span class="title">« Prev</span>
+    <br>
+    <span>Thread</span>
+  </a>
+  <a class="next" href="https://92SooJong.github.io/posts/java/javabeans/">
+    <span class="title">Next »</span>
+    <br>
+    <span>Java Beans</span>
+  </a>
+</nav>
+
+
+<div class="share-buttons">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Annotation on twitter"
+        href="https://twitter.com/intent/tweet/?text=Annotation&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fjava%2fannotation%2f&amp;hashtags=Java%2cKorean">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Annotation on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fjava%2fannotation%2f&amp;title=Annotation&amp;summary=Annotation&amp;source=https%3a%2f%2f92SooJong.github.io%2fposts%2fjava%2fannotation%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Annotation on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2f92SooJong.github.io%2fposts%2fjava%2fannotation%2f&title=Annotation">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Annotation on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f92SooJong.github.io%2fposts%2fjava%2fannotation%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Annotation on whatsapp"
+        href="https://api.whatsapp.com/send?text=Annotation%20-%20https%3a%2f%2f92SooJong.github.io%2fposts%2fjava%2fannotation%2f">
+        <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
+        </svg>
+    </a>
+    <a target="_blank" rel="noopener noreferrer" aria-label="share Annotation on telegram"
+        href="https://telegram.me/share/url?text=Annotation&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fjava%2fannotation%2f">
+        <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
+            <path
+                d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />
+        </svg>
+    </a>
+</div>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2022 <a href="https://92SooJong.github.io/">Today I Learn</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>자바의 정석 on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/java/java-standard/</link>
+    <description>Recent content in 자바의 정석 on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 29 Sep 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/java/java-standard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Generic</title>
+      <link>https://92SooJong.github.io/posts/java/java-standard/generic/</link>
+      <pubDate>Thu, 29 Sep 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/java-standard/generic/</guid>
+      <description>제네릭의 기본인 1.1~1.3은 생략함
+1.4 제한된 지네릭 클래스 다음과 같이 작성하면 Fruit의 자손타입만 T에 대입할 수 있다. (= Fruit를 implements 또는 extends한 클래스만 T에 대입할 수 있다.) 좀 더 엄격하게 FruitBox에 들어올 수 있는 타입을 관리할 수 있다.
+1class FruitBox&amp;lt;T extends Fruit&amp;gt;{ 2	ArrayList&amp;lt;T&amp;gt; list = new ArrayList&amp;lt;T&amp;gt;(); 3	... 4} Fruit의 자손 인스턴스는 얼마든지 담을 수 있다. 다형성을 이용해 여러 과일을 담을 수 있게 되었다.
+1FruitBox&amp;lt;Fruit&amp;gt; fruitBox = new FruitBox&amp;lt;Fruit&amp;gt;(); 2fruitBox.</description>
+    </item>
+    
+  </channel>
+</rss>
