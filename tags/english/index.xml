@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>English on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/english/</link>
+    <description>Recent content in English on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 06 Nov 2022 00:30:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/english/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Connection Pooling</title>
+      <link>https://92SooJong.github.io/posts/database/connection-pooling/</link>
+      <pubDate>Sun, 06 Nov 2022 00:30:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/database/connection-pooling/</guid>
+      <description>Connection pooling means a pool of Connection Objects.
+Connection pooling is based on an object pool design pattern.
+The cost of creating new objects is higher So application creates an object in advance and place them in Pool.
+Whenever application requires objects, it(application) acquires them from the pool rather than creating a new one.
+We can create our own implementations of Connection pooling.
+Any connection pooling framework needs to do three tasks.</description>
+    </item>
+    
+  </channel>
+</rss>
