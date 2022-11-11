@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Redis on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/redis/</link>
+    <description>Recent content in Redis on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 11 Nov 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/redis/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Redis Data Types</title>
+      <link>https://92SooJong.github.io/posts/redis/redis-basic/</link>
+      <pubDate>Fri, 11 Nov 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/redis/redis-basic/</guid>
+      <description>Redis Data Types Keys Redis의 Key는 바이너리 세이프. String, JPEG 파일까지 Key가 가능함. 공백 String도 유효한 Key key가 너무 긴건 추천하지 않는다. (메모리 측면이나 성능 측면에서 다 안좋음.) Key가 너무 짧은건 추천하지 않는다. u1000flw말고 user:1000:followers 처럼 읽기 좋게 써라. 스키마를 표기해주면 좋다. object-type:id user:1000 여러 단어를 붙여쓸땐 점이나 대쉬를 사용한다. comment:4321:reply-to 최대 Key size는 512MB이다 Strings key중에서 제일 단순한 형태. 초보자에게 친숙함. key 자체를 그냥 value로 쓸수도 있음. String을 또다른 String으로 할당하는 식 String은 HTML같은걸 캐싱하고 싶을때 유용하다.</description>
+    </item>
+    
+  </channel>
+</rss>

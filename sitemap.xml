@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://92SooJong.github.io/tags/korean/</loc>
+    <lastmod>2022-11-11T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/</loc>
+    <lastmod>2022-11-11T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/redis/</loc>
+    <lastmod>2022-11-11T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/redis/</loc>
+    <lastmod>2022-11-11T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/redis/redis-basic/</loc>
+    <lastmod>2022-11-11T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/</loc>
+    <lastmod>2022-11-11T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/</loc>
+    <lastmod>2022-11-11T22:55:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/posts/database/connection-pooling/</loc>
     <lastmod>2022-11-06T00:30:00+09:00</lastmod>
   </url><url>
@@ -14,15 +35,6 @@
     <loc>https://92SooJong.github.io/tags/english/</loc>
     <lastmod>2022-11-06T00:30:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/</loc>
-    <lastmod>2022-11-06T00:30:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/</loc>
-    <lastmod>2022-11-06T00:30:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/</loc>
-    <lastmod>2022-11-06T00:30:00+09:00</lastmod>
-  </url><url>
     <loc>https://92SooJong.github.io/tags/book/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
   </url><url>
@@ -33,9 +45,6 @@
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/java/</loc>
-    <lastmod>2022-10-30T22:55:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/korean/</loc>
     <lastmod>2022-10-30T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/java/java-optimizing/</loc>
