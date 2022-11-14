@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Todo on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/todo/</link>
+    <description>Recent content in Todo on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 14 Nov 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/todo/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>What I&#39;ve learned from work at November 2022</title>
+      <link>https://92SooJong.github.io/posts/etc/2022-11/</link>
+      <pubDate>Mon, 14 Nov 2022 22:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/etc/2022-11/</guid>
+      <description>2022-11-14 @ParameterizedTest, @MethodSource Jsoup </description>
+    </item>
+    
+  </channel>
+</rss>
