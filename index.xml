@@ -6,14 +6,30 @@
     <description>Recent content on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 14 Nov 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 18 Nov 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hashing in Data Structure</title>
+      <link>https://92SooJong.github.io/posts/computer-science/hashing-in-data-structure/</link>
+      <pubDate>Fri, 18 Nov 2022 22:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/computer-science/hashing-in-data-structure/</guid>
+      <description>https://www.scaler.com/topics/data-structures/hashing-in-data-structure/
+Time complexity - O(log n)
+Space complexity - O(n)
+Key - Value Key - An Identifier to uniquely identify the data(entity)
+Value - The actual Entity which we want to stroe.
+This mapping helps to link easier/smaller key to a particular value
+Hashing performs a transformation on this key, to return an Integer value which can be used as the memory address to place this Key-Value at.
+On non-integeral keys, there are 2 steps involved.</description>
+    </item>
+    
     <item>
       <title>What I&#39;ve learned from work at November 2022</title>
       <link>https://92SooJong.github.io/posts/etc/2022-11/</link>
       <pubDate>Mon, 14 Nov 2022 22:00:00 +0900</pubDate>
       
       <guid>https://92SooJong.github.io/posts/etc/2022-11/</guid>
-      <description>2022-11-14 @ParameterizedTest, @MethodSource Jsoup 2022-11-15 2022-11-16 BigDecimal </description>
+      <description>2022-11-14 @ParameterizedTest, @MethodSource Jsoup 2022-11-15 2022-11-16 BigDecimal thymeleaf 주석 관련링크 </description>
     </item>
     
     <item>
