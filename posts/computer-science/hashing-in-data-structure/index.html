@@ -125,8 +125,8 @@ On non-integeral keys, there are 2 steps involved."/>
   "keywords": [
     "CS", "English"
   ],
-  "articleBody": "https://www.scaler.com/topics/data-structures/hashing-in-data-structure/\nTime complexity - O(log n)\nSpace complexity - O(n)\nKey - Value Key - An Identifier to uniquely identify the data(entity)\nValue - The actual Entity which we want to stroe.\nThis mapping helps to link easier/smaller key to a particular value\nHashing performs a transformation on this key, to return an Integer value which can be used as the memory address to place this Key-Value at.\nOn non-integeral keys, there are 2 steps involved.\nTransform non-integral key to integral value perform hashing What is hasing In data Structure Efficiently finding, storing data in an array.\nkey as input and returns us the memory address\nHash Table in Data Structure In data structure, hash tables are used for storing the key-value pairs.\nInstead of directly storing the keys in hash table, hasing comes into plcy, which runs the hash function converts these big Keys to the integer value \u003c= size of Array. this Integer value is called hash index.\nhash function creates hash index. hash function have to return distinct indexes for every input.\n",
-  "wordCount" : "175",
+  "articleBody": "https://www.scaler.com/topics/data-structures/hashing-in-data-structure/\nTime complexity - O(log n)\nSpace complexity - O(n)\nKey - Value Key - An Identifier to uniquely identify the data(entity)\nValue - The actual Entity which we want to stroe.\nThis mapping helps to link easier/smaller key to a particular value\nHashing performs a transformation on this key, to return an Integer value which can be used as the memory address to place this Key-Value at.\nOn non-integeral keys, there are 2 steps involved.\nTransform non-integral key to integral value perform hashing What is hasing In data Structure Efficiently finding, storing data in an array.\nkey as input and returns us the memory address\nHash Table in Data Structure In data structure, hash tables are used for storing the key-value pairs.\nInstead of directly storing the keys in hash table, hasing comes into plcy, which runs the hash function converts these big Keys to the integer value \u003c= size of Array. this Integer value is called hash index.\nhash function creates hash index. hash function have to return distinct indexes for every input.\nHashing Function in DBMS The memory location where these records are stored is known as data buckets or data blocks.\nMost of the time, the hash function uses the primary key to generate the address of the data block.\nWays to Calculate Hashing in Data Structure 1. Division Method Division method: HashFunction = Key % size\nE.g. if key=15, then 15%10=5 and 5\u003c10 so we can insert this Data with key=15 at the 5th index of the array of size 10.\n2. Multiplication Method h(k) = floor( n( kA mod 1 ) ) k is key\nA is constant value between 0 and 1\nk=123 n=100 A=0.618033 (Has to be between 0 and 1) h(123) = 100 (123 * 0.618033 mod 1) = 100 (76.018059 mod 1) = 100 (0.018059) = 1 3. Universal Hashing Universal hashing means that we don’t use a fixed hash function, but there is a family of hash functions from which we can randomly pick any hash function.\n4. Folding Method By folding we mean that, if the array size = 100, that means 2-digit numbers can only fit inside it, so we fold the given key in parts of 2. I.e. if Key=20574 Then we will fold it in parts of 2, which will be: 20, 57, and 4. So to get an index \u003c 100 from these parts, we can sum these up i.e. 20 + 57 + 4 = 81. So 81 is the index where this Key=20574 can be placed.\nPlease note that there can be cases where even after folding we get a number \u003e size e.g. Key=56571 then breaking it down in parts of 2= 56+57+1=114\nNow we cant place this Data at index 114 inside the array of size 100, so we can either apply this algorithm again or can use the Division method(mostly used in such scenarios) to get 114%100=14 So this Data can be placed at the 14th Index of this array.\n5. Mid Square Method In this method, we basically square the given number and pick N middle numbers in that squared number, to find the index\nLet’s take N=2 and Array size=11. Hash(93) = 93^2 = 8649. Picking N(=2) middle elements i.e. 64 Now since 64\u003e11, so we can apply the Division method to get 64%11=9. So 93 can be placed at 9th Index in the array of size 11.\n",
+  "wordCount" : "571",
   "inLanguage": "en",
   "datePublished": "2022-11-18T22:00:00+09:00",
   "dateModified": "2022-11-18T22:00:00+09:00",
@@ -243,8 +243,25 @@ On non-integeral keys, there are 2 steps involved."/>
                 <li>
                     <a href="#what-is-hasing-in-data-structure" aria-label="What is hasing In data Structure">What is hasing In data Structure</a></li>
                 <li>
-                    <a href="#hash-table-in-data-structure" aria-label="Hash Table in Data Structure">Hash Table in Data Structure</a>
+                    <a href="#hash-table-in-data-structure" aria-label="Hash Table in Data Structure">Hash Table in Data Structure</a></li>
+                <li>
+                    <a href="#hashing-function-in-dbms" aria-label="Hashing Function in DBMS">Hashing Function in DBMS</a></li>
+                <li>
+                    <a href="#ways-to-calculate-hashing-in-data-structure" aria-label="Ways to Calculate Hashing in Data Structure">Ways to Calculate Hashing in Data Structure</a><ul>
+                        
+                <li>
+                    <a href="#1-division-method" aria-label="1. Division Method">1. Division Method</a></li>
+                <li>
+                    <a href="#2-multiplication-method" aria-label="2. Multiplication Method">2. Multiplication Method</a></li>
+                <li>
+                    <a href="#3-universal-hashing" aria-label="3. Universal Hashing">3. Universal Hashing</a></li>
+                <li>
+                    <a href="#4-folding-method" aria-label="4. Folding Method">4. Folding Method</a></li>
+                <li>
+                    <a href="#5-mid-square-method" aria-label="5. Mid Square Method">5. Mid Square Method</a>
                 </li>
+            </ul>
+            </li>
             </ul>
         </div>
     </details>
@@ -270,6 +287,40 @@ On non-integeral keys, there are 2 steps involved."/>
 <p>In data structure, <code>hash tables</code> are used for storing the key-value pairs.</p>
 <p>Instead of directly storing the keys in hash table, hasing comes into plcy, which runs the hash function converts these big Keys to the integer value &lt;= size of Array. this Integer value is called <code>hash index</code>.</p>
 <p><code>hash function</code> creates <code>hash index</code>. hash function have to return distinct indexes for every input.</p>
+<h1 id="hashing-function-in-dbms">Hashing Function in DBMS<a hidden class="anchor" aria-hidden="true" href="#hashing-function-in-dbms">#</a></h1>
+<p>The memory location where these records are stored is known as <code>data buckets</code> or <code>data blocks</code>.</p>
+<p>Most of the time, the hash function uses the primary key to generate the address of the data block.</p>
+<h1 id="ways-to-calculate-hashing-in-data-structure">Ways to Calculate Hashing in Data Structure<a hidden class="anchor" aria-hidden="true" href="#ways-to-calculate-hashing-in-data-structure">#</a></h1>
+<h2 id="1-division-method">1. Division Method<a hidden class="anchor" aria-hidden="true" href="#1-division-method">#</a></h2>
+<p>Division method: HashFunction = Key % size</p>
+<p>E.g. if key=15, then 15%10=5 and 5&lt;10 so we can insert this Data with key=15 at the 5th index of the array of size 10.</p>
+<h2 id="2-multiplication-method">2. Multiplication Method<a hidden class="anchor" aria-hidden="true" href="#2-multiplication-method">#</a></h2>
+<pre tabindex="0"><code>h(k) = floor( n( kA mod 1 ) )
+</code></pre><p>k is key</p>
+<p>A is constant value between 0 and 1</p>
+<pre tabindex="0"><code>k=123
+n=100
+A=0.618033 (Has to be between 0 and 1)
+h(123) = 100 (123 * 0.618033 mod 1)
+= 100 (76.018059 mod 1)
+= 100 (0.018059)
+= 1
+</code></pre><h2 id="3-universal-hashing">3. Universal Hashing<a hidden class="anchor" aria-hidden="true" href="#3-universal-hashing">#</a></h2>
+<p>Universal hashing means that we don’t use a fixed hash function, but there is a family of hash functions from which we can randomly pick any hash function.</p>
+<h2 id="4-folding-method">4. Folding Method<a hidden class="anchor" aria-hidden="true" href="#4-folding-method">#</a></h2>
+<p>By folding we mean that, if the array size = 100, that means 2-digit numbers can only fit inside it, so we fold the given key in parts of 2.
+I.e. if Key=20574 Then we will fold it in parts of 2, which will be:
+20, 57, and 4.
+So to get an index &lt; 100 from these parts, we can sum these up i.e.
+20 + 57 + 4 = 81. So 81 is the index where this Key=20574 can be placed.</p>
+<p>Please note that there can be cases where even after folding we get a number &gt; size e.g. Key=56571 then breaking it down in parts of 2= 56+57+1=114</p>
+<p>Now we cant place this Data at index 114 inside the array of size 100, so we can either apply this algorithm again or can use the Division method(mostly used in such scenarios) to get 114%100=14
+So this Data can be placed at the 14th Index of this array.</p>
+<h2 id="5-mid-square-method">5. Mid Square Method<a hidden class="anchor" aria-hidden="true" href="#5-mid-square-method">#</a></h2>
+<p>In this method, we basically square the given number and pick N middle numbers in that squared number, to find the index</p>
+<p>Let’s take N=2 and Array size=11.
+Hash(93) = 93^2 = 8649. Picking N(=2) middle elements i.e. 64 Now since 64&gt;11, so we can apply the Division method to get 64%11=9.
+So 93 can be placed at 9th Index in the array of size 11.</p>
 
 
   </div>
