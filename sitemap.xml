@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://92SooJong.github.io/posts/etc/</loc>
+    <lastmod>2022-11-21T22:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/korean/</loc>
+    <lastmod>2022-11-21T22:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/</loc>
+    <lastmod>2022-11-21T22:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/</loc>
+    <lastmod>2022-11-21T22:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/</loc>
+    <lastmod>2022-11-21T22:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/vi/</loc>
+    <lastmod>2022-11-21T22:00:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/etc/vi-command/</loc>
+    <lastmod>2022-11-21T22:00:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/posts/computer-science/</loc>
     <lastmod>2022-11-20T22:00:00+09:00</lastmod>
   </url><url>
@@ -11,19 +32,7 @@
     <loc>https://92SooJong.github.io/tags/hash/</loc>
     <lastmod>2022-11-20T22:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/tags/korean/</loc>
-    <lastmod>2022-11-20T22:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/posts/</loc>
-    <lastmod>2022-11-20T22:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://92SooJong.github.io/posts/computer-science/separate-chaining/</loc>
-    <lastmod>2022-11-20T22:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/</loc>
-    <lastmod>2022-11-20T22:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/</loc>
     <lastmod>2022-11-20T22:00:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/tags/english/</loc>
@@ -31,9 +40,6 @@
   </url><url>
     <loc>https://92SooJong.github.io/posts/computer-science/hashing-in-data-structure/</loc>
     <lastmod>2022-11-18T22:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/posts/etc/</loc>
-    <lastmod>2022-11-14T22:00:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/tags/todo/</loc>
     <lastmod>2022-11-14T22:00:00+09:00</lastmod>

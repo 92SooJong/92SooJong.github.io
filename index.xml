@@ -6,7 +6,19 @@
     <description>Recent content on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Nov 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 21 Nov 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자주쓰는 vi 명령어</title>
+      <link>https://92SooJong.github.io/posts/etc/vi-command/</link>
+      <pubDate>Mon, 21 Nov 2022 22:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/etc/vi-command/</guid>
+      <description>문장 맨 끝으로 이동 $
+문장 맨 앞으로 이동 ^
+첫번째 줄로 이동 gg
+현재 위치 이하 모두 삭제 dG(d + Shift g)</description>
+    </item>
+    
     <item>
       <title>Separate Chaining</title>
       <link>https://92SooJong.github.io/posts/computer-science/separate-chaining/</link>
