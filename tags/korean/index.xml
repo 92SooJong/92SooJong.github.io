@@ -296,8 +296,7 @@ Level 0 Read Uncommitted Transaction A가 수행되는 와중에 Transaction B�
       <guid>https://92SooJong.github.io/posts/git/%EC%9E%90%EC%A3%BC%EC%93%B0%EB%8A%94%EB%AA%85%EB%A0%B9%EC%96%B4/</guid>
       <description>사실 쓰려고 하면 기억 안나서 구글링 하는 명령어 모음 원격의 삭제된 브랜치를 로컬 커밋 히스토리에 반영할때 git remote prune origin
 Undo Commit git reset --soft HEAD^ Or git reset --mixed HEAD^
-following command work same as git reset --soft HEAD^
-git reset HEAD^
+following command work same as git reset --mixed HEAD^ git reset HEAD^
 원격 브랜치의 히스토리를 로컬 브랜치의 히스토리로 강제로 덮어쓴다. git push -f -u origin [branch명]
 원격 브랜치의 주소를 재설정하는 경우 git remote set-url &amp;lt;remote_name&amp;gt; &amp;lt;remote_url&amp;gt;
 token 변경 git remote set-url &amp;lt;remote_name&amp;gt; https://&amp;lt;token&amp;gt;@&amp;lt;git repo url&amp;gt;</description>
