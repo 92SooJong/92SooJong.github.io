@@ -6,7 +6,18 @@
     <description>Recent content in Korean on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Nov 2022 18:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/korean/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Nov 2022 21:40:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/korean/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Load Factor And Rehashing</title>
+      <link>https://92SooJong.github.io/posts/computer-science/load-factor-and-rehashing/</link>
+      <pubDate>Fri, 25 Nov 2022 21:40:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/computer-science/load-factor-and-rehashing/</guid>
+      <description>Complexity and Load Factor HashMap의 Insert 작업은 Key-Value가 나눠져서 진행된다.
+먼저, Hash Function을 통해서 Key를 양의 정수 형태로 변환한다. 여기서 시간은 Key의 원본 데이터의 사이즈에 따라 달라지게 되는데 사실상 무시할 수 있는 수준이라 시간 복잡도는 O(1)이 된다.
+두번째로, Key를 통해 index를 선정했다면 Linked List에 Value를 붙여야 하는데 최악의 경우 모든 노드가 하나의 인덱스에 들어있다면 n번의 탐색을 해야한다. (Linked List는 인덱스를 가지지 않으므로 마지막 위치를 알기위해선 끝까지 탐색을 해야한다.) 이 경우에 O(n)까지 시간 복잡도가 높아지게 된다.</description>
+    </item>
+    
     <item>
       <title>Load Factor in HashMap</title>
       <link>https://92SooJong.github.io/posts/computer-science/load-factor-in-hashmap/</link>
