@@ -6,7 +6,23 @@
     <description>Recent content on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 21 Nov 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Nov 2022 18:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Load Factor in HashMap</title>
+      <link>https://92SooJong.github.io/posts/computer-science/load-factor-in-hashmap/</link>
+      <pubDate>Fri, 25 Nov 2022 18:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/computer-science/load-factor-in-hashmap/</guid>
+      <description>Map Simple view of Java’s data strcutrue class hierachy
+Terminology Node: Key-Value 형태의 데이터와 연결되어 있는 다음 노드를 가르키는 데이터 구조를 의미한다
+Bucket: Linked List로 이뤄진 Node의 집합
+Capacity : Bucket의 수를 의미한다.
+Initial Capacity Capacity는 Bucket의 수를 의미한다.
+초기 Bucket의 수는 15개이다. (2^4)
+좋은 HashMap 알고리즘은 element가 균일하게 HashMap에 분배되어 있도록 한다.
+16개의 element가 있을때 각 bucket은 1개의 노드만 가지는 Linked List로 구성된다. 따라서 노드를 검색할때 bucket내에서 1회만에 element를 찾을 수 있다.</description>
+    </item>
+    
     <item>
       <title>자주쓰는 vi 명령어</title>
       <link>https://92SooJong.github.io/posts/etc/vi-command/</link>

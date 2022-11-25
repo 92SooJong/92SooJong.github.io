@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
 <title>Hashing in Data Structure | Today I Learn</title>
-<meta name="keywords" content="Hash, CS, English">
+<meta name="keywords" content="HashMap, CS, English">
 <meta name="description" content="https://www.scaler.com/topics/data-structures/hashing-in-data-structure/
 Time complexity - O(log n)
 Space complexity - O(n)
@@ -123,7 +123,7 @@ On non-integeral keys, there are 2 steps involved."/>
   "name": "Hashing in Data Structure",
   "description": "https://www.scaler.com/topics/data-structures/hashing-in-data-structure/\nTime complexity - O(log n)\nSpace complexity - O(n)\nKey - Value Key - An Identifier to uniquely identify the data(entity)\nValue - The actual Entity which we want to stroe.\nThis mapping helps to link easier/smaller key to a particular value\nHashing performs a transformation on this key, to return an Integer value which can be used as the memory address to place this Key-Value at.\nOn non-integeral keys, there are 2 steps involved.",
   "keywords": [
-    "Hash", "CS", "English"
+    "HashMap", "CS", "English"
   ],
   "articleBody": "https://www.scaler.com/topics/data-structures/hashing-in-data-structure/\nTime complexity - O(log n)\nSpace complexity - O(n)\nKey - Value Key - An Identifier to uniquely identify the data(entity)\nValue - The actual Entity which we want to stroe.\nThis mapping helps to link easier/smaller key to a particular value\nHashing performs a transformation on this key, to return an Integer value which can be used as the memory address to place this Key-Value at.\nOn non-integeral keys, there are 2 steps involved.\nTransform non-integral key to integral value perform hashing What is hasing In data Structure Efficiently finding, storing data in an array.\nkey as input and returns us the memory address\nHash Table in Data Structure In data structure, hash tables are used for storing the key-value pairs.\nInstead of directly storing the keys in hash table, hasing comes into plcy, which runs the hash function converts these big Keys to the integer value \u003c= size of Array. this Integer value is called hash index.\nhash function creates hash index. hash function have to return distinct indexes for every input.\nHashing Function in DBMS The memory location where these records are stored is known as data buckets or data blocks.\nMost of the time, the hash function uses the primary key to generate the address of the data block.\nWays to Calculate Hashing in Data Structure 1. Division Method Division method: HashFunction = Key % size\nE.g. if key=15, then 15%10=5 and 5\u003c10 so we can insert this Data with key=15 at the 5th index of the array of size 10.\n2. Multiplication Method h(k) = floor( n( kA mod 1 ) ) k is key\nA is constant value between 0 and 1\nk=123 n=100 A=0.618033 (Has to be between 0 and 1) h(123) = 100 (123 * 0.618033 mod 1) = 100 (76.018059 mod 1) = 100 (0.018059) = 1 3. Universal Hashing Universal hashing means that we don’t use a fixed hash function, but there is a family of hash functions from which we can randomly pick any hash function.\n4. Folding Method By folding we mean that, if the array size = 100, that means 2-digit numbers can only fit inside it, so we fold the given key in parts of 2. I.e. if Key=20574 Then we will fold it in parts of 2, which will be: 20, 57, and 4. So to get an index \u003c 100 from these parts, we can sum these up i.e. 20 + 57 + 4 = 81. So 81 is the index where this Key=20574 can be placed.\nPlease note that there can be cases where even after folding we get a number \u003e size e.g. Key=56571 then breaking it down in parts of 2= 56+57+1=114\nNow we cant place this Data at index 114 inside the array of size 100, so we can either apply this algorithm again or can use the Division method(mostly used in such scenarios) to get 114%100=14 So this Data can be placed at the 14th Index of this array.\n5. Mid Square Method In this method, we basically square the given number and pick N middle numbers in that squared number, to find the index\nLet’s take N=2 and Array size=11. Hash(93) = 93^2 = 8649. Picking N(=2) middle elements i.e. 64 Now since 64\u003e11, so we can apply the Division method to get 64%11=9. So 93 can be placed at 9th Index in the array of size 11.\n",
   "wordCount" : "571",
@@ -327,7 +327,7 @@ So 93 can be placed at 9th Index in the array of size 11.</p>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://92SooJong.github.io/tags/hash/">Hash</a></li>
+      <li><a href="https://92SooJong.github.io/tags/hashmap/">HashMap</a></li>
       <li><a href="https://92SooJong.github.io/tags/cs/">CS</a></li>
       <li><a href="https://92SooJong.github.io/tags/english/">English</a></li>
     </ul>
@@ -347,7 +347,7 @@ So 93 can be placed at 9th Index in the array of size 11.</p>
 
 <div class="share-buttons">
     <a target="_blank" rel="noopener noreferrer" aria-label="share Hashing in Data Structure on twitter"
-        href="https://twitter.com/intent/tweet/?text=Hashing%20in%20Data%20Structure&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fcomputer-science%2fhashing-in-data-structure%2f&amp;hashtags=Hash%2cCS%2cEnglish">
+        href="https://twitter.com/intent/tweet/?text=Hashing%20in%20Data%20Structure&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fcomputer-science%2fhashing-in-data-structure%2f&amp;hashtags=HashMap%2cCS%2cEnglish">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />

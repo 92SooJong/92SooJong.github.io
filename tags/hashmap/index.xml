@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>CS on Today I Learn</title>
-    <link>https://92SooJong.github.io/tags/cs/</link>
-    <description>Recent content in CS on Today I Learn</description>
+    <title>HashMap on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/hashmap/</link>
+    <description>Recent content in HashMap on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Nov 2022 18:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/cs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Nov 2022 18:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/hashmap/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Load Factor in HashMap</title>
       <link>https://92SooJong.github.io/posts/computer-science/load-factor-in-hashmap/</link>
@@ -21,20 +21,6 @@ Initial Capacity Capacity는 Bucket의 수를 의미한다.
 초기 Bucket의 수는 15개이다. (2^4)
 좋은 HashMap 알고리즘은 element가 균일하게 HashMap에 분배되어 있도록 한다.
 16개의 element가 있을때 각 bucket은 1개의 노드만 가지는 Linked List로 구성된다. 따라서 노드를 검색할때 bucket내에서 1회만에 element를 찾을 수 있다.</description>
-    </item>
-    
-    <item>
-      <title>Separate Chaining</title>
-      <link>https://92SooJong.github.io/posts/computer-science/separate-chaining/</link>
-      <pubDate>Sun, 20 Nov 2022 22:00:00 +0900</pubDate>
-      
-      <guid>https://92SooJong.github.io/posts/computer-science/separate-chaining/</guid>
-      <description>Separate Chaining Separate Chaining는 충돌 해결을 위한 테크닉이다.
-Linked List를 사용하는 방법이다.
-이 방법을 사용하면 elements를 같은 slot에 넣을 수 있다.
-각 슬롯은 Linked List이다. 하나의 슬롯에 2개 이상의 elements를 넣어야 하는경우 유용하다.
-How to Avoid Collision in Separate Chaining Method 가능하면 충돌을 최소화하는 Hash function을 설계하는게 중요하다. 좋은 hash function은 아래와 같다.
-충돌 최소화 계산하기 쉽고 속도가 빠르다. 해쉬 테이블에 균형있게 insert 된다. Key에 대해서 high load factor를 가진다. Time Complexity 검색시 O(1+load factor)의 시간 복잡도를 가진다.</description>
     </item>
     
     <item>

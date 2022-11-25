@@ -21,21 +21,5 @@ How to Avoid Collision in Separate Chaining Method 가능하면 충돌을 최소
 충돌 최소화 계산하기 쉽고 속도가 빠르다. 해쉬 테이블에 균형있게 insert 된다. Key에 대해서 high load factor를 가진다. Time Complexity 검색시 O(1+load factor)의 시간 복잡도를 가진다.</description>
     </item>
     
-    <item>
-      <title>Hashing in Data Structure</title>
-      <link>https://92SooJong.github.io/posts/computer-science/hashing-in-data-structure/</link>
-      <pubDate>Fri, 18 Nov 2022 22:00:00 +0900</pubDate>
-      
-      <guid>https://92SooJong.github.io/posts/computer-science/hashing-in-data-structure/</guid>
-      <description>https://www.scaler.com/topics/data-structures/hashing-in-data-structure/
-Time complexity - O(log n)
-Space complexity - O(n)
-Key - Value Key - An Identifier to uniquely identify the data(entity)
-Value - The actual Entity which we want to stroe.
-This mapping helps to link easier/smaller key to a particular value
-Hashing performs a transformation on this key, to return an Integer value which can be used as the memory address to place this Key-Value at.
-On non-integeral keys, there are 2 steps involved.</description>
-    </item>
-    
   </channel>
 </rss>
