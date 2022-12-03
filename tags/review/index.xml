@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>etc on Today I Learn</title>
-    <link>https://92SooJong.github.io/posts/etc/</link>
-    <description>Recent content in etc on Today I Learn</description>
+    <title>Review on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/review/</link>
+    <description>Recent content in Review on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Dec 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/etc/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Dec 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/review/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>December 2022</title>
       <link>https://92SooJong.github.io/posts/etc/2022-12/</link>
@@ -14,30 +14,6 @@
       
       <guid>https://92SooJong.github.io/posts/etc/2022-12/</guid>
       <description>배포 Shell Script 예시 1#!/bin/bash 2 3## 색상 변수 설정 4 5txtrst=&amp;#39;\033[1;37m&amp;#39; # White 6txtred=&amp;#39;\033[1;31m&amp;#39; # Red 7txtylw=&amp;#39;\033[1;33m&amp;#39; # Yellow 8txtpur=&amp;#39;\033[1;35m&amp;#39; # Purple 9txtgrn=&amp;#39;\033[1;32m&amp;#39; # Green 10txtgra=&amp;#39;\033[1;30m&amp;#39; # Gray 11 12echo -e &amp;#34;${txtylw}=======================================${txtrst}&amp;#34; 13echo -e &amp;#34;${txtgrn} &amp;lt;&amp;lt; 스크립트 🧐 &amp;gt;&amp;gt;${txtrst}&amp;#34; 14echo -e &amp;#34;${txtylw}=======================================${txtrst}&amp;#34; 15 16## 변수 설정 17PROJECT_PATH=/home/ubuntu/nextstep/infra-subway-deploy 18 19## 프로젝트 경로로 이동 20function changeDirectoryToProject() { 21 echo -e &amp;#34;${txtgrn}&amp;gt;&amp;gt; Move to Project Directory${txtrst}&amp;#34; 22 cd $PROJECT_PATH 23 24} 25 26 27## 저장소 pull 28function pull() { 29 echo -e &amp;#34;&amp;#34; 30 echo -e &amp;#34;${txtgrn}&amp;gt;&amp;gt; PULL main BRANCH ${txtrst}&amp;#34; 31 git pull origin main 32} 33 34## gradle build 35function build() { 36 echo -e &amp;#34;&amp;#34; 37 echo -e &amp;#34;${txtgrn}&amp;gt;&amp;gt; BUILD${txtrst}&amp;#34; 38 .</description>
-    </item>
-    
-    <item>
-      <title>자주쓰는 vi 명령어</title>
-      <link>https://92SooJong.github.io/posts/etc/linux-command/</link>
-      <pubDate>Mon, 21 Nov 2022 22:00:00 +0900</pubDate>
-      
-      <guid>https://92SooJong.github.io/posts/etc/linux-command/</guid>
-      <description>nohup java -jar [jar파일명] 1&amp;gt; [로그파일명] 2&amp;gt;&amp;amp;1 &amp;amp; 백그라운드로 jar를 실행시킨다.
-nohup java -jar -Dspring.profiles.active=prod ./infra-subway-deploy/build/libs/subway-0.0.1-SNAPSHOT.jar 1&amp;gt; subway.log 2&amp;gt;&amp;amp;1 &amp;amp;
-ps -ef | grep java java가 들어간 Process를 출력한다 pgrep -f java java가 들어간 Process를 출력한다
-kill -l kill 옵션을 확인한다</description>
-    </item>
-    
-    <item>
-      <title>자주쓰는 vi 명령어</title>
-      <link>https://92SooJong.github.io/posts/etc/vi-command/</link>
-      <pubDate>Mon, 21 Nov 2022 22:00:00 +0900</pubDate>
-      
-      <guid>https://92SooJong.github.io/posts/etc/vi-command/</guid>
-      <description>문장 맨 끝으로 이동 $
-문장 맨 앞으로 이동 ^
-첫번째 줄로 이동 gg
-현재 위치 이하 모두 삭제 dG(d + Shift g)</description>
     </item>
     
     <item>

@@ -6,7 +6,16 @@
     <description>Recent content on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 25 Nov 2022 21:40:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Dec 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>December 2022</title>
+      <link>https://92SooJong.github.io/posts/etc/2022-12/</link>
+      <pubDate>Fri, 02 Dec 2022 22:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/etc/2022-12/</guid>
+      <description>배포 Shell Script 예시 1#!/bin/bash 2 3## 색상 변수 설정 4 5txtrst=&amp;#39;\033[1;37m&amp;#39; # White 6txtred=&amp;#39;\033[1;31m&amp;#39; # Red 7txtylw=&amp;#39;\033[1;33m&amp;#39; # Yellow 8txtpur=&amp;#39;\033[1;35m&amp;#39; # Purple 9txtgrn=&amp;#39;\033[1;32m&amp;#39; # Green 10txtgra=&amp;#39;\033[1;30m&amp;#39; # Gray 11 12echo -e &amp;#34;${txtylw}=======================================${txtrst}&amp;#34; 13echo -e &amp;#34;${txtgrn} &amp;lt;&amp;lt; 스크립트 🧐 &amp;gt;&amp;gt;${txtrst}&amp;#34; 14echo -e &amp;#34;${txtylw}=======================================${txtrst}&amp;#34; 15 16## 변수 설정 17PROJECT_PATH=/home/ubuntu/nextstep/infra-subway-deploy 18 19## 프로젝트 경로로 이동 20function changeDirectoryToProject() { 21 echo -e &amp;#34;${txtgrn}&amp;gt;&amp;gt; Move to Project Directory${txtrst}&amp;#34; 22 cd $PROJECT_PATH 23 24} 25 26 27## 저장소 pull 28function pull() { 29 echo -e &amp;#34;&amp;#34; 30 echo -e &amp;#34;${txtgrn}&amp;gt;&amp;gt; PULL main BRANCH ${txtrst}&amp;#34; 31 git pull origin main 32} 33 34## gradle build 35function build() { 36 echo -e &amp;#34;&amp;#34; 37 echo -e &amp;#34;${txtgrn}&amp;gt;&amp;gt; BUILD${txtrst}&amp;#34; 38 .</description>
+    </item>
+    
     <item>
       <title>Load Factor And Rehashing</title>
       <link>https://92SooJong.github.io/posts/computer-science/load-factor-and-rehashing/</link>
@@ -32,6 +41,18 @@ Initial Capacity Capacity는 Bucket의 수를 의미한다.
 초기 Bucket의 수는 15개이다. (2^4)
 좋은 HashMap 알고리즘은 element가 균일하게 HashMap에 분배되어 있도록 한다.
 16개의 element가 있을때 각 bucket은 1개의 노드만 가지는 Linked List로 구성된다. 따라서 노드를 검색할때 bucket내에서 1회만에 element를 찾을 수 있다.</description>
+    </item>
+    
+    <item>
+      <title>자주쓰는 vi 명령어</title>
+      <link>https://92SooJong.github.io/posts/etc/linux-command/</link>
+      <pubDate>Mon, 21 Nov 2022 22:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/etc/linux-command/</guid>
+      <description>nohup java -jar [jar파일명] 1&amp;gt; [로그파일명] 2&amp;gt;&amp;amp;1 &amp;amp; 백그라운드로 jar를 실행시킨다.
+nohup java -jar -Dspring.profiles.active=prod ./infra-subway-deploy/build/libs/subway-0.0.1-SNAPSHOT.jar 1&amp;gt; subway.log 2&amp;gt;&amp;amp;1 &amp;amp;
+ps -ef | grep java java가 들어간 Process를 출력한다 pgrep -f java java가 들어간 Process를 출력한다
+kill -l kill 옵션을 확인한다</description>
     </item>
     
     <item>
@@ -77,7 +98,7 @@ On non-integeral keys, there are 2 steps involved.</description>
     </item>
     
     <item>
-      <title>What I&#39;ve learned from work at November 2022</title>
+      <title>November 2022</title>
       <link>https://92SooJong.github.io/posts/etc/2022-11/</link>
       <pubDate>Mon, 14 Nov 2022 22:00:00 +0900</pubDate>
       
