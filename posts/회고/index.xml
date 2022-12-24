@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Review on Today I Learn</title>
-    <link>https://92SooJong.github.io/tags/review/</link>
-    <description>Recent content in Review on Today I Learn</description>
+    <title>회고 on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/%ED%9A%8C%EA%B3%A0/</link>
+    <description>Recent content in 회고 on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Dec 2022 22:55:00 +0000</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/review/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 23 Dec 2022 22:55:00 +0000</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/%ED%9A%8C%EA%B3%A0/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>December 2022 회고</title>
       <link>https://92SooJong.github.io/posts/%ED%9A%8C%EA%B3%A0/2022-12/</link>
@@ -14,15 +14,6 @@
       
       <guid>https://92SooJong.github.io/posts/%ED%9A%8C%EA%B3%A0/2022-12/</guid>
       <description>배운것 라이브러리를 VO에서 직접 의존하지 말자 Util 클래스를 만들어서 VO가 의존하도록 하자. 라이브러리의 버전이 변경되었을때 VO의 코드를 수정하지 않아도 된다. https://armadillo-dev.github.io/javascript/we-should-wrapping-library/ Repository를 VO에 주입하지 마라 모바일 앱에서 CSS를 로딩하지 못해서 깨지는 현상이 있었다 css를 로딩하는 주소에 쿼리 파라미터를 붙여서 앱에서 새롭게 css를 로딩하도록 코드를 수정했다. 타임리프의 조건문에 조건을 2개 사용하는 방법과 String 공백 체크하기 1&amp;lt;th:block th:if=&amp;#34;${status.last &amp;amp;&amp;amp; not #strings.isEmpty(goodsDetail.goodsImageContent)}&amp;#34;&amp;gt; th:text를 사용했을때 inner HTML이 덮어쓰기 되는 현상을 해결한다 여기 링크를 통해서 해결했다.</description>
-    </item>
-    
-    <item>
-      <title>November 2022</title>
-      <link>https://92SooJong.github.io/posts/etc/2022-11/</link>
-      <pubDate>Mon, 14 Nov 2022 22:00:00 +0900</pubDate>
-      
-      <guid>https://92SooJong.github.io/posts/etc/2022-11/</guid>
-      <description>2022-11-14 @ParameterizedTest, @MethodSource Jsoup 2022-11-15 2022-11-16 BigDecimal thymeleaf 주석 관련링크 </description>
     </item>
     
   </channel>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>필기 on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/%ED%95%84%EA%B8%B0/</link>
+    <description>Recent content in 필기 on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 02 Dec 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/%ED%95%84%EA%B8%B0/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>넥스트스탭 2주차 강의 기록</title>
+      <link>https://92SooJong.github.io/posts/etc/2022-12/</link>
+      <pubDate>Fri, 02 Dec 2022 22:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/etc/2022-12/</guid>
+      <description>공부거리 라우팅 테이블 ICMP는 핑을 위한 프로토콜(?) NAT Gateway Internet GateWay Bastion shell 스크립트 문법 리눅스 Logger flyway next-step 2주차 강의 USE 방법론 서버간 통신할때는 private ip로 하기. 공인 IP로 하게되면 인터넷으로 나갔다가 다시 들어오게됨.(비효율적임) 베스천에선 인터넷이라고 착각하게됨. 보안그룹이 복잡해짐. bastion 서버를 나둔 이유는 DDOS같은 공격이 발생하더라도 접근할 수 있는 통로가 여전히 확보되어있다. 가용성 : 시스템이 서비스를 정상적으로 제공할 수 있는 상태 성능이 우수하다 = Users(동시접속자 수) , TPS(처리속도)), Time(응답속도)) Active User는 요청을 계속해서 보내는 사용자, Concurrent user 응답으로 받은 페이지를 계속해서 보는 사용자 처리량 : 일정시간동안 얼마나 많이 처리할 수 있는지.</description>
+    </item>
+    
+  </channel>
+</rss>
