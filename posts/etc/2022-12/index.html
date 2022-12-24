@@ -7,7 +7,7 @@
 <meta name="robots" content="index, follow">
 <title>December 2022 | Today I Learn</title>
 <meta name="keywords" content="Review, Korean">
-<meta name="description" content="배포 Shell Script 예시 1#!/bin/bash 2 3## 색상 변수 설정 4 5txtrst=&#39;\033[1;37m&#39; # White 6txtred=&#39;\033[1;31m&#39; # Red 7txtylw=&#39;\033[1;33m&#39; # Yellow 8txtpur=&#39;\033[1;35m&#39; # Purple 9txtgrn=&#39;\033[1;32m&#39; # Green 10txtgra=&#39;\033[1;30m&#39; # Gray 11 12echo -e &#34;${txtylw}=======================================${txtrst}&#34; 13echo -e &#34;${txtgrn} &lt;&lt; 스크립트 🧐 &gt;&gt;${txtrst}&#34; 14echo -e &#34;${txtylw}=======================================${txtrst}&#34; 15 16## 변수 설정 17PROJECT_PATH=/home/ubuntu/nextstep/infra-subway-deploy 18 19## 프로젝트 경로로 이동 20function changeDirectoryToProject() { 21 echo -e &#34;${txtgrn}&gt;&gt; Move to Project Directory${txtrst}&#34; 22 cd $PROJECT_PATH 23 24} 25 26 27## 저장소 pull 28function pull() { 29 echo -e &#34;&#34; 30 echo -e &#34;${txtgrn}&gt;&gt; PULL main BRANCH ${txtrst}&#34; 31 git pull origin main 32} 33 34## gradle build 35function build() { 36 echo -e &#34;&#34; 37 echo -e &#34;${txtgrn}&gt;&gt; BUILD${txtrst}&#34; 38 .">
+<meta name="description" content="공부거리 라우팅 테이블 ICMP는 핑을 위한 프로토콜(?) NAT Gateway Internet GateWay Bastion shell 스크립트 문법 리눅스 Logger flyway next-step 2주차 강의 USE 방법론 서버간 통신할때는 private ip로 하기. 공인 IP로 하게되면 인터넷으로 나갔다가 다시 들어오게됨.(비효율적임) 베스천에선 인터넷이라고 착각하게됨. 보안그룹이 복잡해짐. bastion 서버를 나둔 이유는 DDOS같은 공격이 발생하더라도 접근할 수 있는 통로가 여전히 확보되어있다. 가용성 : 시스템이 서비스를 정상적으로 제공할 수 있는 상태 성능이 우수하다 = Users(동시접속자 수) , TPS(처리속도)), Time(응답속도)) Active User는 요청을 계속해서 보내는 사용자, Concurrent user 응답으로 받은 페이지를 계속해서 보는 사용자 처리량 : 일정시간동안 얼마나 많이 처리할 수 있는지.">
 <meta name="author" content="">
 <link rel="canonical" href="https://92SooJong.github.io/posts/etc/2022-12/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
@@ -57,7 +57,7 @@
 
     </style>
 </noscript><meta property="og:title" content="December 2022" />
-<meta property="og:description" content="배포 Shell Script 예시 1#!/bin/bash 2 3## 색상 변수 설정 4 5txtrst=&#39;\033[1;37m&#39; # White 6txtred=&#39;\033[1;31m&#39; # Red 7txtylw=&#39;\033[1;33m&#39; # Yellow 8txtpur=&#39;\033[1;35m&#39; # Purple 9txtgrn=&#39;\033[1;32m&#39; # Green 10txtgra=&#39;\033[1;30m&#39; # Gray 11 12echo -e &#34;${txtylw}=======================================${txtrst}&#34; 13echo -e &#34;${txtgrn} &lt;&lt; 스크립트 🧐 &gt;&gt;${txtrst}&#34; 14echo -e &#34;${txtylw}=======================================${txtrst}&#34; 15 16## 변수 설정 17PROJECT_PATH=/home/ubuntu/nextstep/infra-subway-deploy 18 19## 프로젝트 경로로 이동 20function changeDirectoryToProject() { 21 echo -e &#34;${txtgrn}&gt;&gt; Move to Project Directory${txtrst}&#34; 22 cd $PROJECT_PATH 23 24} 25 26 27## 저장소 pull 28function pull() { 29 echo -e &#34;&#34; 30 echo -e &#34;${txtgrn}&gt;&gt; PULL main BRANCH ${txtrst}&#34; 31 git pull origin main 32} 33 34## gradle build 35function build() { 36 echo -e &#34;&#34; 37 echo -e &#34;${txtgrn}&gt;&gt; BUILD${txtrst}&#34; 38 ." />
+<meta property="og:description" content="공부거리 라우팅 테이블 ICMP는 핑을 위한 프로토콜(?) NAT Gateway Internet GateWay Bastion shell 스크립트 문법 리눅스 Logger flyway next-step 2주차 강의 USE 방법론 서버간 통신할때는 private ip로 하기. 공인 IP로 하게되면 인터넷으로 나갔다가 다시 들어오게됨.(비효율적임) 베스천에선 인터넷이라고 착각하게됨. 보안그룹이 복잡해짐. bastion 서버를 나둔 이유는 DDOS같은 공격이 발생하더라도 접근할 수 있는 통로가 여전히 확보되어있다. 가용성 : 시스템이 서비스를 정상적으로 제공할 수 있는 상태 성능이 우수하다 = Users(동시접속자 수) , TPS(처리속도)), Time(응답속도)) Active User는 요청을 계속해서 보내는 사용자, Concurrent user 응답으로 받은 페이지를 계속해서 보는 사용자 처리량 : 일정시간동안 얼마나 많이 처리할 수 있는지." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://92SooJong.github.io/posts/etc/2022-12/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-12-02T22:00:00+09:00" />
@@ -65,7 +65,7 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="December 2022"/>
-<meta name="twitter:description" content="배포 Shell Script 예시 1#!/bin/bash 2 3## 색상 변수 설정 4 5txtrst=&#39;\033[1;37m&#39; # White 6txtred=&#39;\033[1;31m&#39; # Red 7txtylw=&#39;\033[1;33m&#39; # Yellow 8txtpur=&#39;\033[1;35m&#39; # Purple 9txtgrn=&#39;\033[1;32m&#39; # Green 10txtgra=&#39;\033[1;30m&#39; # Gray 11 12echo -e &#34;${txtylw}=======================================${txtrst}&#34; 13echo -e &#34;${txtgrn} &lt;&lt; 스크립트 🧐 &gt;&gt;${txtrst}&#34; 14echo -e &#34;${txtylw}=======================================${txtrst}&#34; 15 16## 변수 설정 17PROJECT_PATH=/home/ubuntu/nextstep/infra-subway-deploy 18 19## 프로젝트 경로로 이동 20function changeDirectoryToProject() { 21 echo -e &#34;${txtgrn}&gt;&gt; Move to Project Directory${txtrst}&#34; 22 cd $PROJECT_PATH 23 24} 25 26 27## 저장소 pull 28function pull() { 29 echo -e &#34;&#34; 30 echo -e &#34;${txtgrn}&gt;&gt; PULL main BRANCH ${txtrst}&#34; 31 git pull origin main 32} 33 34## gradle build 35function build() { 36 echo -e &#34;&#34; 37 echo -e &#34;${txtgrn}&gt;&gt; BUILD${txtrst}&#34; 38 ."/>
+<meta name="twitter:description" content="공부거리 라우팅 테이블 ICMP는 핑을 위한 프로토콜(?) NAT Gateway Internet GateWay Bastion shell 스크립트 문법 리눅스 Logger flyway next-step 2주차 강의 USE 방법론 서버간 통신할때는 private ip로 하기. 공인 IP로 하게되면 인터넷으로 나갔다가 다시 들어오게됨.(비효율적임) 베스천에선 인터넷이라고 착각하게됨. 보안그룹이 복잡해짐. bastion 서버를 나둔 이유는 DDOS같은 공격이 발생하더라도 접근할 수 있는 통로가 여전히 확보되어있다. 가용성 : 시스템이 서비스를 정상적으로 제공할 수 있는 상태 성능이 우수하다 = Users(동시접속자 수) , TPS(처리속도)), Time(응답속도)) Active User는 요청을 계속해서 보내는 사용자, Concurrent user 응답으로 받은 페이지를 계속해서 보는 사용자 처리량 : 일정시간동안 얼마나 많이 처리할 수 있는지."/>
 
 
 <script type="application/ld+json">
@@ -100,12 +100,12 @@
   "@type": "BlogPosting",
   "headline": "December 2022",
   "name": "December 2022",
-  "description": "배포 Shell Script 예시 1#!/bin/bash 2 3## 색상 변수 설정 4 5txtrst=\u0026#39;\\033[1;37m\u0026#39; # White 6txtred=\u0026#39;\\033[1;31m\u0026#39; # Red 7txtylw=\u0026#39;\\033[1;33m\u0026#39; # Yellow 8txtpur=\u0026#39;\\033[1;35m\u0026#39; # Purple 9txtgrn=\u0026#39;\\033[1;32m\u0026#39; # Green 10txtgra=\u0026#39;\\033[1;30m\u0026#39; # Gray 11 12echo -e \u0026#34;${txtylw}=======================================${txtrst}\u0026#34; 13echo -e \u0026#34;${txtgrn} \u0026lt;\u0026lt; 스크립트 🧐 \u0026gt;\u0026gt;${txtrst}\u0026#34; 14echo -e \u0026#34;${txtylw}=======================================${txtrst}\u0026#34; 15 16## 변수 설정 17PROJECT_PATH=/home/ubuntu/nextstep/infra-subway-deploy 18 19## 프로젝트 경로로 이동 20function changeDirectoryToProject() { 21 echo -e \u0026#34;${txtgrn}\u0026gt;\u0026gt; Move to Project Directory${txtrst}\u0026#34; 22 cd $PROJECT_PATH 23 24} 25 26 27## 저장소 pull 28function pull() { 29 echo -e \u0026#34;\u0026#34; 30 echo -e \u0026#34;${txtgrn}\u0026gt;\u0026gt; PULL main BRANCH ${txtrst}\u0026#34; 31 git pull origin main 32} 33 34## gradle build 35function build() { 36 echo -e \u0026#34;\u0026#34; 37 echo -e \u0026#34;${txtgrn}\u0026gt;\u0026gt; BUILD${txtrst}\u0026#34; 38 .",
+  "description": "공부거리 라우팅 테이블 ICMP는 핑을 위한 프로토콜(?) NAT Gateway Internet GateWay Bastion shell 스크립트 문법 리눅스 Logger flyway next-step 2주차 강의 USE 방법론 서버간 통신할때는 private ip로 하기. 공인 IP로 하게되면 인터넷으로 나갔다가 다시 들어오게됨.(비효율적임) 베스천에선 인터넷이라고 착각하게됨. 보안그룹이 복잡해짐. bastion 서버를 나둔 이유는 DDOS같은 공격이 발생하더라도 접근할 수 있는 통로가 여전히 확보되어있다. 가용성 : 시스템이 서비스를 정상적으로 제공할 수 있는 상태 성능이 우수하다 = Users(동시접속자 수) , TPS(처리속도)), Time(응답속도)) Active User는 요청을 계속해서 보내는 사용자, Concurrent user 응답으로 받은 페이지를 계속해서 보는 사용자 처리량 : 일정시간동안 얼마나 많이 처리할 수 있는지.",
   "keywords": [
     "Review", "Korean"
   ],
-  "articleBody": "배포 Shell Script 예시 1#!/bin/bash 2 3## 색상 변수 설정 4 5txtrst='\\033[1;37m' # White 6txtred='\\033[1;31m' # Red 7txtylw='\\033[1;33m' # Yellow 8txtpur='\\033[1;35m' # Purple 9txtgrn='\\033[1;32m' # Green 10txtgra='\\033[1;30m' # Gray 11 12echo -e \"${txtylw}=======================================${txtrst}\" 13echo -e \"${txtgrn} \u003c\u003c 스크립트 🧐 \u003e\u003e${txtrst}\" 14echo -e \"${txtylw}=======================================${txtrst}\" 15 16## 변수 설정 17PROJECT_PATH=/home/ubuntu/nextstep/infra-subway-deploy 18 19## 프로젝트 경로로 이동 20function changeDirectoryToProject() { 21 echo -e \"${txtgrn}\u003e\u003e Move to Project Directory${txtrst}\" 22 cd $PROJECT_PATH 23 24} 25 26 27## 저장소 pull 28function pull() { 29 echo -e \"\" 30 echo -e \"${txtgrn}\u003e\u003e PULL main BRANCH ${txtrst}\" 31 git pull origin main 32} 33 34## gradle build 35function build() { 36 echo -e \"\" 37 echo -e \"${txtgrn}\u003e\u003e BUILD${txtrst}\" 38 ./gradlew clean build 39} 40 41 42## 프로세를 KILL 하는 명령어 43function killProcess() { 44 echo -e \"\" 45 echo -e \"${txtgrn}\u003e\u003e KILL PROCESS${txtrst}\" 46 PID=$(lsof -ti tcp:8080) 47 if [ -z \"${PID}\" ] 48 then 49 echo \"\u003e NO RUNNING PROCESS IN PORT 8080\" 50 else 51 echo -e \"KILL ${PID}\" 52 kill -9 \"${PID}\" 53 fi 54} 55 56## 애플리케이션을 실행 57function run() { 58 echo -e \"\" 59 echo -e \"${txtgrn}\u003e\u003e RUN APPLICATION ${txtrst}\" 60 61 JAR_PATH=$(find $PROJECT_PATH/build/libs/*jar) 62 JAR_NAME=$(basename \"$JAR_PATH\") 63 echo -e \"Jar name is ${JAR_NAME}\" 64 65 nohup java -jar -Dspring.profiles.active=prod ./${JAR_NAME} 1\u003e ./subway.log 2\u003e\u00261 \u0026 66} 67 68changeDirectoryToProject; 69pull; 70build; 71killProcess; 72run; ",
-  "wordCount" : "221",
+  "articleBody": "공부거리 라우팅 테이블 ICMP는 핑을 위한 프로토콜(?) NAT Gateway Internet GateWay Bastion shell 스크립트 문법 리눅스 Logger flyway next-step 2주차 강의 USE 방법론 서버간 통신할때는 private ip로 하기. 공인 IP로 하게되면 인터넷으로 나갔다가 다시 들어오게됨.(비효율적임) 베스천에선 인터넷이라고 착각하게됨. 보안그룹이 복잡해짐. bastion 서버를 나둔 이유는 DDOS같은 공격이 발생하더라도 접근할 수 있는 통로가 여전히 확보되어있다. 가용성 : 시스템이 서비스를 정상적으로 제공할 수 있는 상태 성능이 우수하다 = Users(동시접속자 수) , TPS(처리속도)), Time(응답속도)) Active User는 요청을 계속해서 보내는 사용자, Concurrent user 응답으로 받은 페이지를 계속해서 보는 사용자 처리량 : 일정시간동안 얼마나 많이 처리할 수 있는지. Stress Test를 수행. Scalue out, Scale up으로 대응한다. 단일 사용자에 대한 응답속도가 느려진다면 scale up. 부하가 많아질 경우 응답속도가 느려진다면 scale out을 수행한다. 부하 테스트 종류 smoke. 최소한의 부하로, 테스트 시나리오 오류를 검증. VUser 1 ~ 2로 구성. load : 피크타임 트래픽을 계속해서 요청한다. stress : 점진적으로 부하가 증가시킨다. 문제가 발생할때까지 부하를 증가 시킨다. 실제는 한번에 요청이 들어오는데 stress는 점진적으로 요청이 들어온다 부하 테스트 종료 k6 : 시나리오 기반 테스트가 가능하다 성능 목표를 우선 정해야 한다!!! 실제 사용자가 접속하는 환경 부하 테스트에서는 클라이언트 내부 처리시간이 배제되어 있음을 염두해 두어야한다. 배포 Shell Script 예시 1#!/bin/bash 2 3## 색상 변수 설정 4 5txtrst='\\033[1;37m' # White 6txtred='\\033[1;31m' # Red 7txtylw='\\033[1;33m' # Yellow 8txtpur='\\033[1;35m' # Purple 9txtgrn='\\033[1;32m' # Green 10txtgra='\\033[1;30m' # Gray 11 12echo -e \"${txtylw}=======================================${txtrst}\" 13echo -e \"${txtgrn} \u003c\u003c 스크립트 🧐 \u003e\u003e${txtrst}\" 14echo -e \"${txtylw}=======================================${txtrst}\" 15 16## 변수 설정 17PROJECT_PATH=/home/ubuntu/nextstep/infra-subway-deploy 18 19## 프로젝트 경로로 이동 20function changeDirectoryToProject() { 21 echo -e \"${txtgrn}\u003e\u003e Move to Project Directory${txtrst}\" 22 cd $PROJECT_PATH 23 24} 25 26 27## 저장소 pull 28function pull() { 29 echo -e \"\" 30 echo -e \"${txtgrn}\u003e\u003e PULL main BRANCH ${txtrst}\" 31 git pull origin main 32} 33 34## gradle build 35function build() { 36 echo -e \"\" 37 echo -e \"${txtgrn}\u003e\u003e BUILD${txtrst}\" 38 ./gradlew clean build 39} 40 41 42## 프로세를 KILL 하는 명령어 43function killProcess() { 44 echo -e \"\" 45 echo -e \"${txtgrn}\u003e\u003e KILL PROCESS${txtrst}\" 46 PID=$(lsof -ti tcp:8080) 47 if [ -z \"${PID}\" ] 48 then 49 echo \"\u003e NO RUNNING PROCESS IN PORT 8080\" 50 else 51 echo -e \"KILL ${PID}\" 52 kill -9 \"${PID}\" 53 fi 54} 55 56## 애플리케이션을 실행 57function run() { 58 echo -e \"\" 59 echo -e \"${txtgrn}\u003e\u003e RUN APPLICATION ${txtrst}\" 60 61 JAR_PATH=$(find $PROJECT_PATH/build/libs/*jar) 62 JAR_NAME=$(basename \"$JAR_PATH\") 63 echo -e \"Jar name is ${JAR_NAME}\" 64 65 nohup java -jar -Dspring.profiles.active=prod ./${JAR_NAME} 1\u003e ./subway.log 2\u003e\u00261 \u0026 66} 67 68changeDirectoryToProject; 69pull; 70build; 71killProcess; 72run; @brainbackdoor 안녕하세요. 동규님.\nnginx.conf 파일을 수정하고 image Build를 했었어야 했는데 그냥 기존의 image로 컨테이너를 생성했었습니다. ㅠㅠ\n이 문제를 해결하는 과정에서 한가지 질문 사항있습니다.\nQ. 아래 작성한 nginx.conf의 172.17.0.1:8080은 어떤 서버인가요?? upstream app { server 172.17.0.1:8080; } listen 443을 처리하는 server의 proxy_pass를 보면 app의 server가 172.17.0.1:8080이 아닌 localhost:8080가 되어야 하는것 처럼 보이는데 혹시 중간에 제가 놓치고 있는 서버가 있는지 궁금합니다. (localhost:8080이라 생각한 이유는? reverse proxy가 443 포트로 오는 request를 받아서 실제로 구동중인 서버로 forwarding 해야하므로 )\nserver { listen 443 ssl; ssl_certificate /etc/letsencrypt/live/92soojong.p-e.kr/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/92soojong.p-e.kr/privkey.pem; # Disable SSL ssl_protocols TLSv1 TLSv1.1 TLSv1.2; # 통신과정에서 사용할 암호화 알고리즘 ssl_prefer_server_ciphers on; ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5; # Enable HSTS # client의 browser에게 http로 어떠한 것도 load 하지 말라고 규제합니다. # 이를 통해 http에서 https로 redirect 되는 request를 minimize 할 수 있습니다. add_header Strict-Transport-Security \"max-age=31536000\" always; # SSL sessions ssl_session_cache shared:SSL:10m; ssl_session_timeout 10m; location / { proxy_pass http://app; } } docker run -it –rm –name certbot -v ‘/etc/letsencrypt:/etc/letsencrypt’ -v ‘/var/lib/letsencrypt:/var/lib/letsencrypt’ certbot/certbot certonly -d ‘92soojong.o-r.kr’ –manual –preferred-challenges dns –server https://acme-v02.api.letsencrypt.org/directory\n_acme-challenge.92soojong.o-r.kr ckl5NpVO6Uqr-1ckGKKG_VHMa1R1-aeubGEzWl6VOVM\ncp /etc/letsencrypt/live/92soojong.o-r.kr/fullchain.pem ./ cp /etc/letsencrypt/live/92soojong.o-r.kr/privkey.pem ./\n",
+  "wordCount" : "572",
   "inLanguage": "en",
   "datePublished": "2022-12-02T22:00:00+09:00",
   "dateModified": "2022-12-02T22:00:00+09:00",
@@ -218,14 +218,61 @@
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#%eb%b0%b0%ed%8f%ac-shell-script-%ec%98%88%ec%8b%9c" aria-label="배포 Shell Script 예시">배포 Shell Script 예시</a>
+                    <a href="#%ea%b3%b5%eb%b6%80%ea%b1%b0%eb%a6%ac" aria-label="공부거리">공부거리</a></li>
+                <li>
+                    <a href="#next-step-2%ec%a3%bc%ec%b0%a8-%ea%b0%95%ec%9d%98" aria-label="next-step 2주차 강의">next-step 2주차 강의</a></li>
+                <li>
+                    <a href="#%eb%b0%b0%ed%8f%ac-shell-script-%ec%98%88%ec%8b%9c" aria-label="배포 Shell Script 예시">배포 Shell Script 예시</a><ul>
+                        <ul>
+                        
+                <li>
+                    <a href="#q-%ec%95%84%eb%9e%98-%ec%9e%91%ec%84%b1%ed%95%9c-nginxconf%ec%9d%98-17217018080%ec%9d%80-%ec%96%b4%eb%96%a4-%ec%84%9c%eb%b2%84%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="Q. 아래 작성한 nginx.conf의 172.17.0.1:8080은 어떤 서버인가요??">Q. 아래 작성한 nginx.conf의 172.17.0.1:8080은 어떤 서버인가요??</a>
                 </li>
+            </ul>
+            </ul>
+            </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><h1 id="배포-shell-script-예시">배포 Shell Script 예시<a hidden class="anchor" aria-hidden="true" href="#배포-shell-script-예시">#</a></h1>
+  <div class="post-content"><h1 id="공부거리">공부거리<a hidden class="anchor" aria-hidden="true" href="#공부거리">#</a></h1>
+<ul>
+<li>라우팅 테이블</li>
+<li>ICMP는 핑을 위한 프로토콜(?)</li>
+<li>NAT Gateway</li>
+<li>Internet GateWay</li>
+<li>Bastion</li>
+<li>shell 스크립트 문법</li>
+<li>리눅스 Logger</li>
+<li>flyway</li>
+</ul>
+<h1 id="next-step-2주차-강의">next-step 2주차 강의<a hidden class="anchor" aria-hidden="true" href="#next-step-2주차-강의">#</a></h1>
+<ul>
+<li>USE 방법론</li>
+<li>서버간 통신할때는 private ip로 하기. 공인 IP로 하게되면 인터넷으로 나갔다가 다시 들어오게됨.(비효율적임) 베스천에선 인터넷이라고 착각하게됨. 보안그룹이 복잡해짐.</li>
+<li>bastion 서버를 나둔 이유는 DDOS같은 공격이 발생하더라도 접근할 수 있는 통로가 여전히 확보되어있다.</li>
+<li>가용성 : 시스템이 서비스를 정상적으로 제공할 수 있는 상태</li>
+<li>성능이 우수하다 = Users(동시접속자 수) , TPS(처리속도)), Time(응답속도))</li>
+<li>Active User는 요청을 계속해서 보내는 사용자, Concurrent user 응답으로 받은 페이지를 계속해서 보는 사용자</li>
+<li>처리량 : 일정시간동안 얼마나 많이 처리할 수 있는지. Stress Test를 수행. Scalue out, Scale up으로 대응한다. 단일 사용자에 대한 응답속도가 느려진다면 scale up. 부하가 많아질 경우 응답속도가 느려진다면 scale out을 수행한다.</li>
+<li>부하 테스트 종류
+<ul>
+<li>smoke. 최소한의 부하로, 테스트 시나리오 오류를 검증. VUser 1 ~ 2로 구성.</li>
+<li>load : 피크타임 트래픽을 계속해서 요청한다.</li>
+<li>stress : 점진적으로 부하가 증가시킨다. 문제가 발생할때까지 부하를 증가 시킨다. 실제는 한번에 요청이 들어오는데 stress는 점진적으로 요청이 들어온다</li>
+</ul>
+</li>
+<li>부하 테스트 종료
+<ul>
+<li>k6 : 시나리오 기반 테스트가 가능하다</li>
+</ul>
+</li>
+<li>성능 목표를 우선 정해야 한다!!!</li>
+<li>실제 사용자가 접속하는 환경</li>
+<li>부하 테스트에서는 클라이언트 내부 처리시간이 배제되어 있음을 염두해 두어야한다.</li>
+</ul>
+<h1 id="배포-shell-script-예시">배포 Shell Script 예시<a hidden class="anchor" aria-hidden="true" href="#배포-shell-script-예시">#</a></h1>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#75715e">#!/bin/bash
 </span></span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#75715e"></span>
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span><span style="color:#75715e">## 색상 변수 설정</span>
@@ -298,7 +345,50 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">70</span><span>build;
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">71</span><span>killProcess;
 </span></span><span style="display:flex;"><span style="white-space:pre;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">72</span><span>run;
-</span></span></code></pre></div>
+</span></span></code></pre></div><p>@brainbackdoor
+안녕하세요. 동규님.</p>
+<p>nginx.conf 파일을 수정하고 image Build를 했었어야 했는데 그냥 기존의 image로 컨테이너를 생성했었습니다. ㅠㅠ</p>
+<p>이 문제를 해결하는 과정에서 한가지 질문 사항있습니다.</p>
+<h3 id="q-아래-작성한-nginxconf의-17217018080은-어떤-서버인가요">Q. 아래 작성한 nginx.conf의 172.17.0.1:8080은 어떤 서버인가요??<a hidden class="anchor" aria-hidden="true" href="#q-아래-작성한-nginxconf의-17217018080은-어떤-서버인가요">#</a></h3>
+<pre tabindex="0"><code>upstream app {
+    server 172.17.0.1:8080;
+  }
+</code></pre><p>listen 443을 처리하는 server의 proxy_pass를 보면 app의 server가 172.17.0.1:8080이 아닌 localhost:8080가 되어야 하는것 처럼  보이는데 혹시 중간에 제가 놓치고 있는 서버가 있는지 궁금합니다.
+(localhost:8080이라 생각한 이유는? reverse proxy가 443 포트로 오는 request를 받아서 실제로 구동중인 서버로 forwarding 해야하므로 )</p>
+<pre tabindex="0"><code>server {
+    listen 443 ssl;
+    ssl_certificate /etc/letsencrypt/live/92soojong.p-e.kr/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/92soojong.p-e.kr/privkey.pem;
+
+    # Disable SSL
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+    # 통신과정에서 사용할 암호화 알고리즘
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers ECDH+AESGCM:ECDH+AES256:ECDH+AES128:DH+3DES:!ADH:!AECDH:!MD5;
+
+    # Enable HSTS
+    # client의 browser에게 http로 어떠한 것도 load 하지 말라고 규제합니다.
+    # 이를 통해 http에서 https로 redirect 되는 request를 minimize 할 수 있습니다.
+    add_header Strict-Transport-Security &#34;max-age=31536000&#34; always;
+
+    # SSL sessions
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 10m;
+
+    location / {
+      proxy_pass http://app;
+    }
+  }
+</code></pre><p>docker run -it &ndash;rm &ndash;name certbot <br>
+-v &lsquo;/etc/letsencrypt:/etc/letsencrypt&rsquo; <br>
+-v &lsquo;/var/lib/letsencrypt:/var/lib/letsencrypt&rsquo; <br>
+certbot/certbot certonly -d &lsquo;92soojong.o-r.kr&rsquo; &ndash;manual &ndash;preferred-challenges dns &ndash;server <a href="https://acme-v02.api.letsencrypt.org/directory">https://acme-v02.api.letsencrypt.org/directory</a></p>
+<p>_acme-challenge.92soojong.o-r.kr
+ckl5NpVO6Uqr-1ckGKKG_VHMa1R1-aeubGEzWl6VOVM</p>
+<p>cp /etc/letsencrypt/live/92soojong.o-r.kr/fullchain.pem ./
+cp /etc/letsencrypt/live/92soojong.o-r.kr/privkey.pem ./</p>
+
 
   </div>
 
