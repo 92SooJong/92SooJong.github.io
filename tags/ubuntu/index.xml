@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ubuntu on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/ubuntu/</link>
+    <description>Recent content in Ubuntu on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 21 Nov 2022 22:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/ubuntu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>자주쓰는 Ubuntu 명령어</title>
+      <link>https://92SooJong.github.io/posts/etc/linux-command/</link>
+      <pubDate>Mon, 21 Nov 2022 22:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/etc/linux-command/</guid>
+      <description>Jar 실행 nohup java -jar [jar파일명] 1&amp;gt; [로그파일명] 2&amp;gt;&amp;amp;1 &amp;amp; 백그라운드로 jar를 실행시킨다.
+nohup java -jar -Dspring.profiles.active=prod ./infra-subway-deploy/build/libs/subway-0.0.1-SNAPSHOT.jar 1&amp;gt; subway.log 2&amp;gt;&amp;amp;1 &amp;amp;
+프로세스 ps -ef | grep java java가 들어간 Process를 출력한다 pgrep -f java java가 들어간 Process를 출력한다
+kill -l kill 옵션을 확인한다
+Vi Editor 문장 맨 끝으로 이동 $ 문장 맨 앞으로 이동 ^ 첫번째 줄로 이동 gg 현재 위치 이하 모두 삭제 dG(d + Shift g) </description>
+    </item>
+    
+  </channel>
+</rss>
