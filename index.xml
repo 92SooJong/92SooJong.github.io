@@ -6,7 +6,16 @@
     <description>Recent content on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 23 Dec 2022 22:55:00 +0000</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 30 Dec 2022 19:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Comparable vs Comparator in Java</title>
+      <link>https://92SooJong.github.io/posts/java/comparator/</link>
+      <pubDate>Fri, 30 Dec 2022 19:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/comparator/</guid>
+      <description>Comparable single element의 정렬을 제공한다. 예를 들면 ID, 이름, 가격 등 원본 클래스가 변경된다. element 정렬을 위해서 compareTo() 메소드를 제공한다 Comparable은 java.lang 패키지에 존재한다 Comparable을 상속하는 list형태의 Collection은 Collections.sort(List) 메소드를 사용할 수 있다. Comparator multiple element의 정렬을 지원한다. 예를들면 (ID,이름)을 묶어서 정렬할 수 있다. element 정렬을 위해서 compare() 메소드를 제공한다 Comparator는 java.util 패키지에 존재한다 list형태의 Collection을 Collection.sort(List,Comparator) 메소드를 사용해서 정렬할 수 있다. 공식문서에서 발췌한 글 Comparator 공식문서 링크 Comparasion function은 collection 오브젝트에 전체 정렬을 위한 함수이다.</description>
+    </item>
+    
     <item>
       <title>December 2022 회고</title>
       <link>https://92SooJong.github.io/posts/%ED%9A%8C%EA%B3%A0/2022-12/</link>
