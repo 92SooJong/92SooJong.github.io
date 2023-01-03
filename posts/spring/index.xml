@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Spring on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/spring/</link>
+    <description>Recent content in Spring on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 03 Jan 2023 23:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/spring/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DefaultBootstrapContext을 까보자</title>
+      <link>https://92SooJong.github.io/posts/spring/defaultbootstrapcontext/</link>
+      <pubDate>Tue, 03 Jan 2023 23:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/spring/defaultbootstrapcontext/</guid>
+      <description>TODO : 어색한 번역이나 설명이 부족한 부분 채우기
+DefaultBootstrapContext ConfigurableBootstrapContext를 구현한 디폴트 클래스다. ConfigurableBootstrapContext BootstrapContext와 BootstrapRegistry를 extends한다 BootstrapContext는 BootstrapRegistry를 통해서 configuration 메소드를 제공한다 BootstrapRegistry 단순한 형태의 오브젝트 레지스트리(저장소)이다. startup이 진행되는 동안 사용가능하다. ApplicationContext가 준비되는 시점인 Environment 후처리 순간에 사용가능하다. 레지스트리는 Class를 Key로 사용한다. 이뜻은 하나의 인스턴스만 저장될 수 있음을 의미한다. BootstrapRegistry는 인스턴스를 등록하는데 사용된다.(인스턴스를 생성하는 cost는 비싸다.) 또한 BootstrapRegistry는 ApplicationContext가 사용되기 전에 필요에 따라 공유되기도 한다 addCloseListener(ApplicationListener) 메소드는 listener를 추가하는데 사용된다.</description>
+    </item>
+    
+  </channel>
+</rss>
