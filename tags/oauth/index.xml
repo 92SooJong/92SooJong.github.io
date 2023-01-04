@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>OAuth on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/oauth/</link>
+    <description>Recent content in OAuth on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 04 Jan 2023 20:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/oauth/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>OAuth 2.0</title>
+      <link>https://92SooJong.github.io/posts/etc/oauth2/</link>
+      <pubDate>Wed, 04 Jan 2023 20:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/etc/oauth2/</guid>
+      <description>사전지식 Authentication vs Authorization OAuth 2.0은 Authorization(인가)를 위해 만들어졌다.(Authentication을 위해 만들어 진게 아님!) Delegated authorization Delegated authorization은 누군가에 의해 관리되고 있는 시스템의 데이터로 접근가능하도록 application에 permission을 주는것이다. 사용자의 Credential을 얻지 않은채 Delegated authorization를 하는건 불가능하다. What is OAuth Open Authorization의 약자이다. 토큰 기반의 인증,인가 방식이다. 엔드 user의 계정을 써드파티 서비스가 사용할 수 있도록 해준다. facebook의 아이디와 비밀번호를 모르더라도 facebook에 접근이 가능하다! OAuth 1.0은 Deprecated이며 현재는 OAuth 2.0이 사용된다 OAuth 2.0 Terminology Resource Owner application이 얻으려고 하는 데이터의 소유자를 의미한다 Client application을 의미한다 Authorization server permission을 부여하거나 조회할때 사용되는 서버를 의미한다 Resource server 물리 데이터를 저장하고 있는 서버를 의미한다 Authorization grant Authorization grant를 가졌다는 데이터에 접근할 권한을 가졌다와 같은 뜻이다.</description>
+    </item>
+    
+  </channel>
+</rss>
