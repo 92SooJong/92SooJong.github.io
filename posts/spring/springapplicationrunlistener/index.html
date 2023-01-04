@@ -5,11 +5,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>OAuth 2.0 | Today I Learn</title>
-<meta name="keywords" content="OAuth, Korean">
-<meta name="description" content="사전지식 Authentication vs Authorization OAuth 2.0은 Authorization(인가)를 위해 만들어졌다.(Authentication을 위해 만들어 진게 아님!) Delegated authorization Delegated authorization은 누군가에 의해 관리되고 있는 시스템의 데이터로 접근가능하도록 application에 permission을 주는것이다. 사용자의 Credential을 얻지 않은채 Delegated authorization를 하는건 불가능하다. What is OAuth Open Authorization의 약자이다. 토큰 기반의 인증,인가 방식이다. 엔드 user의 계정을 써드파티 서비스가 사용할 수 있도록 해준다. facebook의 아이디와 비밀번호를 모르더라도 facebook에 접근이 가능하다! OAuth 1.0은 Deprecated이며 현재는 OAuth 2.0이 사용된다 OAuth 2.0 Terminology Resource Owner application이 얻으려고 하는 데이터의 소유자를 의미한다 Client application을 의미한다 Authorization server permission을 부여하거나 조회할때 사용되는 서버를 의미한다 Resource server 물리 데이터를 저장하고 있는 서버를 의미한다 Authorization grant Authorization grant를 가졌다는 데이터에 접근할 권한을 가졌다와 같은 뜻이다.">
+<title>SpringApplicationRunListener를 까보자 | Today I Learn</title>
+<meta name="keywords" content="Spring, Korean">
+<meta name="description" content="SpringApplicationRunListener 인터페이스 SpringApplication run 메소드의 Listener이다. SpringApplicationRunListener는 SpringFactoriesLoader에 의해 로드된다. 그리고 SpringApplication 인스턴스와 아규먼트를 받아내기 위해서 반드시 public 생성자를 선언해야한다. 매 run 메소드마다 새로운 SpringApplicationRunListener가 생성될것이다. EventPublishingRunListener SpringApplicationRunListener 인터페이스를 구현한다 SpringApplicationEvent를 Publish하는 역할을 함. 이벤트는 ApplicationEventMulticaster 필드가 관리된다. context가 refresh 되기전에 ApplicationEventMulticaster는 이벤트를 실행한다 ApplicationEventMulticaster 인터페이스 Spring framework 영역이다.(boot 아님!) 여러개의 ApplicationListener타입 Object를 관리하며 이벤트를 ApplicationListener에 부여하는 역할을 한다 이벤트 publish를 위해선 ApplicationEventMulticaster대신 해서 ApplicationEventPublisher 또는 ApplicationContext를 사용할 수도 있음 ApplicationEvent 추상 클래스 모든 Application의 event는 ApplicationEvent를 확장해야한다 ApplicationContextEvent 추상 클래스 ApplicationContext가 사용할 이벤트를 의미한다.">
 <meta name="author" content="">
-<link rel="canonical" href="https://92SooJong.github.io/posts/etc/oauth2/">
+<link rel="canonical" href="https://92SooJong.github.io/posts/spring/springapplicationrunlistener/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.bc1149f4a72aa4858d3a9f71462f75e5884ffe8073ea9d6d5761d5663d651e20.css" integrity="sha256-vBFJ9KcqpIWNOp9xRi915YhP/oBz6p1tV2HVZj1lHiA=" rel="preload stylesheet" as="style">
 <script defer crossorigin="anonymous" src="/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
     onload="hljs.initHighlightingOnLoad();"></script>
@@ -56,16 +56,16 @@
         }
 
     </style>
-</noscript><meta property="og:title" content="OAuth 2.0" />
-<meta property="og:description" content="사전지식 Authentication vs Authorization OAuth 2.0은 Authorization(인가)를 위해 만들어졌다.(Authentication을 위해 만들어 진게 아님!) Delegated authorization Delegated authorization은 누군가에 의해 관리되고 있는 시스템의 데이터로 접근가능하도록 application에 permission을 주는것이다. 사용자의 Credential을 얻지 않은채 Delegated authorization를 하는건 불가능하다. What is OAuth Open Authorization의 약자이다. 토큰 기반의 인증,인가 방식이다. 엔드 user의 계정을 써드파티 서비스가 사용할 수 있도록 해준다. facebook의 아이디와 비밀번호를 모르더라도 facebook에 접근이 가능하다! OAuth 1.0은 Deprecated이며 현재는 OAuth 2.0이 사용된다 OAuth 2.0 Terminology Resource Owner application이 얻으려고 하는 데이터의 소유자를 의미한다 Client application을 의미한다 Authorization server permission을 부여하거나 조회할때 사용되는 서버를 의미한다 Resource server 물리 데이터를 저장하고 있는 서버를 의미한다 Authorization grant Authorization grant를 가졌다는 데이터에 접근할 권한을 가졌다와 같은 뜻이다." />
+</noscript><meta property="og:title" content="SpringApplicationRunListener를 까보자" />
+<meta property="og:description" content="SpringApplicationRunListener 인터페이스 SpringApplication run 메소드의 Listener이다. SpringApplicationRunListener는 SpringFactoriesLoader에 의해 로드된다. 그리고 SpringApplication 인스턴스와 아규먼트를 받아내기 위해서 반드시 public 생성자를 선언해야한다. 매 run 메소드마다 새로운 SpringApplicationRunListener가 생성될것이다. EventPublishingRunListener SpringApplicationRunListener 인터페이스를 구현한다 SpringApplicationEvent를 Publish하는 역할을 함. 이벤트는 ApplicationEventMulticaster 필드가 관리된다. context가 refresh 되기전에 ApplicationEventMulticaster는 이벤트를 실행한다 ApplicationEventMulticaster 인터페이스 Spring framework 영역이다.(boot 아님!) 여러개의 ApplicationListener타입 Object를 관리하며 이벤트를 ApplicationListener에 부여하는 역할을 한다 이벤트 publish를 위해선 ApplicationEventMulticaster대신 해서 ApplicationEventPublisher 또는 ApplicationContext를 사용할 수도 있음 ApplicationEvent 추상 클래스 모든 Application의 event는 ApplicationEvent를 확장해야한다 ApplicationContextEvent 추상 클래스 ApplicationContext가 사용할 이벤트를 의미한다." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://92SooJong.github.io/posts/etc/oauth2/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2023-01-04T20:00:00+09:00" />
-<meta property="article:modified_time" content="2023-01-04T20:00:00+09:00" />
+<meta property="og:url" content="https://92SooJong.github.io/posts/spring/springapplicationrunlistener/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-01-04T22:55:00+09:00" />
+<meta property="article:modified_time" content="2023-01-04T22:55:00+09:00" />
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="OAuth 2.0"/>
-<meta name="twitter:description" content="사전지식 Authentication vs Authorization OAuth 2.0은 Authorization(인가)를 위해 만들어졌다.(Authentication을 위해 만들어 진게 아님!) Delegated authorization Delegated authorization은 누군가에 의해 관리되고 있는 시스템의 데이터로 접근가능하도록 application에 permission을 주는것이다. 사용자의 Credential을 얻지 않은채 Delegated authorization를 하는건 불가능하다. What is OAuth Open Authorization의 약자이다. 토큰 기반의 인증,인가 방식이다. 엔드 user의 계정을 써드파티 서비스가 사용할 수 있도록 해준다. facebook의 아이디와 비밀번호를 모르더라도 facebook에 접근이 가능하다! OAuth 1.0은 Deprecated이며 현재는 OAuth 2.0이 사용된다 OAuth 2.0 Terminology Resource Owner application이 얻으려고 하는 데이터의 소유자를 의미한다 Client application을 의미한다 Authorization server permission을 부여하거나 조회할때 사용되는 서버를 의미한다 Resource server 물리 데이터를 저장하고 있는 서버를 의미한다 Authorization grant Authorization grant를 가졌다는 데이터에 접근할 권한을 가졌다와 같은 뜻이다."/>
+<meta name="twitter:title" content="SpringApplicationRunListener를 까보자"/>
+<meta name="twitter:description" content="SpringApplicationRunListener 인터페이스 SpringApplication run 메소드의 Listener이다. SpringApplicationRunListener는 SpringFactoriesLoader에 의해 로드된다. 그리고 SpringApplication 인스턴스와 아규먼트를 받아내기 위해서 반드시 public 생성자를 선언해야한다. 매 run 메소드마다 새로운 SpringApplicationRunListener가 생성될것이다. EventPublishingRunListener SpringApplicationRunListener 인터페이스를 구현한다 SpringApplicationEvent를 Publish하는 역할을 함. 이벤트는 ApplicationEventMulticaster 필드가 관리된다. context가 refresh 되기전에 ApplicationEventMulticaster는 이벤트를 실행한다 ApplicationEventMulticaster 인터페이스 Spring framework 영역이다.(boot 아님!) 여러개의 ApplicationListener타입 Object를 관리하며 이벤트를 ApplicationListener에 부여하는 역할을 한다 이벤트 publish를 위해선 ApplicationEventMulticaster대신 해서 ApplicationEventPublisher 또는 ApplicationContext를 사용할 수도 있음 ApplicationEvent 추상 클래스 모든 Application의 event는 ApplicationEvent를 확장해야한다 ApplicationContextEvent 추상 클래스 ApplicationContext가 사용할 이벤트를 의미한다."/>
 
 
 <script type="application/ld+json">
@@ -82,14 +82,14 @@
     {
       "@type": "ListItem",
       "position":  2 ,
-      "name": "etc",
-      "item": "https://92SooJong.github.io/posts/etc/"
+      "name": "Spring",
+      "item": "https://92SooJong.github.io/posts/spring/"
     }, 
     {
       "@type": "ListItem",
       "position":  3 ,
-      "name": "OAuth 2.0",
-      "item": "https://92SooJong.github.io/posts/etc/oauth2/"
+      "name": "SpringApplicationRunListener를 까보자",
+      "item": "https://92SooJong.github.io/posts/spring/springapplicationrunlistener/"
     }
   ]
 }
@@ -98,20 +98,20 @@
 {
   "@context": "https://schema.org",
   "@type": "BlogPosting",
-  "headline": "OAuth 2.0",
-  "name": "OAuth 2.0",
-  "description": "사전지식 Authentication vs Authorization OAuth 2.0은 Authorization(인가)를 위해 만들어졌다.(Authentication을 위해 만들어 진게 아님!) Delegated authorization Delegated authorization은 누군가에 의해 관리되고 있는 시스템의 데이터로 접근가능하도록 application에 permission을 주는것이다. 사용자의 Credential을 얻지 않은채 Delegated authorization를 하는건 불가능하다. What is OAuth Open Authorization의 약자이다. 토큰 기반의 인증,인가 방식이다. 엔드 user의 계정을 써드파티 서비스가 사용할 수 있도록 해준다. facebook의 아이디와 비밀번호를 모르더라도 facebook에 접근이 가능하다! OAuth 1.0은 Deprecated이며 현재는 OAuth 2.0이 사용된다 OAuth 2.0 Terminology Resource Owner application이 얻으려고 하는 데이터의 소유자를 의미한다 Client application을 의미한다 Authorization server permission을 부여하거나 조회할때 사용되는 서버를 의미한다 Resource server 물리 데이터를 저장하고 있는 서버를 의미한다 Authorization grant Authorization grant를 가졌다는 데이터에 접근할 권한을 가졌다와 같은 뜻이다.",
+  "headline": "SpringApplicationRunListener를 까보자",
+  "name": "SpringApplicationRunListener를 까보자",
+  "description": "SpringApplicationRunListener 인터페이스 SpringApplication run 메소드의 Listener이다. SpringApplicationRunListener는 SpringFactoriesLoader에 의해 로드된다. 그리고 SpringApplication 인스턴스와 아규먼트를 받아내기 위해서 반드시 public 생성자를 선언해야한다. 매 run 메소드마다 새로운 SpringApplicationRunListener가 생성될것이다. EventPublishingRunListener SpringApplicationRunListener 인터페이스를 구현한다 SpringApplicationEvent를 Publish하는 역할을 함. 이벤트는 ApplicationEventMulticaster 필드가 관리된다. context가 refresh 되기전에 ApplicationEventMulticaster는 이벤트를 실행한다 ApplicationEventMulticaster 인터페이스 Spring framework 영역이다.(boot 아님!) 여러개의 ApplicationListener타입 Object를 관리하며 이벤트를 ApplicationListener에 부여하는 역할을 한다 이벤트 publish를 위해선 ApplicationEventMulticaster대신 해서 ApplicationEventPublisher 또는 ApplicationContext를 사용할 수도 있음 ApplicationEvent 추상 클래스 모든 Application의 event는 ApplicationEvent를 확장해야한다 ApplicationContextEvent 추상 클래스 ApplicationContext가 사용할 이벤트를 의미한다.",
   "keywords": [
-    "OAuth", "Korean"
+    "Spring", "Korean"
   ],
-  "articleBody": "사전지식 Authentication vs Authorization OAuth 2.0은 Authorization(인가)를 위해 만들어졌다.(Authentication을 위해 만들어 진게 아님!) Delegated authorization Delegated authorization은 누군가에 의해 관리되고 있는 시스템의 데이터로 접근가능하도록 application에 permission을 주는것이다. 사용자의 Credential을 얻지 않은채 Delegated authorization를 하는건 불가능하다. What is OAuth Open Authorization의 약자이다. 토큰 기반의 인증,인가 방식이다. 엔드 user의 계정을 써드파티 서비스가 사용할 수 있도록 해준다. facebook의 아이디와 비밀번호를 모르더라도 facebook에 접근이 가능하다! OAuth 1.0은 Deprecated이며 현재는 OAuth 2.0이 사용된다 OAuth 2.0 Terminology Resource Owner application이 얻으려고 하는 데이터의 소유자를 의미한다 Client application을 의미한다 Authorization server permission을 부여하거나 조회할때 사용되는 서버를 의미한다 Resource server 물리 데이터를 저장하고 있는 서버를 의미한다 Authorization grant Authorization grant를 가졌다는 데이터에 접근할 권한을 가졌다와 같은 뜻이다. Redirect Uri permission을 부여받았을때 사용자가 redirect될 경로를 의미한다 Access token Resource server의 데이터에 접근하기 위한 key를 의미한다 Scope Scope에 따라 application이 얻을 수 있는 사용자 데이터의 수준을 달리 할수 있다. Permission의 level을 설정한다고 생각하면 됨! Flow Resource Owner 위치가 잘못됐다?! More OAuth 2.0 Terminology 위 그림에서 access token을 바로 얻는게 아니라 code를 통해서 access token을 얻는걸 볼 수 있다. (인가서버에 code를 보내서 access token을 얻는다) 이 이유를 이해하기 위해선 아래 2개 용어를 알고 있어야한다. Back channel 서버간 통신을 위해 강력한 보안이 적용되어 있는 채널이다 Front channel browser/mobile app이 서버로 접속하기 위해 느슨한 보안이 적용되어 있는 채널이다. 인가 서버로 code를 보내서 access token을 얻고, Resource server에서 resource를 얻을땐 access token을 사용한다 링크 What the hell is OAuth? ",
-  "wordCount" : "225",
+  "articleBody": "SpringApplicationRunListener 인터페이스 SpringApplication run 메소드의 Listener이다. SpringApplicationRunListener는 SpringFactoriesLoader에 의해 로드된다. 그리고 SpringApplication 인스턴스와 아규먼트를 받아내기 위해서 반드시 public 생성자를 선언해야한다. 매 run 메소드마다 새로운 SpringApplicationRunListener가 생성될것이다. EventPublishingRunListener SpringApplicationRunListener 인터페이스를 구현한다 SpringApplicationEvent를 Publish하는 역할을 함. 이벤트는 ApplicationEventMulticaster 필드가 관리된다. context가 refresh 되기전에 ApplicationEventMulticaster는 이벤트를 실행한다 ApplicationEventMulticaster 인터페이스 Spring framework 영역이다.(boot 아님!) 여러개의 ApplicationListener타입 Object를 관리하며 이벤트를 ApplicationListener에 부여하는 역할을 한다 이벤트 publish를 위해선 ApplicationEventMulticaster대신 해서 ApplicationEventPublisher 또는 ApplicationContext를 사용할 수도 있음 ApplicationEvent 추상 클래스 모든 Application의 event는 ApplicationEvent를 확장해야한다 ApplicationContextEvent 추상 클래스 ApplicationContext가 사용할 이벤트를 의미한다. ",
+  "wordCount" : "85",
   "inLanguage": "en",
-  "datePublished": "2023-01-04T20:00:00+09:00",
-  "dateModified": "2023-01-04T20:00:00+09:00",
+  "datePublished": "2023-01-04T22:55:00+09:00",
+  "dateModified": "2023-01-04T22:55:00+09:00",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://92SooJong.github.io/posts/etc/oauth2/"
+    "@id": "https://92SooJong.github.io/posts/spring/springapplicationrunlistener/"
   },
   "publisher": {
     "@type": "Organization",
@@ -203,11 +203,11 @@
 
 <article class="post-single">
   <header class="post-header">
-    <div class="breadcrumbs"><a href="https://92SooJong.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/etc/">etc</a></div>
+    <div class="breadcrumbs"><a href="https://92SooJong.github.io/">Home</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/">Posts</a>&nbsp;»&nbsp;<a href="https://92SooJong.github.io/posts/spring/">Spring</a></div>
     <h1 class="post-title">
-      OAuth 2.0
+      SpringApplicationRunListener를 까보자
     </h1>
-    <div class="post-meta"><span title='2023-01-04 20:00:00 +0900 KST'>January 4, 2023</span>&nbsp;|&nbsp;<a href="https://github.com/92SooJong/92SooJong.github.io/issues" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
+    <div class="post-meta"><span title='2023-01-04 22:55:00 +0900 KST'>January 4, 2023</span>&nbsp;|&nbsp;<a href="https://github.com/92SooJong/92SooJong.github.io/issues" rel="noopener noreferrer" target="_blank">Suggest Changes</a>
 
 </div>
   </header> <div class="toc">
@@ -218,190 +218,105 @@
 
         <div class="inner"><ul>
                 <li>
-                    <a href="#%ec%82%ac%ec%a0%84%ec%a7%80%ec%8b%9d" aria-label="사전지식">사전지식</a><ul>
-                        
+                    <a href="#springapplicationrunlistener-%ec%9d%b8%ed%84%b0%ed%8e%98%ec%9d%b4%ec%8a%a4" aria-label="SpringApplicationRunListener 인터페이스">SpringApplicationRunListener 인터페이스</a></li>
                 <li>
-                    <a href="#authentication-vs-authorization" aria-label="Authentication vs Authorization">Authentication vs Authorization</a></li>
+                    <a href="#eventpublishingrunlistener" aria-label="EventPublishingRunListener">EventPublishingRunListener</a></li>
                 <li>
-                    <a href="#delegated-authorization" aria-label="Delegated authorization">Delegated authorization</a></li></ul>
-                </li>
+                    <a href="#applicationeventmulticaster-%ec%9d%b8%ed%84%b0%ed%8e%98%ec%9d%b4%ec%8a%a4" aria-label="ApplicationEventMulticaster 인터페이스">ApplicationEventMulticaster 인터페이스</a></li>
                 <li>
-                    <a href="#what-is-oauth" aria-label="What is OAuth">What is OAuth</a></li>
+                    <a href="#applicationevent-%ec%b6%94%ec%83%81-%ed%81%b4%eb%9e%98%ec%8a%a4" aria-label="ApplicationEvent 추상 클래스">ApplicationEvent 추상 클래스</a></li>
                 <li>
-                    <a href="#oauth-20-terminology" aria-label="OAuth 2.0 Terminology">OAuth 2.0 Terminology</a><ul>
-                        
-                <li>
-                    <a href="#resource-owner" aria-label="Resource Owner">Resource Owner</a></li>
-                <li>
-                    <a href="#client" aria-label="Client">Client</a></li>
-                <li>
-                    <a href="#authorization-server" aria-label="Authorization server">Authorization server</a></li>
-                <li>
-                    <a href="#resource-server" aria-label="Resource server">Resource server</a></li>
-                <li>
-                    <a href="#authorization-grant" aria-label="Authorization grant">Authorization grant</a></li>
-                <li>
-                    <a href="#redirect-uri" aria-label="Redirect Uri">Redirect Uri</a></li>
-                <li>
-                    <a href="#access-token" aria-label="Access token">Access token</a></li>
-                <li>
-                    <a href="#scope" aria-label="Scope">Scope</a></li></ul>
-                </li>
-                <li>
-                    <a href="#flow" aria-label="Flow">Flow</a></li>
-                <li>
-                    <a href="#more-oauth-20-terminology" aria-label="More OAuth 2.0 Terminology">More OAuth 2.0 Terminology</a><ul>
-                        
-                <li>
-                    <a href="#back-channel" aria-label="Back channel">Back channel</a></li>
-                <li>
-                    <a href="#front-channel" aria-label="Front channel">Front channel</a></li></ul>
-                </li>
-                <li>
-                    <a href="#%eb%a7%81%ed%81%ac" aria-label="링크">링크</a>
+                    <a href="#applicationcontextevent-%ec%b6%94%ec%83%81-%ed%81%b4%eb%9e%98%ec%8a%a4" aria-label="ApplicationContextEvent 추상 클래스">ApplicationContextEvent 추상 클래스</a>
                 </li>
             </ul>
         </div>
     </details>
 </div>
 
-  <div class="post-content"><h1 id="사전지식">사전지식<a hidden class="anchor" aria-hidden="true" href="#사전지식">#</a></h1>
-<h2 id="authentication-vs-authorization">Authentication vs Authorization<a hidden class="anchor" aria-hidden="true" href="#authentication-vs-authorization">#</a></h2>
+  <div class="post-content"><h1 id="springapplicationrunlistener-인터페이스">SpringApplicationRunListener 인터페이스<a hidden class="anchor" aria-hidden="true" href="#springapplicationrunlistener-인터페이스">#</a></h1>
 <ul>
-<li>OAuth 2.0은 Authorization(인가)를 위해 만들어졌다.(Authentication을 위해 만들어 진게 아님!)</li>
+<li>SpringApplication run 메소드의 Listener이다.</li>
+<li>SpringApplicationRunListener는 SpringFactoriesLoader에 의해 로드된다.</li>
+<li>그리고 SpringApplication 인스턴스와 아규먼트를 받아내기 위해서 반드시 public 생성자를 선언해야한다.</li>
+<li>매 run 메소드마다 새로운 SpringApplicationRunListener가 생성될것이다.</li>
 </ul>
-<h2 id="delegated-authorization">Delegated authorization<a hidden class="anchor" aria-hidden="true" href="#delegated-authorization">#</a></h2>
+<h1 id="eventpublishingrunlistener">EventPublishingRunListener<a hidden class="anchor" aria-hidden="true" href="#eventpublishingrunlistener">#</a></h1>
 <ul>
-<li>Delegated authorization은 누군가에 의해 관리되고 있는 시스템의 데이터로 접근가능하도록 application에 permission을 주는것이다.</li>
-<li>사용자의 Credential을 얻지 않은채 Delegated authorization를 하는건 불가능하다.</li>
+<li>SpringApplicationRunListener 인터페이스를 구현한다</li>
+<li>SpringApplicationEvent를 Publish하는 역할을 함.</li>
+<li>이벤트는 ApplicationEventMulticaster 필드가 관리된다.</li>
+<li>context가 refresh 되기전에 ApplicationEventMulticaster는 이벤트를 실행한다</li>
 </ul>
-<h1 id="what-is-oauth">What is OAuth<a hidden class="anchor" aria-hidden="true" href="#what-is-oauth">#</a></h1>
+<h1 id="applicationeventmulticaster-인터페이스">ApplicationEventMulticaster 인터페이스<a hidden class="anchor" aria-hidden="true" href="#applicationeventmulticaster-인터페이스">#</a></h1>
 <ul>
-<li>Open Authorization의 약자이다.</li>
-<li>토큰 기반의 인증,인가 방식이다.</li>
-<li>엔드 user의 계정을 써드파티 서비스가 사용할 수 있도록 해준다. facebook의 아이디와 비밀번호를 모르더라도 facebook에 접근이 가능하다!</li>
-<li>OAuth 1.0은 Deprecated이며 현재는 OAuth 2.0이 사용된다</li>
+<li>Spring framework 영역이다.(boot 아님!)</li>
+<li>여러개의 ApplicationListener타입 Object를 관리하며 이벤트를 ApplicationListener에 부여하는 역할을 한다</li>
+<li>이벤트 publish를 위해선 ApplicationEventMulticaster대신 해서 ApplicationEventPublisher 또는 ApplicationContext를 사용할 수도 있음</li>
 </ul>
-<h1 id="oauth-20-terminology">OAuth 2.0 Terminology<a hidden class="anchor" aria-hidden="true" href="#oauth-20-terminology">#</a></h1>
-<h2 id="resource-owner">Resource Owner<a hidden class="anchor" aria-hidden="true" href="#resource-owner">#</a></h2>
+<h1 id="applicationevent-추상-클래스">ApplicationEvent 추상 클래스<a hidden class="anchor" aria-hidden="true" href="#applicationevent-추상-클래스">#</a></h1>
 <ul>
-<li>application이 얻으려고 하는 <code>데이터의 소유자</code>를 의미한다</li>
+<li>모든 Application의 event는 ApplicationEvent를 확장해야한다</li>
 </ul>
-<h2 id="client">Client<a hidden class="anchor" aria-hidden="true" href="#client">#</a></h2>
+<h1 id="applicationcontextevent-추상-클래스">ApplicationContextEvent 추상 클래스<a hidden class="anchor" aria-hidden="true" href="#applicationcontextevent-추상-클래스">#</a></h1>
 <ul>
-<li>application을 의미한다</li>
+<li>ApplicationContext가 사용할 이벤트를 의미한다.</li>
 </ul>
-<h2 id="authorization-server">Authorization server<a hidden class="anchor" aria-hidden="true" href="#authorization-server">#</a></h2>
-<ul>
-<li>permission을 부여하거나 조회할때 사용되는 서버를 의미한다</li>
-</ul>
-<h2 id="resource-server">Resource server<a hidden class="anchor" aria-hidden="true" href="#resource-server">#</a></h2>
-<ul>
-<li>물리 데이터를 저장하고 있는 서버를 의미한다</li>
-</ul>
-<h2 id="authorization-grant">Authorization grant<a hidden class="anchor" aria-hidden="true" href="#authorization-grant">#</a></h2>
-<ul>
-<li><code>Authorization grant를 가졌다</code>는 데이터에 접근할 권한을 가졌다와 같은 뜻이다.</li>
-</ul>
-<h2 id="redirect-uri">Redirect Uri<a hidden class="anchor" aria-hidden="true" href="#redirect-uri">#</a></h2>
-<ul>
-<li>permission을 부여받았을때 사용자가 redirect될 경로를 의미한다</li>
-</ul>
-<h2 id="access-token">Access token<a hidden class="anchor" aria-hidden="true" href="#access-token">#</a></h2>
-<ul>
-<li>Resource server의 데이터에 접근하기 위한 key를 의미한다</li>
-</ul>
-<h2 id="scope">Scope<a hidden class="anchor" aria-hidden="true" href="#scope">#</a></h2>
-<ul>
-<li>Scope에 따라 application이 얻을 수 있는 사용자 데이터의 수준을 달리 할수 있다.</li>
-<li>Permission의 level을 설정한다고 생각하면 됨!</li>
-</ul>
-<h1 id="flow">Flow<a hidden class="anchor" aria-hidden="true" href="#flow">#</a></h1>
-<ul>
-<li>Resource Owner 위치가 잘못됐다?!
-<img loading="lazy" src="/images/etc/2023-01/2023-01-04-19-53-54.png" alt=""  />
-</li>
-</ul>
-<h1 id="more-oauth-20-terminology">More OAuth 2.0 Terminology<a hidden class="anchor" aria-hidden="true" href="#more-oauth-20-terminology">#</a></h1>
-<ul>
-<li>위 그림에서 access token을 바로 얻는게 아니라 code를 통해서 access token을 얻는걸 볼 수 있다. (인가서버에 code를 보내서 access token을 얻는다)</li>
-<li>이 이유를 이해하기 위해선 아래 2개 용어를 알고 있어야한다.</li>
-</ul>
-<h2 id="back-channel">Back channel<a hidden class="anchor" aria-hidden="true" href="#back-channel">#</a></h2>
-<ul>
-<li>서버간 통신을 위해 강력한 보안이 적용되어 있는 채널이다</li>
-</ul>
-<h2 id="front-channel">Front channel<a hidden class="anchor" aria-hidden="true" href="#front-channel">#</a></h2>
-<ul>
-<li>browser/mobile app이 서버로 접속하기 위해 느슨한 보안이 적용되어 있는 채널이다.</li>
-</ul>
-<p>인가 서버로 code를 보내서 access token을 얻고, Resource server에서 resource를 얻을땐 access token을 사용한다
-<img loading="lazy" src="/images/etc/2023-01/2023-01-04-20-10-03.png" alt=""  />
-</p>
-<h1 id="링크">링크<a hidden class="anchor" aria-hidden="true" href="#링크">#</a></h1>
-<p><a href="https://medium.com/@wdevon99/what-the-hell-is-oauth-6ba19f236612">What the hell is OAuth?
-</a></p>
 
 
   </div>
 
   <footer class="post-footer">
     <ul class="post-tags">
-      <li><a href="https://92SooJong.github.io/tags/oauth/">OAuth</a></li>
+      <li><a href="https://92SooJong.github.io/tags/spring/">Spring</a></li>
       <li><a href="https://92SooJong.github.io/tags/korean/">Korean</a></li>
     </ul>
 <nav class="paginav">
-  <a class="prev" href="https://92SooJong.github.io/posts/spring/springapplicationrunlistener/">
-    <span class="title">« Prev</span>
-    <br>
-    <span>SpringApplicationRunListener를 까보자</span>
-  </a>
-  <a class="next" href="https://92SooJong.github.io/posts/spring/defaultbootstrapcontext/">
+  <a class="next" href="https://92SooJong.github.io/posts/etc/oauth2/">
     <span class="title">Next »</span>
     <br>
-    <span>DefaultBootstrapContext을 까보자</span>
+    <span>OAuth 2.0</span>
   </a>
 </nav>
 
 
 <div class="share-buttons">
-    <a target="_blank" rel="noopener noreferrer" aria-label="share OAuth 2.0 on twitter"
-        href="https://twitter.com/intent/tweet/?text=OAuth%202.0&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fetc%2foauth2%2f&amp;hashtags=OAuth%2cKorean">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share SpringApplicationRunListener를 까보자 on twitter"
+        href="https://twitter.com/intent/tweet/?text=SpringApplicationRunListener%eb%a5%bc%20%ea%b9%8c%eb%b3%b4%ec%9e%90&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fspring%2fspringapplicationrunlistener%2f&amp;hashtags=Spring%2cKorean">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-253.927,424.544c135.939,0 210.268,-112.643 210.268,-210.268c0,-3.218 0,-6.437 -0.153,-9.502c14.406,-10.421 26.973,-23.448 36.935,-38.314c-13.18,5.824 -27.433,9.809 -42.452,11.648c15.326,-9.196 26.973,-23.602 32.49,-40.92c-14.252,8.429 -30.038,14.56 -46.896,17.931c-13.487,-14.406 -32.644,-23.295 -53.946,-23.295c-40.767,0 -73.87,33.104 -73.87,73.87c0,5.824 0.613,11.494 1.992,16.858c-61.456,-3.065 -115.862,-32.49 -152.337,-77.241c-6.284,10.881 -9.962,23.601 -9.962,37.088c0,25.594 13.027,48.276 32.95,61.456c-12.107,-0.307 -23.448,-3.678 -33.41,-9.196l0,0.92c0,35.862 25.441,65.594 59.311,72.49c-6.13,1.686 -12.72,2.606 -19.464,2.606c-4.751,0 -9.348,-0.46 -13.946,-1.38c9.349,29.426 36.628,50.728 68.965,51.341c-25.287,19.771 -57.164,31.571 -91.8,31.571c-5.977,0 -11.801,-0.306 -17.625,-1.073c32.337,21.15 71.264,33.41 112.95,33.41Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share OAuth 2.0 on linkedin"
-        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fetc%2foauth2%2f&amp;title=OAuth%202.0&amp;summary=OAuth%202.0&amp;source=https%3a%2f%2f92SooJong.github.io%2fposts%2fetc%2foauth2%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share SpringApplicationRunListener를 까보자 on linkedin"
+        href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fspring%2fspringapplicationrunlistener%2f&amp;title=SpringApplicationRunListener%eb%a5%bc%20%ea%b9%8c%eb%b3%b4%ec%9e%90&amp;summary=SpringApplicationRunListener%eb%a5%bc%20%ea%b9%8c%eb%b3%b4%ec%9e%90&amp;source=https%3a%2f%2f92SooJong.github.io%2fposts%2fspring%2fspringapplicationrunlistener%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-288.985,423.278l0,-225.717l-75.04,0l0,225.717l75.04,0Zm270.539,0l0,-129.439c0,-69.333 -37.018,-101.586 -86.381,-101.586c-39.804,0 -57.634,21.891 -67.617,37.266l0,-31.958l-75.021,0c0.995,21.181 0,225.717 0,225.717l75.02,0l0,-126.056c0,-6.748 0.486,-13.492 2.474,-18.315c5.414,-13.475 17.767,-27.434 38.494,-27.434c27.135,0 38.007,20.707 38.007,51.037l0,120.768l75.024,0Zm-307.552,-334.556c-25.674,0 -42.448,16.879 -42.448,39.002c0,21.658 16.264,39.002 41.455,39.002l0.484,0c26.165,0 42.452,-17.344 42.452,-39.002c-0.485,-22.092 -16.241,-38.954 -41.943,-39.002Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share OAuth 2.0 on reddit"
-        href="https://reddit.com/submit?url=https%3a%2f%2f92SooJong.github.io%2fposts%2fetc%2foauth2%2f&title=OAuth%202.0">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share SpringApplicationRunListener를 까보자 on reddit"
+        href="https://reddit.com/submit?url=https%3a%2f%2f92SooJong.github.io%2fposts%2fspring%2fspringapplicationrunlistener%2f&title=SpringApplicationRunListener%eb%a5%bc%20%ea%b9%8c%eb%b3%b4%ec%9e%90">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-3.446,265.638c0,-22.964 -18.616,-41.58 -41.58,-41.58c-11.211,0 -21.361,4.457 -28.841,11.666c-28.424,-20.508 -67.586,-33.757 -111.204,-35.278l18.941,-89.121l61.884,13.157c0.756,15.734 13.642,28.29 29.56,28.29c16.407,0 29.706,-13.299 29.706,-29.701c0,-16.403 -13.299,-29.702 -29.706,-29.702c-11.666,0 -21.657,6.792 -26.515,16.578l-69.105,-14.69c-1.922,-0.418 -3.939,-0.042 -5.585,1.036c-1.658,1.073 -2.811,2.761 -3.224,4.686l-21.152,99.438c-44.258,1.228 -84.046,14.494 -112.837,35.232c-7.468,-7.164 -17.589,-11.591 -28.757,-11.591c-22.965,0 -41.585,18.616 -41.585,41.58c0,16.896 10.095,31.41 24.568,37.918c-0.639,4.135 -0.99,8.328 -0.99,12.576c0,63.977 74.469,115.836 166.33,115.836c91.861,0 166.334,-51.859 166.334,-115.836c0,-4.218 -0.347,-8.387 -0.977,-12.493c14.564,-6.47 24.735,-21.034 24.735,-38.001Zm-119.474,108.193c-20.27,20.241 -59.115,21.816 -70.534,21.816c-11.428,0 -50.277,-1.575 -70.522,-21.82c-3.007,-3.008 -3.007,-7.882 0,-10.889c3.003,-2.999 7.882,-3.003 10.885,0c12.777,12.781 40.11,17.317 59.637,17.317c19.522,0 46.86,-4.536 59.657,-17.321c3.016,-2.999 7.886,-2.995 10.885,0.008c3.008,3.011 3.003,7.882 -0.008,10.889Zm-5.23,-48.781c-16.373,0 -29.701,-13.324 -29.701,-29.698c0,-16.381 13.328,-29.714 29.701,-29.714c16.378,0 29.706,13.333 29.706,29.714c0,16.374 -13.328,29.698 -29.706,29.698Zm-160.386,-29.702c0,-16.381 13.328,-29.71 29.714,-29.71c16.369,0 29.689,13.329 29.689,29.71c0,16.373 -13.32,29.693 -29.689,29.693c-16.386,0 -29.714,-13.32 -29.714,-29.693Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share OAuth 2.0 on facebook"
-        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f92SooJong.github.io%2fposts%2fetc%2foauth2%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share SpringApplicationRunListener를 까보자 on facebook"
+        href="https://facebook.com/sharer/sharer.php?u=https%3a%2f%2f92SooJong.github.io%2fposts%2fspring%2fspringapplicationrunlistener%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-106.468,0l0,-192.915l66.6,0l12.672,-82.621l-79.272,0l0,-53.617c0,-22.603 11.073,-44.636 46.58,-44.636l36.042,0l0,-70.34c0,0 -32.71,-5.582 -63.982,-5.582c-65.288,0 -107.96,39.569 -107.96,111.204l0,62.971l-72.573,0l0,82.621l72.573,0l0,192.915l-191.104,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share OAuth 2.0 on whatsapp"
-        href="https://api.whatsapp.com/send?text=OAuth%202.0%20-%20https%3a%2f%2f92SooJong.github.io%2fposts%2fetc%2foauth2%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share SpringApplicationRunListener를 까보자 on whatsapp"
+        href="https://api.whatsapp.com/send?text=SpringApplicationRunListener%eb%a5%bc%20%ea%b9%8c%eb%b3%b4%ec%9e%90%20-%20https%3a%2f%2f92SooJong.github.io%2fposts%2fspring%2fspringapplicationrunlistener%2f">
         <svg version="1.1" viewBox="0 0 512 512" xml:space="preserve" height="30px" width="30px" fill="currentColor">
             <path
                 d="M449.446,0c34.525,0 62.554,28.03 62.554,62.554l0,386.892c0,34.524 -28.03,62.554 -62.554,62.554l-386.892,0c-34.524,0 -62.554,-28.03 -62.554,-62.554l0,-386.892c0,-34.524 28.029,-62.554 62.554,-62.554l386.892,0Zm-58.673,127.703c-33.842,-33.881 -78.847,-52.548 -126.798,-52.568c-98.799,0 -179.21,80.405 -179.249,179.234c-0.013,31.593 8.241,62.428 23.927,89.612l-25.429,92.884l95.021,-24.925c26.181,14.28 55.659,21.807 85.658,21.816l0.074,0c98.789,0 179.206,-80.413 179.247,-179.243c0.018,-47.895 -18.61,-92.93 -52.451,-126.81Zm-126.797,275.782l-0.06,0c-26.734,-0.01 -52.954,-7.193 -75.828,-20.767l-5.441,-3.229l-56.386,14.792l15.05,-54.977l-3.542,-5.637c-14.913,-23.72 -22.791,-51.136 -22.779,-79.287c0.033,-82.142 66.867,-148.971 149.046,-148.971c39.793,0.014 77.199,15.531 105.329,43.692c28.128,28.16 43.609,65.592 43.594,105.4c-0.034,82.149 -66.866,148.983 -148.983,148.984Zm81.721,-111.581c-4.479,-2.242 -26.499,-13.075 -30.604,-14.571c-4.105,-1.495 -7.091,-2.241 -10.077,2.241c-2.986,4.483 -11.569,14.572 -14.182,17.562c-2.612,2.988 -5.225,3.364 -9.703,1.12c-4.479,-2.241 -18.91,-6.97 -36.017,-22.23c-13.314,-11.876 -22.304,-26.542 -24.916,-31.026c-2.612,-4.484 -0.279,-6.908 1.963,-9.14c2.016,-2.007 4.48,-5.232 6.719,-7.847c2.24,-2.615 2.986,-4.484 4.479,-7.472c1.493,-2.99 0.747,-5.604 -0.374,-7.846c-1.119,-2.241 -10.077,-24.288 -13.809,-33.256c-3.635,-8.733 -7.327,-7.55 -10.077,-7.688c-2.609,-0.13 -5.598,-0.158 -8.583,-0.158c-2.986,0 -7.839,1.121 -11.944,5.604c-4.105,4.484 -15.675,15.32 -15.675,37.364c0,22.046 16.048,43.342 18.287,46.332c2.24,2.99 31.582,48.227 76.511,67.627c10.685,4.615 19.028,7.371 25.533,9.434c10.728,3.41 20.492,2.929 28.209,1.775c8.605,-1.285 26.499,-10.833 30.231,-21.295c3.732,-10.464 3.732,-19.431 2.612,-21.298c-1.119,-1.869 -4.105,-2.99 -8.583,-5.232Z" />
         </svg>
     </a>
-    <a target="_blank" rel="noopener noreferrer" aria-label="share OAuth 2.0 on telegram"
-        href="https://telegram.me/share/url?text=OAuth%202.0&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fetc%2foauth2%2f">
+    <a target="_blank" rel="noopener noreferrer" aria-label="share SpringApplicationRunListener를 까보자 on telegram"
+        href="https://telegram.me/share/url?text=SpringApplicationRunListener%eb%a5%bc%20%ea%b9%8c%eb%b3%b4%ec%9e%90&amp;url=https%3a%2f%2f92SooJong.github.io%2fposts%2fspring%2fspringapplicationrunlistener%2f">
         <svg version="1.1" xml:space="preserve" viewBox="2 2 28 28" height="30px" width="30px" fill="currentColor">
             <path
                 d="M26.49,29.86H5.5a3.37,3.37,0,0,1-2.47-1,3.35,3.35,0,0,1-1-2.47V5.48A3.36,3.36,0,0,1,3,3,3.37,3.37,0,0,1,5.5,2h21A3.38,3.38,0,0,1,29,3a3.36,3.36,0,0,1,1,2.46V26.37a3.35,3.35,0,0,1-1,2.47A3.38,3.38,0,0,1,26.49,29.86Zm-5.38-6.71a.79.79,0,0,0,.85-.66L24.73,9.24a.55.55,0,0,0-.18-.46.62.62,0,0,0-.41-.17q-.08,0-16.53,6.11a.59.59,0,0,0-.41.59.57.57,0,0,0,.43.52l4,1.24,1.61,4.83a.62.62,0,0,0,.63.43.56.56,0,0,0,.4-.17L16.54,20l4.09,3A.9.9,0,0,0,21.11,23.15ZM13.8,20.71l-1.21-4q8.72-5.55,8.78-5.55c.15,0,.23,0,.23.16a.18.18,0,0,1,0,.06s-2.51,2.3-7.52,6.8Z" />

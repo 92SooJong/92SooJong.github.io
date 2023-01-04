@@ -2,10 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://92SooJong.github.io/posts/etc/</loc>
-    <lastmod>2023-01-04T20:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://92SooJong.github.io/tags/korean/</loc>
+    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/</loc>
+    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/spring/</loc>
+    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/spring/</loc>
+    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/spring/springapplicationrunlistener/</loc>
+    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/</loc>
+    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/</loc>
+    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/etc/</loc>
     <lastmod>2023-01-04T20:00:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/tags/oauth/</loc>
@@ -14,22 +32,7 @@
     <loc>https://92SooJong.github.io/posts/etc/oauth2/</loc>
     <lastmod>2023-01-04T20:00:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/</loc>
-    <lastmod>2023-01-04T20:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/</loc>
-    <lastmod>2023-01-04T20:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/</loc>
-    <lastmod>2023-01-04T20:00:00+09:00</lastmod>
-  </url><url>
     <loc>https://92SooJong.github.io/posts/spring/defaultbootstrapcontext/</loc>
-    <lastmod>2023-01-03T23:55:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/spring/</loc>
-    <lastmod>2023-01-03T23:55:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/posts/spring/</loc>
     <lastmod>2023-01-03T23:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/java/comparator/</loc>
