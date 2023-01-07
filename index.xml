@@ -6,7 +6,17 @@
     <description>Recent content on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Jan 2023 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Jan 2023 21:25:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Database Connection Pool</title>
+      <link>https://92SooJong.github.io/posts/database/connection-pool-2/</link>
+      <pubDate>Fri, 06 Jan 2023 21:25:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/database/connection-pool-2/</guid>
+      <description>원문 아래 문서를 읽고 정리함
+Why do we need a Database Connection Pool? -every programmer must know What is a Database Connection? Application이 DB 서버와 연결하기 위해선 (당연히) connection이 필요하다. 이 connection을 통해서 application은 SQL 명령을 DB에 보내고 그 결과를 다시 돌려받게 된다. 일반적으로 database server와 application server는 분리되어 구성된다. 따라서 DB는 특정 주소와 포트를 열어두고 application이 접근 할수 있도록 한다.(보안설정이 되어있는 경우 credential이 필요하다) 예.MySQL의 default 포트는 3306이다. application과 DB의 연결을 위해 TCP-IP가 사용된다.</description>
+    </item>
+    
     <item>
       <title>SpringApplicationRunListener를 까보자</title>
       <link>https://92SooJong.github.io/posts/spring/springapplicationrunlistener/</link>

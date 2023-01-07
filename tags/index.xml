@@ -6,11 +6,20 @@
     <description>Recent content in Tags on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 04 Jan 2023 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Jan 2023 21:25:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Database</title>
+      <link>https://92SooJong.github.io/tags/database/</link>
+      <pubDate>Fri, 06 Jan 2023 21:25:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/tags/database/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Korean</title>
       <link>https://92SooJong.github.io/tags/korean/</link>
-      <pubDate>Wed, 04 Jan 2023 22:55:00 +0900</pubDate>
+      <pubDate>Fri, 06 Jan 2023 21:25:00 +0900</pubDate>
       
       <guid>https://92SooJong.github.io/tags/korean/</guid>
       <description></description>
@@ -121,15 +130,6 @@
       <pubDate>Fri, 11 Nov 2022 22:55:00 +0900</pubDate>
       
       <guid>https://92SooJong.github.io/tags/redis/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Database</title>
-      <link>https://92SooJong.github.io/tags/database/</link>
-      <pubDate>Sun, 06 Nov 2022 00:30:00 +0900</pubDate>
-      
-      <guid>https://92SooJong.github.io/tags/database/</guid>
       <description></description>
     </item>
     
