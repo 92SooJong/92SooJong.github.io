@@ -44,13 +44,16 @@
     <loc>https://92SooJong.github.io/posts/spring/defaultbootstrapcontext/</loc>
     <lastmod>2023-01-03T23:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/comparator/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/comparator/</loc>
     <lastmod>2022-12-30T19:23:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/tags/java/</loc>
     <lastmod>2022-12-30T19:23:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/java/</loc>
+    <lastmod>2022-12-30T19:23:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/</loc>
     <lastmod>2022-12-30T19:23:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/%ED%9A%8C%EA%B3%A0/2022-12/</loc>
@@ -158,7 +161,7 @@
     <loc>https://92SooJong.github.io/posts/java/java-standard/generic/</loc>
     <lastmod>2022-09-29T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/localdatetime/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/localdatetime/</loc>
     <lastmod>2022-09-29T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/java/java-standard/</loc>
@@ -245,7 +248,10 @@
     <loc>https://92SooJong.github.io/posts/git/%EC%9E%90%EC%A3%BC%EC%93%B0%EB%8A%94%EB%AA%85%EB%A0%B9%EC%96%B4/</loc>
     <lastmod>2022-05-02T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/%EC%A0%9C%EB%84%A4%EB%A6%AD/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/</loc>
+    <lastmod>2022-05-01T22:55:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/%EC%A0%9C%EB%84%A4%EB%A6%AD/</loc>
     <lastmod>2022-05-01T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/javascript/</loc>
@@ -254,16 +260,16 @@
     <loc>https://92SooJong.github.io/posts/javascript/javascript-%EA%B8%B0%EC%B4%88/</loc>
     <lastmod>2022-04-26T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/call-by-value%EC%99%80-call-by-reference/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/call-by-value%EC%99%80-call-by-reference/</loc>
     <lastmod>2022-03-31T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/git/%EB%AA%85%EB%A0%B9%EC%96%B4/</loc>
     <lastmod>2022-03-28T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/just-in-time/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/just-in-time/</loc>
     <lastmod>2021-12-27T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/static/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/static/</loc>
     <lastmod>2021-12-27T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/tags/design-pattern/</loc>
@@ -278,10 +284,10 @@
     <loc>https://92SooJong.github.io/posts/design-pattern/gof-builderpattern/</loc>
     <lastmod>2021-12-22T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/lambda/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/lambda/</loc>
     <lastmod>2021-12-17T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/garbage-collector/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/garbage-collector/</loc>
     <lastmod>2021-12-15T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/docker/basic/</loc>
@@ -290,16 +296,16 @@
     <loc>https://92SooJong.github.io/posts/database/plsql-and-nosql/</loc>
     <lastmod>2021-11-20T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/stringbuilder/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/stringbuilder/</loc>
     <lastmod>2021-10-06T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/thread/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/thread/</loc>
     <lastmod>2021-08-29T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/annotation/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/annotation/</loc>
     <lastmod>2021-08-22T22:55:00+09:00</lastmod>
   </url><url>
-    <loc>https://92SooJong.github.io/posts/java/javabeans/</loc>
+    <loc>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EC%9D%B4%EB%A1%A0/javabeans/</loc>
     <lastmod>2021-07-22T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/archives/</loc>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>자바 문법 on Today I Learn</title>
+    <link>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/</link>
+    <description>Recent content in 자바 문법 on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 May 2022 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>제네릭</title>
+      <link>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/%EC%A0%9C%EB%84%A4%EB%A6%AD/</link>
+      <pubDate>Sun, 01 May 2022 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/%EC%A0%9C%EB%84%A4%EB%A6%AD/</guid>
+      <description>자바 5에 처음 도입되었다.
+예제 Box&amp;lt;T&amp;gt;에서 T는 타입 변수(type variable)이라한다. 타입변수는 꼭 T가 아니어도 된다. 예. Map&amp;lt;K,V&amp;gt; 기호의 종류만 다를 뿐 임의의 참조형 타입을 의미. Object 타입을 사용하다보면 형변환을 필수적으로 해줘야하는데 제네릭은 형변환에서 자유롭다. 1class Box&amp;lt;T&amp;gt;{ 2 T item; 3 4 void setItem(T item){ 5 this.item = item; 6 } 7 T getItem(){ 8 return this.item; 9 } 10 11 } 1Box&amp;lt;String&amp;gt; b = new Box&amp;lt;String&amp;gt;(); 2b.setItem(new Object()); // 에러남. String 타입으로 넘겨야함 3b.</description>
+    </item>
+    
+    <item>
+      <title>Lambda</title>
+      <link>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/lambda/</link>
+      <pubDate>Fri, 17 Dec 2021 22:55:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/java/%EC%9E%90%EB%B0%94-%EB%AC%B8%EB%B2%95/lambda/</guid>
+      <description>정의 lambda는 Java 8에서 처음으로 등장했다. lambda는 이름이 없는 함수, 익명함수 정도로 이해하면 되겠다. lambda는 변수형태로 저장이 가능하며 따라서 메서드의 인수로 전달이 가능하다. 1import java.util.ArrayList; 2 3public class Main { 4 public static void main(String[] args) { 5 ArrayList&amp;lt;Integer&amp;gt; numbers = new ArrayList&amp;lt;Integer&amp;gt;(); 6 numbers.add(5); 7 numbers.add(9); 8 numbers.add(8); 9 numbers.add(1); 10 // (parameter) -&amp;gt; {code block} 형태로 작성한 예제이다. 11 numbers.forEach( (n) -&amp;gt; { System.out.println(n); } ); 12 13 } 14} Java의 Consumer 인터페이스를 통해서 lambda를 변수에 할당할 수 있다.</description>
+    </item>
+    
+  </channel>
+</rss>
