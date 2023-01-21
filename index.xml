@@ -6,7 +6,18 @@
     <description>Recent content on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 20 Jan 2023 22:55:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 21 Jan 2023 16:00:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gradle : Terminology</title>
+      <link>https://92SooJong.github.io/posts/build/gradle-docs/terminology/</link>
+      <pubDate>Sat, 21 Jan 2023 16:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/build/gradle-docs/terminology/</guid>
+      <description>원문 링크 https://docs.gradle.org/current/userguide/what_is_gradle.html#terminology
+Terminology Projects Projects는 빌드 대상이다. Projects는 build script를 포함하는데 위치는 root에 build.gradle라는 이름으로 있다. Build script는 Projects에 대한 tasks, dependencies, plugins와 그외 설정들을 포함하고 있다. build는 1개 이상의 Project를 포함할 수 있으며, 각 Project는 자신들의 subproject를 가질 수 있다.
+Tasks Tasks는 소프트웨어 배포, 테스트 실행, 코드 컴파일작업 실행에 대한 로직들을 포함한다. 대부분의 경우는 기존에 존재하는 task를 사용하게 된다. Gradle은 일반적인 build 시스템이 필요로 하는 task를 기본적으로 제공한다.(예를들면, Java Test task같은 경우 기본적으로 Built-in 되어 있어서 사용자가 직접 추가하지 않아도 된다!</description>
+    </item>
+    
     <item>
       <title>Gradle : Building Java Applications Sample</title>
       <link>https://92SooJong.github.io/posts/build/gradle-docs/building-java-applications-sample/</link>
