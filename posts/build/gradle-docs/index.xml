@@ -19,6 +19,16 @@ Tasks Tasks는 소프트웨어 배포, 테스트 실행, 코드 컴파일작업 
     </item>
     
     <item>
+      <title>Gradle : Toolchains for JVM projects</title>
+      <link>https://92SooJong.github.io/posts/build/gradle-docs/toolchains-for-jvm-projects/</link>
+      <pubDate>Sat, 21 Jan 2023 16:00:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/build/gradle-docs/toolchains-for-jvm-projects/</guid>
+      <description>default 설정에 따라 gradle은 프로젝트의 빌드, gradle 자체를 실행하는데 있어서 똑같은 자바 버전을 사용한다. (참고. gradle은 Java로 구현되어 있음.) By default, Gradle uses the same Java version for running Gradle itself and building JVM projects.
+이것이 항상 좋은것만은 아니다. 개발자 별로 또는 CI 서버가 서로 다른 자바 버전을 사용해서 프로젝트를 빌드한다면 예상치 못한 문제가 발생할 수 있다. (사용자 마다 running gradle 버전이 다르면 프로젝트 빌드시 사용하는 JDK의 버전도 달라질것이다.) 거기다 running gradle이 지원하지 않는 버전의 자바를 사용해서 프로젝트를 빌드하고 싶은 경우도 있을것이다.</description>
+    </item>
+    
+    <item>
       <title>Gradle : Building Java Applications Sample</title>
       <link>https://92SooJong.github.io/posts/build/gradle-docs/building-java-applications-sample/</link>
       <pubDate>Fri, 20 Jan 2023 22:55:00 +0900</pubDate>
