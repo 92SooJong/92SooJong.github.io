@@ -3,30 +3,33 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://92SooJong.github.io/posts/build/</loc>
-    <lastmod>2023-01-21T16:00:00+09:00</lastmod>
+    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/tags/gradle/</loc>
-    <lastmod>2023-01-21T16:00:00+09:00</lastmod>
+    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/build/gradle-docs/sourceset/</loc>
+    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/build/gradle-docs/</loc>
+    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/korean/</loc>
+    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/</loc>
+    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/</loc>
+    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/</loc>
+    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/build/gradle-docs/terminology/</loc>
     <lastmod>2023-01-21T16:00:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/build/gradle-docs/toolchains-for-jvm-projects/</loc>
-    <lastmod>2023-01-21T16:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/posts/build/gradle-docs/</loc>
-    <lastmod>2023-01-21T16:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/korean/</loc>
-    <lastmod>2023-01-21T16:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/posts/</loc>
-    <lastmod>2023-01-21T16:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/</loc>
-    <lastmod>2023-01-21T16:00:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/</loc>
     <lastmod>2023-01-21T16:00:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/build/gradle-docs/building-java-applications-sample/</loc>
