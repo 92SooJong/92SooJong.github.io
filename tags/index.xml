@@ -6,7 +6,34 @@
     <description>Recent content in Tags on Today I Learn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 24 Jan 2023 22:44:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 29 Jan 2023 14:17:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Korean</title>
+      <link>https://92SooJong.github.io/tags/korean/</link>
+      <pubDate>Sun, 29 Jan 2023 14:17:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/tags/korean/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Web</title>
+      <link>https://92SooJong.github.io/tags/web/</link>
+      <pubDate>Sun, 29 Jan 2023 14:17:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/tags/web/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spring</title>
+      <link>https://92SooJong.github.io/tags/spring/</link>
+      <pubDate>Sun, 29 Jan 2023 14:04:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/tags/spring/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Gradle</title>
       <link>https://92SooJong.github.io/tags/gradle/</link>
@@ -17,29 +44,11 @@
     </item>
     
     <item>
-      <title>Korean</title>
-      <link>https://92SooJong.github.io/tags/korean/</link>
-      <pubDate>Tue, 24 Jan 2023 22:44:00 +0900</pubDate>
-      
-      <guid>https://92SooJong.github.io/tags/korean/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Database</title>
       <link>https://92SooJong.github.io/tags/database/</link>
       <pubDate>Fri, 06 Jan 2023 21:25:00 +0900</pubDate>
       
       <guid>https://92SooJong.github.io/tags/database/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Spring</title>
-      <link>https://92SooJong.github.io/tags/spring/</link>
-      <pubDate>Wed, 04 Jan 2023 22:55:00 +0900</pubDate>
-      
-      <guid>https://92SooJong.github.io/tags/spring/</guid>
       <description></description>
     </item>
     

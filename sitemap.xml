@@ -2,6 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://92SooJong.github.io/tags/korean/</loc>
+    <lastmod>2023-01-29T14:17:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/</loc>
+    <lastmod>2023-01-29T14:17:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/</loc>
+    <lastmod>2023-01-29T14:17:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/</loc>
+    <lastmod>2023-01-29T14:17:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/web/</loc>
+    <lastmod>2023-01-29T14:17:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/web/</loc>
+    <lastmod>2023-01-29T14:17:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/web/xff/</loc>
+    <lastmod>2023-01-29T14:17:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/tags/spring/</loc>
+    <lastmod>2023-01-29T14:04:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/spring/</loc>
+    <lastmod>2023-01-29T14:04:00+09:00</lastmod>
+  </url><url>
+    <loc>https://92SooJong.github.io/posts/spring/responsebody-annotation/</loc>
+    <lastmod>2023-01-29T14:04:00+09:00</lastmod>
+  </url><url>
     <loc>https://92SooJong.github.io/posts/build/</loc>
     <lastmod>2023-01-24T22:44:00+09:00</lastmod>
   </url><url>
@@ -12,18 +42,6 @@
     <lastmod>2023-01-24T22:44:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/build/gradle-docs/</loc>
-    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/korean/</loc>
-    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/posts/</loc>
-    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/</loc>
-    <lastmod>2023-01-24T22:44:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/</loc>
     <lastmod>2023-01-24T22:44:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/build/gradle-docs/terminology/</loc>
@@ -43,12 +61,6 @@
   </url><url>
     <loc>https://92SooJong.github.io/posts/database/connection-pool-2/</loc>
     <lastmod>2023-01-06T21:25:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/tags/spring/</loc>
-    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
-  </url><url>
-    <loc>https://92SooJong.github.io/posts/spring/</loc>
-    <lastmod>2023-01-04T22:55:00+09:00</lastmod>
   </url><url>
     <loc>https://92SooJong.github.io/posts/spring/springapplicationrunlistener/</loc>
     <lastmod>2023-01-04T22:55:00+09:00</lastmod>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Web on Today I Learn</title>
+    <link>https://92SooJong.github.io/tags/web/</link>
+    <description>Recent content in Web on Today I Learn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 29 Jan 2023 14:17:00 +0900</lastBuildDate><atom:link href="https://92SooJong.github.io/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Web : X-Forwarded-For(XFF)</title>
+      <link>https://92SooJong.github.io/posts/web/xff/</link>
+      <pubDate>Sun, 29 Jan 2023 14:17:00 +0900</pubDate>
+      
+      <guid>https://92SooJong.github.io/posts/web/xff/</guid>
+      <description>정리 The &amp;ldquo;X-Forwarded-For&amp;rdquo; (XFF) attribute is an HTTP header field that is used to identify the originating IP address of a client connecting to a web server through an HTTP proxy or a load balancer. The XFF header is used to prevent IP spoofing and other types of IP address-based attacks.
+When a client connects to an HTTP proxy or load balancer, the proxy or load balancer adds the client&amp;rsquo;s IP address to the XFF header of the incoming request.</description>
+    </item>
+    
+  </channel>
+</rss>
